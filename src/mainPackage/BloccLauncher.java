@@ -15,13 +15,20 @@ public class BloccLauncher {
         BoardAnalyzer analyzer = new BoardAnalyzer(board);
         long curT = System.nanoTime();
 
-        for(Blocks types : Blocks.values())
+        /*for(Blocks types : Blocks.values())
             analyzer.findAllPossibilities(types.getBlockTypeClass());
+        */
         double delta = (double)(System.nanoTime() - curT)/1000000;
-        ArrayList<AbstractBlock> list = analyzer.getPossibilities();
+        analyzer.findBoardCoverings(board);
+        ArrayList<ArrayList<AbstractBlock>> list = analyzer.getCoverings();
         //board.print();
-        //for(AbstractBlock block : list)
-        //    System.out.println(block.toString());
+        for(ArrayList<AbstractBlock> list1 : list) {
+            System.out.println("#########");
+            for (AbstractBlock block : list1)
+                System.out.println(block.toString());
+        }
+
+        board.print();
         System.out.println("Czas: "+delta+"ms, znaleziono "+list.size()+" możliwości");
     }
 }
