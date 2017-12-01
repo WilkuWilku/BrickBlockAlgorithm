@@ -1,10 +1,8 @@
 package mainPackage;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Created by Inf on 2017-11-26.
@@ -40,7 +38,7 @@ public class threadTest {
 
 
     public static void main(String[] args) {
-        ExecutorService executor = Executors.newFixedThreadPool(4);
+        /*ExecutorService executor = Executors.newFixedThreadPool(4);
         Work w = new Work();
         Thread t0 = new Thread(){
             @Override
@@ -76,7 +74,7 @@ public class threadTest {
         executor.execute(t2);
         executor.execute(t3);
         executor.shutdown();
-        while(!executor.isTerminated()){}
+        while(!executor.isTerminated()){}*/
         /*t0.start();
         t1.start();
         t2.start();
@@ -88,10 +86,21 @@ public class threadTest {
             t3.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }*/
+        }*//*
         long delta = System.currentTimeMillis() - curT;
-        System.out.println("Czas: "+delta+" Wykonano iteracji: "+w.it);
-
+        System.out.println("Czas: "+delta+" Wykonano iteracji: "+w.it);*/
+        //DatabaseHandler dbh = new DatabaseHandler();
+        //dbh.connect();
+        //long t = System.currentTimeMillis();
+        //dbh.testQuery();
+        //dbh.addValues();
+        //ResultSet resultSet = dbh.getValuesFromDB();
+        //dbh.printResults(resultSet);
+        //long d = System.currentTimeMillis() - t;
+        //dbh.addAllBlockTypes();
+        //dbh.dropTable("table2or1");
+        //dbh.closeConnection();
+        //System.out.println(d);
 
 
     }

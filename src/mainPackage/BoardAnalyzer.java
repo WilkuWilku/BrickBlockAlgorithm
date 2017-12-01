@@ -7,18 +7,20 @@ import mainPackage.blocks.Blocks;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
+import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Stack;
 
 
 /**
  * Created by Inf on 2017-11-19.
  */
 public class BoardAnalyzer {
-
+    private final int AREA_WIDTH = 4;
     private BoardState board;
     private ArrayList<AbstractBlock> possibilities;
     private ArrayList<ArrayList<AbstractBlock>> coverings;
+    public static final int[] primes = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53};
 
     public BoardAnalyzer(BoardState board) {
         this.board = board;
@@ -26,6 +28,35 @@ public class BoardAnalyzer {
         coverings = new ArrayList<>();
     }
 
+    /*
+        areaIndex - indeks obszaru poszukiwań (0-15)
+        boardIndex - indeks komórki na planszy
+        areaState[areaIndex] - stan komórki w obszarze poszukiwań
+        primes - kolejne liczby pierwsze odpowiadające komórkom obszaru poszukiwań
+        areaStateId - unikalne ID stanu wszystkich komórek obszaru poszukiwań (iloczyn primes zajętych komórek)
+     */
+
+    private BigDecimal generateAreaStateId(int startingIndex){
+        BigDecimal areaStateId = new BigDecimal(1);
+        boolean[] areaState = new boolean[AREA_WIDTH*AREA_WIDTH];
+        int boardIndex, areaIndex;
+        for(int y=0; y<AREA_WIDTH; y++){
+            for(int x=0; x<AREA_WIDTH; x++){
+                boardIndex = y*board.size+startingIndex+x;
+                areaIndex = y*AREA_WIDTH+x;
+                areaState[areaIndex] = board.getCell(boardIndex);
+                areaStateId = areaStateId.multiply(new BigDecimal(primes[areaIndex]*(areaState[areaIndex] ? 1 : 0)));
+            }
+        }
+        return areaStateId;
+    }
+
+    public void findPossibilitiesAtIndexWithDB(int startingIndex){
+        ResultSet resultSet;
+        DatabaseHandler db = DatabaseHandler.getInstance();
+        resultSet = db.getFilteredResults(generateAreaStateId(startingIndex));
+        db.printResults(resultSet);
+    }
 
     public void findAllPossibilities(Class typeClass){
         final int threadNo = 2;
@@ -51,8 +82,6 @@ public class BoardAnalyzer {
     public void findBoardCoverings(BoardState board){
         recursiveCovering(0, board, new ArrayList());
     }
-
-
 
     private void recursiveCovering(int startingIndex, BoardState board, ArrayList list) {
 
@@ -89,10 +118,10 @@ public class BoardAnalyzer {
             }
         }
         coverings.add(new ArrayList<AbstractBlock>(list));
-
-
-
     }
+
+
+
 
     public ArrayList<ArrayList<AbstractBlock>> getCoverings() {
         return coverings;
