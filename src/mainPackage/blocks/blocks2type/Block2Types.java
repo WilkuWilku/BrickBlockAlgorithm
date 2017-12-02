@@ -14,7 +14,7 @@ public enum Block2Types implements EnumWithClass{
     SBlock (SBlock.class),
     SquareBlock (SquareBlock.class),
     StairsBlock (StairsBlock.class),
-    Straight5Block (Straight5Block.class),
+    //Straight5Block (Straight5Block.class),
     UBlock (UBlock.class),
     WormBlock (WormBlock.class),
     InvertedBootBlock (InvertedBootBlock.class),

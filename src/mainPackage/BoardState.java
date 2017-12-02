@@ -13,6 +13,7 @@ public class BoardState {
     public static int size;             // szerokość planszy
     private boolean[] cells;
 
+
     /* nowa pusta plansza o wielkości size */
     public BoardState(int size){
         this.size = size;

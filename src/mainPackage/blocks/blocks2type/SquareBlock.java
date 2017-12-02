@@ -25,7 +25,7 @@ public class SquareBlock extends AbstractBlockType2 implements Blockible{
     public SquareBlock(int referenceCellIndex, BlockRotation rotation){
         this.referenceCellIndex = referenceCellIndex;
         this.rotation = rotation;
-        shape = shapeR0;
+        shape = (rotation == BlockRotation.R0) ? shapeR0 : null;
 
     }
 

@@ -1,14 +1,19 @@
 package mainPackage;
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import mainPackage.blocks.AbstractBlock;
 import mainPackage.blocks.BlockFinder;
 import mainPackage.blocks.BlockRotation;
 import mainPackage.blocks.Blocks;
+import mainPackage.blocks.blocks2type.Blockible;
+import mainPackage.blocks.blocks2type.Reducible;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -51,11 +56,51 @@ public class BoardAnalyzer {
         return areaStateId;
     }
 
-    public void findPossibilitiesAtIndexWithDB(int startingIndex){
+    public ArrayList findPossibilitiesWithDB(){
+        for(int x=0; x<board.size-AREA_WIDTH; x++){
+            for(int y=0; y<board.size-AREA_WIDTH; y++){
+                findPossibilitiesAtIndexWithDB(x+board.size*y);
+            }
+        }
+        return possibilities;
+    }
+
+    private void findPossibilitiesAtIndexWithDB(int startingIndex){
         ResultSet resultSet;
         DatabaseHandler db = DatabaseHandler.getInstance();
         resultSet = db.getFilteredResults(generateAreaStateId(startingIndex));
-        db.printResults(resultSet);
+        saveResultSetToArrayList(startingIndex, resultSet);
+    }
+
+    private void saveResultSetToArrayList(int startingIndex, ResultSet resultSet){
+        try {
+            Class tClass;
+            BlockRotation rotation;
+            while(resultSet.next()){
+                try {
+                    tClass = Class.forName("mainPackage.blocks.blocks2or1type." + resultSet.getString("block"));
+                }
+                catch (ClassNotFoundException e){
+                    tClass = Class.forName("mainPackage.blocks.blocks2type." + resultSet.getString("block"));
+                }
+                rotation = BlockRotation.valueOf(resultSet.getString("rotation"));
+                Constructor constructor = tClass.getConstructor(int.class, BlockRotation.class);
+                AbstractBlock block = (AbstractBlock) constructor.newInstance(startingIndex, rotation);
+                possibilities.add(block);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 
     public void findAllPossibilities(Class typeClass){
@@ -120,8 +165,24 @@ public class BoardAnalyzer {
         coverings.add(new ArrayList<AbstractBlock>(list));
     }
 
+    public int getNBlockibles(){
+        int nBlockibles =0;
+        for(AbstractBlock block : possibilities){
+            if(block instanceof Blockible)
+                nBlockibles++;
+        }
+        return nBlockibles;
+    }
 
 
+    public int getNReducibles(){
+        int nReducibles =0;
+        for(AbstractBlock block : possibilities){
+            if(block instanceof Reducible)
+                nReducibles++;
+        }
+        return nReducibles;
+    }
 
     public ArrayList<ArrayList<AbstractBlock>> getCoverings() {
         return coverings;

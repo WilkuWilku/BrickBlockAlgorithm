@@ -89,17 +89,17 @@ public class threadTest {
         }*//*
         long delta = System.currentTimeMillis() - curT;
         System.out.println("Czas: "+delta+" Wykonano iteracji: "+w.it);*/
-        //DatabaseHandler dbh = new DatabaseHandler();
-        //dbh.connect();
+        DatabaseHandler dbh = DatabaseHandler.getInstance();
+        dbh.connect();
         //long t = System.currentTimeMillis();
         //dbh.testQuery();
         //dbh.addValues();
         //ResultSet resultSet = dbh.getValuesFromDB();
         //dbh.printResults(resultSet);
         //long d = System.currentTimeMillis() - t;
-        //dbh.addAllBlockTypes();
-        //dbh.dropTable("table2or1");
-        //dbh.closeConnection();
+        dbh.addAllBlockTypes();
+        //dbh.dropTable("table2");
+        dbh.closeConnection();
         //System.out.println(d);
 
 

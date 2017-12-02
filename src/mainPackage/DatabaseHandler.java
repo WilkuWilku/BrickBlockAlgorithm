@@ -71,6 +71,15 @@ public class DatabaseHandler {
         }
     }
 
+    public void create2Table(){
+        try {
+            String query = "CREATE TABLE table2(block VARCHAR, rotation VARCHAR, shapeId DECIMAL(21,0) NOT NULL, PRIMARY KEY (shapeId)) ";
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public ResultSet getAllValuesFromDB(){
         ResultSet results = null;
         try {
@@ -83,7 +92,8 @@ public class DatabaseHandler {
     }
 
     public ResultSet getFilteredResults(BigDecimal areaStateId){
-        String query = "SELECT block, rotation, shapeId, "+ areaStateId +"  AS mod FROM table2or1 WHERE "+areaStateId.toPlainString()+" % shapeId = 0";
+        String query = "SELECT block, rotation, shapeId, "+ areaStateId +"  AS mod FROM table2or1 WHERE "+areaStateId.toPlainString()+" % shapeId = 0"+
+                "UNION SELECT block, rotation, shapeId, "+ areaStateId +"  AS mod FROM table2 WHERE "+areaStateId.toPlainString()+" % shapeId = 0";
         ResultSet resultSet = null;
         try {
             resultSet = statement.executeQuery(query);
@@ -105,8 +115,9 @@ public class DatabaseHandler {
     }
 
     public void addAllBlockTypes(){
-        create2or1Table();
-        for(Block2or1Types types : Block2or1Types.values()){
+        //create2or1Table();
+        create2Table();
+        for(Block2Types types : Block2Types.values()){
             for(BlockRotation rot : BlockRotation.values()) {
                 Class tClass = types.getBlockClass();
                 try {
@@ -123,7 +134,7 @@ public class DatabaseHandler {
                             shapeId = shapeId.multiply(new BigDecimal(BoardAnalyzer.primes[shapeIndexes[i]]));
                         }
                         System.out.print(": shapeID ="+shapeId.toString()+ "\n");
-                        add2or1Values(tClass.getSimpleName(), rot.name(), shapeId.toPlainString());
+                        add2Values(tClass.getSimpleName(), rot.name(), shapeId.toPlainString());
                     }
                 } catch (NoSuchMethodException e) {
                     e.printStackTrace();
@@ -136,10 +147,21 @@ public class DatabaseHandler {
                 }
             }
         }
+
     }
 
     private void add2or1Values(String blockType, String rotation, String shapeId){
         String query = "INSERT INTO table2or1(block, rotation, shapeId) VALUES ('" + blockType + "', '" + rotation + "', '" + shapeId+"')";
+        System.out.println("executing query " + query);
+        try {
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void add2Values(String blockType, String rotation, String shapeId){
+        String query = "INSERT INTO table2(block, rotation, shapeId) VALUES ('" + blockType + "', '" + rotation + "', '" + shapeId+"')";
         System.out.println("executing query " + query);
         try {
             statement.executeUpdate(query);
