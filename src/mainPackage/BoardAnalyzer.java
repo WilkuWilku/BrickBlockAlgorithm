@@ -35,7 +35,6 @@ public class BoardAnalyzer {
         primes - kolejne liczby pierwsze odpowiadające komórkom obszaru poszukiwań
         areaStateId - unikalne ID stanu wszystkich komórek obszaru poszukiwań (iloczyn primes zajętych komórek)
      */
-
     private BigDecimal generateAreaStateId(int startingIndex){
         BigDecimal areaStateId = new BigDecimal(1);
         boolean[] areaState = new boolean[AREA_WIDTH*AREA_WIDTH];
@@ -45,7 +44,8 @@ public class BoardAnalyzer {
                 boardIndex = y*board.size+startingIndex+x;
                 areaIndex = y*AREA_WIDTH+x;
                 areaState[areaIndex] = board.getCell(boardIndex);
-                areaStateId = areaStateId.multiply(new BigDecimal(primes[areaIndex]*(areaState[areaIndex] ? 1 : 0)));
+                if(!areaState[areaIndex])
+                    areaStateId = areaStateId.multiply(new BigDecimal(primes[areaIndex]));
             }
         }
         return areaStateId;

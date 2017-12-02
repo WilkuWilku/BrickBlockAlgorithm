@@ -70,17 +70,7 @@ public class DatabaseHandler {
             e.printStackTrace();
         }
     }
-/*
-    public void addValues(){
-        try {
-            statement.executeUpdate("INSERT INTO testTable(id, opis) VALUES (1, 'aaaa')");
-            statement.executeUpdate("INSERT INTO testTable(id, opis) VALUES (2, 'daa')");
-            statement.executeUpdate("INSERT INTO testTable(id, opis) VALUES (3, 'afsda')");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-*/
+
     public ResultSet getAllValuesFromDB(){
         ResultSet results = null;
         try {
@@ -93,7 +83,7 @@ public class DatabaseHandler {
     }
 
     public ResultSet getFilteredResults(BigDecimal areaStateId){
-        String query = "SELECT block, rotation FROM table2or1 WHERE "+areaStateId+"%shapeId = 0";
+        String query = "SELECT block, rotation, shapeId, "+ areaStateId +"  AS mod FROM table2or1 WHERE "+areaStateId.toPlainString()+" % shapeId = 0";
         ResultSet resultSet = null;
         try {
             resultSet = statement.executeQuery(query);
@@ -106,7 +96,8 @@ public class DatabaseHandler {
     public void printResults(ResultSet resultSet){
         try {
             while(resultSet.next()){
-                System.out.println(resultSet.getRow()+" | "+resultSet.getString("block")+" | "+resultSet.getString("rotation") + " | ");
+                System.out.println(resultSet.getRow()+" | "+resultSet.getString("block")+" | "+resultSet.getString("rotation") + " | "
+                        +resultSet.getBigDecimal("shapeId") + " | " +resultSet.getBigDecimal("mod") + " | ");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -115,7 +106,6 @@ public class DatabaseHandler {
 
     public void addAllBlockTypes(){
         create2or1Table();
-
         for(Block2or1Types types : Block2or1Types.values()){
             for(BlockRotation rot : BlockRotation.values()) {
                 Class tClass = types.getBlockClass();
@@ -166,5 +156,4 @@ public class DatabaseHandler {
             e.printStackTrace();
         }
     }
-
 }
