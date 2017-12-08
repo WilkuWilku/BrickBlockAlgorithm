@@ -81,6 +81,7 @@ public class BoardAnalyzer {
                     tClass = Class.forName("mainPackage.blocks.blocks2or1type." + resultSet.getString("block"));
                 }
                 catch (ClassNotFoundException e){
+                    /* nie ten package */
                     tClass = Class.forName("mainPackage.blocks.blocks2type." + resultSet.getString("block"));
                 }
                 rotation = BlockRotation.valueOf(resultSet.getString("rotation"));

@@ -1,7 +1,10 @@
 package mainPackage;
 
 import mainPackage.blocks.AbstractBlock;
+import mainPackage.blocks.EmptyBlock;
 
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Set;
 
 /**
@@ -11,13 +14,17 @@ import java.util.Set;
 
 public class BoardState {
     public static int size;             // szerokość planszy
-    private boolean[] cells;
+    private boolean[] cells;            // true = zajęta, false = wolna
+    private ArrayList<Integer> freeCells;
 
 
     /* nowa pusta plansza o wielkości size */
     public BoardState(int size){
         this.size = size;
         cells = new boolean[size*size];
+        freeCells = new ArrayList<>(size*size);
+        for(int i=0; i<size*size; i++)
+            freeCells.add(i);
     }
     /* nowa plansza o wielkości size z zablokowanymi polami o indeksach blockedCells[] */
     public BoardState(int size, int[] blockedCells){
@@ -26,11 +33,16 @@ public class BoardState {
             setCell(blockedCells[i]);
     }
 
+    public int getNFreeCells(){
+        return freeCells.size();
+    }
+
     /* zaznacza pole o indeksie index */
     public void setCell(int index) throws ArrayIndexOutOfBoundsException {
         if(index >= size*size || index < 0)
             throw new ArrayIndexOutOfBoundsException("Błąd: Odwołanie do pola poza planszą [index="+index+", size="+size+"]");
         cells[index] = true;
+        freeCells.remove(Integer.valueOf(index));
     }
 
     public void setCell(int x, int y) throws ArrayIndexOutOfBoundsException {
@@ -43,6 +55,7 @@ public class BoardState {
         if(index >= size*size || index < 0)
             throw new ArrayIndexOutOfBoundsException("Błąd: Odwołanie do pola poza planszą [index="+index+", size="+size+"]");
         cells[index] = false;
+        freeCells.add(index);
     }
 
     public void unsetCell(int x, int y) throws ArrayIndexOutOfBoundsException {
@@ -52,10 +65,14 @@ public class BoardState {
     }
 
     public boolean getCell(int index){
+        if(index<0 || index>=size*size)
+            return true;
         return cells[index];
     }
 
     public boolean getCell(int x, int y) {
+        if(x<0 || y<0 || x>=size || y>=size)
+            return true;
         return cells[y*size+x];
     }
 
@@ -71,6 +88,29 @@ public class BoardState {
             }
             System.out.print("\n");
         }
+    }
+
+    /* generuje losowo zapełnioną planszę */
+    public static BoardState randomBoard(int size, int nBlocked){
+        BoardState board = new BoardState(size);
+        Random random = new Random();
+        for(int i=0; i<nBlocked; i++){
+            int index = random.nextInt(size*size);
+            while(board.getCell(index))
+                index = random.nextInt(size*size);
+            board.setCell(index);
+        }
+        return board;
+    }
+
+    public void cleanBoard(){
+        ArrayList<Integer> blocksToDelete = new ArrayList();
+        for(Integer i : freeCells){
+            if(EmptyBlock.isEmpty(this, i)){
+                blocksToDelete.add(i);
+            }
+        }
+        freeCells.removeAll(blocksToDelete);
     }
 
 }

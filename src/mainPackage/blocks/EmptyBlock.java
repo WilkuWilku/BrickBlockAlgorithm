@@ -1,5 +1,6 @@
 package mainPackage.blocks;
 
+import mainPackage.BoardState;
 import mainPackage.IndexConverter;
 
 /**
@@ -12,8 +13,18 @@ public class EmptyBlock extends AbstractBlock {
         this.rotation = rotation;
     }
 
-    public boolean isEmpty(){
-        throw new UnsupportedOperationException();
+    public static boolean isEmpty(BoardState board, int index) {
+        if(!board.getCell(index+board.size) || !board.getCell(index-board.size))
+            return false;
+        if(IndexConverter.xOfIndex(index, board.size) != 0){
+            if(!board.getCell(index-1))
+                return false;
+        }
+        if(IndexConverter.xOfIndex(index, board.size) != board.size-1){
+            if(!board.getCell(index+1))
+                return false;
+        }
+        return true;
     }
 
     @Override
