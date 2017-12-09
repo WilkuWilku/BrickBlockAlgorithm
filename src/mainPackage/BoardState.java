@@ -37,6 +37,10 @@ public class BoardState {
         return freeCells.size();
     }
 
+    public ArrayList<Integer> getFreeCells() {
+        return freeCells;
+    }
+
     /* zaznacza pole o indeksie index */
     public void setCell(int index) throws ArrayIndexOutOfBoundsException {
         if(index >= size*size || index < 0)

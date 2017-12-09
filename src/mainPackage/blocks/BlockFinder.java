@@ -22,7 +22,7 @@ public class BlockFinder<T extends AbstractBlock>{
     private T findWithRotation(int index, int[][] coords, int width, int height, BoardState board, BlockRotation rotation) {
         if(coords == null)
             return null;
-        if(index+height*board.size+width < board.size * board.size){
+        //if(index+height*board.size+width < board.size * board.size){
             for(int i=0; i<coords.length; i++){
                     if(board.getCell(index+coords[i][1]*board.size+coords[i][0]))
                         return null;
@@ -42,7 +42,7 @@ public class BlockFinder<T extends AbstractBlock>{
             } catch (InvocationTargetException e) {
                 e.printStackTrace();
             }
-        }
+        //}
         return null;
     }
 
