@@ -23,7 +23,7 @@ R90     XXX
 
 public class SBlock extends AbstractBlockType2 implements Reducible, Blockible {
 
-    private static final int[][] shapeR0 = new int[][]{{1,0}, {2,0}, {1,1}, {0,2}, {1,2}};
+    private static final int[][] shapeR0 = new int[][]{{0,0}, {1,0}, {0,1}, {-1,2}, {0,2}};
     private static final int[][] shapeR90 = new int[][]{{0,0}, {0,1}, {1,1}, {2, 1}, {2, 2}};
 
     public SBlock(int referenceCellIndex, BlockRotation rotation){

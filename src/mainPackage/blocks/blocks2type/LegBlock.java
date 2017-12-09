@@ -36,7 +36,7 @@ public class LegBlock extends AbstractBlockType2 implements Reducible, Blockible
     private static final int[][] shapeR0 = new int[][]{{0,0}, {0,1}, {0,2}, {0,3}, {1,3}};
     private static final int[][] shapeR90 = new int[][]{{0,0}, {1,0}, {2,0}, {3, 0}, {0, 1}};
     private static final int[][] shapeR180 = new int[][]{{0,0}, {1,0}, {1,1}, {1, 2}, {1, 3}};
-    private static final int[][] shapeR270 = new int[][]{{3,0}, {1,0}, {1,1}, {2, 1}, {3, 1}};
+    private static final int[][] shapeR270 = new int[][]{{2,0}, {0,0}, {0,1}, {1, 1}, {2, 1}};
 
     public LegBlock(int referenceCellIndex, BlockRotation rotation){
         this.referenceCellIndex = referenceCellIndex;
