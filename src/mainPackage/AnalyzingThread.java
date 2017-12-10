@@ -59,8 +59,9 @@ public class AnalyzingThread implements Runnable {
 
     @Override
     public void run() {
-        for(int i=idNum; i<board.size*board.size; i+=nThreads)
-            researchPossibilities(types, i);
+        ArrayList<Integer> listOfCells = board.getFreeCells();
+        for(int i=idNum; i<board.getNFreeCells(); i+=nThreads)
+            researchPossibilities(types, listOfCells.get(i));
     }
 
     public ArrayList<AbstractBlock> getPossibilities() {

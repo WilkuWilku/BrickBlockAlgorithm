@@ -1,11 +1,9 @@
 package mainPackage;
 
-import mainPackage.blocks.AbstractBlock;
-import mainPackage.blocks.EmptyBlock;
+import mainPackage.blocks.Blocks;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Set;
 
 /**
  * Created by Inf on 2017-11-18.
@@ -35,6 +33,10 @@ public class BoardState {
 
     public int getNFreeCells(){
         return freeCells.size();
+    }
+
+    public ArrayList<Integer> getFreeCells() {
+        return freeCells;
     }
 
     /* zaznacza pole o indeksie index */
@@ -106,7 +108,7 @@ public class BoardState {
     public void cleanBoard(){
         ArrayList<Integer> blocksToDelete = new ArrayList();
         for(Integer i : freeCells){
-            if(EmptyBlock.isEmpty(this, i)){
+            if(Blocks.isEmpty(this, i)){
                 blocksToDelete.add(i);
             }
         }

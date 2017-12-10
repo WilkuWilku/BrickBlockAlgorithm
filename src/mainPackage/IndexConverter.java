@@ -14,14 +14,14 @@ public final class IndexConverter {
     }
 
     public static Dual indexToXY(int index, int size){
-        return new Dual((int)(index/size), index % size);
+        return new Dual(xOfIndex(index, size), yOfIndex(index, size));
     }
 
     public static int xOfIndex(int index, int size){
-        return (int)(index/size);
+        return index % size;
     }
 
     public static int yOfIndex(int index, int size){
-        return index % size;
+        return (int)(index/size);
     }
 }

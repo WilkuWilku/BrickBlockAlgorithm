@@ -32,10 +32,10 @@ R270    XXX
 
 public class DuckBlock extends AbstractBlockType2or1{
 
-    private static final int[][] shapeR0 = new int[][]{{1,0}, {1,1}, {2,1}, {0,2}, {1,2}};
+    private static final int[][] shapeR0 = new int[][]{{0,0}, {0,1}, {1,1}, {-1,2}, {0,2}};
     private static final int[][] shapeR90 = new int[][]{{0,0}, {0,1}, {1,1}, {2, 1}, {1, 2}};
-    private static final int[][] shapeR180 = new int[][]{{1,0}, {2,0}, {0,1}, {1, 1}, {1, 2}};
-    private static final int[][] shapeR270 = new int[][]{{1,0}, {0,1}, {1,1}, {2, 1}, {2, 2}};
+    private static final int[][] shapeR180 = new int[][]{{0,0}, {1,0}, {-1,1}, {0, 1}, {0, 2}};
+    private static final int[][] shapeR270 = new int[][]{{0,0}, {-1,1}, {0,1}, {1, 1}, {1, 2}};
 
     public DuckBlock(int referenceCellIndex, BlockRotation rotation){
         this.referenceCellIndex = referenceCellIndex;

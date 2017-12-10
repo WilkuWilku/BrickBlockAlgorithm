@@ -1,10 +1,9 @@
 package mainPackage;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import mainPackage.blocks.AbstractBlock;
-import mainPackage.blocks.BlockFinder;
 import mainPackage.blocks.BlockRotation;
-import mainPackage.blocks.Blocks;
+import mainPackage.blocks.BlockTypes;
+import mainPackage.blocks.blocks1type.BrickBlock;
 import mainPackage.blocks.blocks2type.Blockible;
 import mainPackage.blocks.blocks2type.Reducible;
 
@@ -133,7 +132,7 @@ public class BoardAnalyzer {
 
         for (int i = startingIndex; i < board.size * board.size; i++) {
             if(!board.getCell(i)) {
-                for (Blocks blockTypes : Blocks.values()) {
+                for (BlockTypes blockTypes : BlockTypes.values()) {
                     Class typeClass = blockTypes.getBlockTypeClass();
                     EnumWithClass[] types = (EnumWithClass[]) typeClass.getEnumConstants();
                     for (int j = 0; j < types.length; j++) {
@@ -183,6 +182,15 @@ public class BoardAnalyzer {
                 nReducibles++;
         }
         return nReducibles;
+    }
+
+    public int getNBrickBlocks(){
+        int n=0;
+        for(AbstractBlock block : possibilities){
+            if(block instanceof BrickBlock)
+                n++;
+        }
+        return n;
     }
 
     public ArrayList<ArrayList<AbstractBlock>> getCoverings() {

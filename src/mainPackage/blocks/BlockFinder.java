@@ -1,6 +1,7 @@
 package mainPackage.blocks;
 
 import mainPackage.BoardState;
+import mainPackage.IndexConverter;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -22,10 +23,13 @@ public class BlockFinder<T extends AbstractBlock>{
     private T findWithRotation(int index, int[][] coords, int width, int height, BoardState board, BlockRotation rotation) {
         if(coords == null)
             return null;
-        if(index+height*board.size+width < board.size * board.size){
+        int x = IndexConverter.xOfIndex(index, board.size);
+        int y = IndexConverter.yOfIndex(index, board.size);
+        //if(index+height*board.size+width < board.size * board.size){
             for(int i=0; i<coords.length; i++){
-                    if(board.getCell(index+coords[i][1]*board.size+coords[i][0]))
-                        return null;
+                    //if(board.getCell(index+coords[i][1]*board.size+coords[i][0]))
+                if(board.getCell(x+coords[i][0], y+coords[i][1]))
+                    return null;
                 }
 
             /* wszystkie pola bloku są false */
@@ -42,7 +46,7 @@ public class BlockFinder<T extends AbstractBlock>{
             } catch (InvocationTargetException e) {
                 e.printStackTrace();
             }
-        }
+        //}
         return null;
     }
 

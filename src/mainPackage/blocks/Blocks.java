@@ -1,22 +1,42 @@
 package mainPackage.blocks;
 
-import mainPackage.blocks.blocks2or1type.Block2or1Types;
-import mainPackage.blocks.blocks2type.Block2Types;
+import mainPackage.BoardState;
+import mainPackage.IndexConverter;
 
 /**
- * Created by Inf on 2017-11-21.
+ * Created by Inf on 2017-11-26.
  */
-public enum Blocks {
-    Block2Types (Block2Types.class),
-    Block2or1Types (Block2or1Types.class);
+public final class Blocks {
 
-    private Class blockTypeClass;
+    private Blocks(){}
 
-    Blocks(Class blockTypesClass) {
-        this.blockTypeClass = blockTypesClass;
+    public static boolean isEmpty(BoardState board, int index) {
+        if(!board.getCell(index+board.size) || !board.getCell(index-board.size))
+            return false;
+        if(IndexConverter.xOfIndex(index, board.size) != 0){
+            if(!board.getCell(index-1))
+                return false;
+        }
+        if(IndexConverter.xOfIndex(index, board.size) != board.size-1){
+            if(!board.getCell(index+1))
+                return false;
+        }
+        return true;
     }
 
-    public Class getBlockTypeClass() {
-        return blockTypeClass;
+    public static int movesReductionIfSet(int index, BoardState board){
+        int x = IndexConverter.xOfIndex(index, board.size);
+        int y = IndexConverter.yOfIndex(index, board.size);
+        int reduction = 0;
+        if(!board.getCell(x+1, y))
+            reduction++;
+        if(!board.getCell(x-1, y))
+            reduction++;
+        if(!board.getCell(x, y+1))
+            reduction++;
+        if(!board.getCell(x, y-1))
+            reduction++;
+        return reduction;
     }
+
 }
