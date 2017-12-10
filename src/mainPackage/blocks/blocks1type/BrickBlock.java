@@ -8,9 +8,19 @@ import mainPackage.blocks.blocks2type.LBlock;
 /**
  * Created by Inf on 2017-12-09.
  */
+
+/*
+Blok typu 1, w kształcie cegły
+
+R0:     XX
+
+R90:    X
+        X
+ */
+
 public class BrickBlock extends AbstractBlockType1 {
-    private static final int[][] shapeR0 = new int[][]{{0,0}, {0,1}};
-    private static final int[][] shapeR90 = new int[][]{{0,0}, {1,0}};
+    private static final int[][] shapeR0 = new int[][]{{0,0}, {1,0}};
+    private static final int[][] shapeR90 = new int[][]{{0,0}, {0,1}};
 
 
     public BrickBlock(int referenceCellIndex, BlockRotation rotation){
