@@ -24,11 +24,11 @@ public abstract class AbstractBlock {
         for(int i=0; i<shape.length; i++)
             board.setCell(referenceCellIndex+shape[i][1]*board.size+shape[i][0]);
     }
-    public void unmarkOnBoard(BoardState board){
+    /*public void unmarkOnBoard(BoardState board){
         for(int i=0; i<shape.length; i++)
             board.unsetCell(referenceCellIndex+shape[i][1]*board.size+shape[i][0]);
     }
-
+*/
     public abstract boolean hasNeighbours();
 
 

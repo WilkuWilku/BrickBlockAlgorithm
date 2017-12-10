@@ -1,6 +1,7 @@
 package mainPackage;
 
 import mainPackage.blocks.Blocks;
+import mainPackage.blocks.blocks1type.BrickBlock;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -12,17 +13,32 @@ import java.util.Random;
 
 public class BoardState {
     public static int size;             // szerokość planszy
-    private boolean[] cells;            // true = zajęta, false = wolna
+    private int[] cells;            // 0 = zajęta,  0 != wolna
     private ArrayList<Integer> freeCells;
 
 
     /* nowa pusta plansza o wielkości size */
     public BoardState(int size){
         this.size = size;
-        cells = new boolean[size*size];
+        cells = new int[size*size];
         freeCells = new ArrayList<>(size*size);
         for(int i=0; i<size*size; i++)
             freeCells.add(i);
+        for(int index=0; index<size*size;index++){
+            int x = IndexConverter.xOfIndex(index, size);
+            int y = IndexConverter.yOfIndex(index, size);
+            if(y==0){
+                if(x==0 || x==size-1)
+                    cells[index] = 2;
+                else
+                    cells[index] = 3;
+            }
+            else if(x==0 || x==size-1)
+                cells[index] = 3;
+            else
+                cells[index] = 4;
+        }
+
     }
     /* nowa plansza o wielkości size z zablokowanymi polami o indeksach blockedCells[] */
     public BoardState(int size, int[] blockedCells){
@@ -43,7 +59,17 @@ public class BoardState {
     public void setCell(int index) throws ArrayIndexOutOfBoundsException {
         if(index >= size*size || index < 0)
             throw new ArrayIndexOutOfBoundsException("Błąd: Odwołanie do pola poza planszą [index="+index+", size="+size+"]");
-        cells[index] = true;
+        int x = IndexConverter.xOfIndex(index, size);
+        int y = IndexConverter.yOfIndex(index, size);
+        cells[index] = 0;
+        if(x-1>=0)
+            decrementCell(IndexConverter.xyToIndex(x-1, y, size));
+        if(x+1<size)
+            decrementCell(IndexConverter.xyToIndex(x+1, y, size));
+        if(y+1<size)
+            decrementCell(IndexConverter.xyToIndex(x, y+1, size));
+        if(y-1>=0)
+            decrementCell(IndexConverter.xyToIndex(x, y-1, size));
         freeCells.remove(Integer.valueOf(index));
     }
 
@@ -53,6 +79,12 @@ public class BoardState {
         setCell(IndexConverter.xyToIndex(x, y, size));
     }
 
+    public void addBrick(BrickBlock brick){
+        int index = brick.getReferenceCellIndex();
+
+    }
+
+    /*
     public void unsetCell(int index) throws ArrayIndexOutOfBoundsException {
         if(index >= size*size || index < 0)
             throw new ArrayIndexOutOfBoundsException("Błąd: Odwołanie do pola poza planszą [index="+index+", size="+size+"]");
@@ -65,16 +97,21 @@ public class BoardState {
             throw new ArrayIndexOutOfBoundsException("Błąd: Odwołanie do pola poza planszą [x="+x+", y="+y+", size="+size+"]");
         unsetCell(IndexConverter.xyToIndex(x, y, size));
     }
-
-    public boolean getCell(int index){
+    */
+    public int getCell(int index){
         if(index<0 || index>=size*size)
-            return true;
+            return 0;
         return cells[index];
     }
 
-    public boolean getCell(int x, int y) {
+    public void decrementCell(int index){
+        if(cells[index] > 0)
+            cells[index]--;
+    }
+
+    public int getCell(int x, int y) {
         if(x<0 || y<0 || x>=size || y>=size)
-            return true;
+            return 0;
         return cells[y*size+x];
     }
 
@@ -83,10 +120,10 @@ public class BoardState {
         System.out.println("PLANSZA " + size + "x" + size + "\n");
         for(int i=0; i<size; i++){
             for(int j=0; j<size; j++){
-                if(cells[i*size+j])
+                if(cells[i*size+j] == 0)
                     System.out.print("X ");
                 else
-                    System.out.print("· ");
+                    System.out.print(cells[i*size+j]+" ");
             }
             System.out.print("\n");
         }
@@ -98,7 +135,7 @@ public class BoardState {
         Random random = new Random();
         for(int i=0; i<nBlocked; i++){
             int index = random.nextInt(size*size);
-            while(board.getCell(index))
+            while(board.getCell(index) == 0)
                 index = random.nextInt(size*size);
             board.setCell(index);
         }

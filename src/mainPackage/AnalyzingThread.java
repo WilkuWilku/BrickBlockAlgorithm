@@ -2,6 +2,7 @@ package mainPackage;
 
 import mainPackage.blocks.AbstractBlock;
 import mainPackage.blocks.BlockRotation;
+import mainPackage.blocks.blocks1type.BrickBlock;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -28,6 +29,7 @@ public class AnalyzingThread implements Runnable {
 
     /* sprawdza czy istnieje jakikolwiek blok w jakiejkolwiek rotacji dla każdej komórki.
      * jeśli istnieje - dodaje go do listy possibilities */
+    @Deprecated
     private void researchPossibilities(EnumWithClass[] types, int index){
         for (int j = 0; j < types.length; j++) {
             try {
@@ -42,7 +44,17 @@ public class AnalyzingThread implements Runnable {
         }
     }
 
+    private void searchMoves(int index){
+        for(BlockRotation rotation : BlockRotation.values()){
+            BrickBlock result = BrickBlock.checkAndCreate(index, board, rotation);
+            if(result != null)
+                possibilities.add(result);
+        }
+    }
+
+
     /* dodaje blok jeśli istnieje dla danej komórki i rotacji */
+    @Deprecated
     private void addBlock(int index, BoardState board, BlockRotation rotation, Method method){
         AbstractBlock result;
         try {
@@ -57,11 +69,12 @@ public class AnalyzingThread implements Runnable {
         }
     }
 
+
     @Override
     public void run() {
         ArrayList<Integer> listOfCells = board.getFreeCells();
         for(int i=idNum; i<board.getNFreeCells(); i+=nThreads)
-            researchPossibilities(types, listOfCells.get(i));
+            searchMoves(i);
     }
 
     public ArrayList<AbstractBlock> getPossibilities() {

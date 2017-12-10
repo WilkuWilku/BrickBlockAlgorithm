@@ -28,7 +28,7 @@ public class BlockFinder<T extends AbstractBlock>{
         //if(index+height*board.size+width < board.size * board.size){
             for(int i=0; i<coords.length; i++){
                     //if(board.getCell(index+coords[i][1]*board.size+coords[i][0]))
-                if(board.getCell(x+coords[i][0], y+coords[i][1]))
+                if(board.getCell(x+coords[i][0], y+coords[i][1]) == 0)
                     return null;
                 }
 

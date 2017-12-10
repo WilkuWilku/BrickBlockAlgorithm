@@ -8,7 +8,7 @@ import mainPackage.EnumWithClass;
 public enum Block1Types implements EnumWithClass {
     PinBlock(PinBlock.class),
     Straight3Block(Straight3Block.class),
-    BrickBlock(BrickBlock.class),
+    //BrickBlock(BrickBlock.class),
     TurnBlock(TurnBlock.class),
     PlusBlock(PlusBlock.class);
 
