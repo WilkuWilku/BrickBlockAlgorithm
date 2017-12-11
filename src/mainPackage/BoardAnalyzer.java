@@ -21,42 +21,23 @@ import java.util.ArrayList;
  */
 public class BoardAnalyzer {
     private BoardState board;
-    private ArrayList<AbstractBlock> possibilities;
+    private ArrayList<BrickBlock> moves;
+    private int nStateChangeable;
 
     public BoardAnalyzer(BoardState board) {
         this.board = board;
-        possibilities = new ArrayList<>(BoardState.size*BoardState.size);
+        //possibilities = new ArrayList<>(BoardState.size*BoardState.size);
     }
 
-    @Deprecated
-    public void findAllPossibilities(Class typeClass){
-        final int threadNo = 2;
-        EnumWithClass[] types = (EnumWithClass[]) typeClass.getEnumConstants();
-        AnalyzingThread[] analyzingThreads = new AnalyzingThread[threadNo];
-        Thread[] threads = new Thread[threadNo];
 
-        for(int i=0; i<threadNo; i++){
-            analyzingThreads[i] = new AnalyzingThread(threadNo, i, board, types);
-            threads[i] = new Thread(analyzingThreads[i]);
-            threads[i].start();
-            try {
-                threads[i].join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-            for(int i=0; i<threadNo; i++){
-            possibilities.addAll(analyzingThreads[i].getPossibilities());
-        }
-    }
-
-    public void findAllMoves(){
+    public ArrayList<BrickBlock> findAllMoves(){
         final int nThreads = 2;
+        moves = new ArrayList<>(board.size*board.size);
         AnalyzingThread[] analyzingThreads = new AnalyzingThread[nThreads];
         Thread[] threads = new Thread[nThreads];
 
         for(int i=0; i<nThreads; i++){
-            analyzingThreads[i] = new AnalyzingThread(nThreads, i, board, null);
+            analyzingThreads[i] = new AnalyzingThread(nThreads, i, board);
             threads[i] = new Thread(analyzingThreads[i]);
             threads[i].start();
             try {
@@ -65,42 +46,19 @@ public class BoardAnalyzer {
                 e.printStackTrace();
             }
         }
+        nStateChangeable = 0;
         for(int i=0; i<nThreads; i++){
-            possibilities.addAll(analyzingThreads[i].getPossibilities());
+            moves.addAll(analyzingThreads[i].getPossibilities());
+            nStateChangeable += analyzingThreads[i].getNStateChangeables();
         }
+        return moves;
     }
 
-
-
-    public int getNBlockibles(){
-        int nBlockibles =0;
-        for(AbstractBlock block : possibilities){
-            if(block instanceof Blockible)
-                nBlockibles++;
-        }
-        return nBlockibles;
+    public int getNStateChangeable() {
+        return nStateChangeable;
     }
 
-
-    public int getNReducibles(){
-        int nReducibles =0;
-        for(AbstractBlock block : possibilities){
-            if(block instanceof Reducible)
-                nReducibles++;
-        }
-        return nReducibles;
-    }
-
-    public int getNBrickBlocks(){
-        int n=0;
-        for(AbstractBlock block : possibilities){
-            if(block instanceof BrickBlock)
-                n++;
-        }
-        return n;
-    }
-
-    public ArrayList<AbstractBlock> getPossibilities() {
-        return possibilities;
+    public ArrayList<BrickBlock> getMoves() {
+        return moves;
     }
 }

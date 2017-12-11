@@ -1,9 +1,8 @@
 package mainPackage.blocks.blocks1type;
 
 import mainPackage.BoardState;
-import mainPackage.blocks.BlockFinder;
 import mainPackage.blocks.BlockRotation;
-import mainPackage.blocks.blocks2type.LBlock;
+import mainPackage.blocks.Blocks;
 
 import java.util.ArrayList;
 
@@ -23,19 +22,26 @@ R90:    X
 public class BrickBlock extends AbstractBlockType1 {
     private static final int[][] shapeR0 = new int[][]{{0,0}, {1,0}};
     private static final int[][] shapeR90 = new int[][]{{0,0}, {0,1}};
+    private BoardState board;
+    private boolean stateChanging;
     private ArrayList<Integer> cells;
+    private int movesReduction = 0;
 
-    public BrickBlock(int referenceCellIndex, BlockRotation rotation, int boardSize){
+    public BrickBlock(int referenceCellIndex, BlockRotation rotation, BoardState board){
         this.referenceCellIndex = referenceCellIndex;
         this.rotation = rotation;
+        this.board = board;
         this.cells = new ArrayList<>();
         switch (rotation){
             case R0: shape = shapeR0; break;
             case R90: shape = shapeR90; break;
         }
-        for(int i=0; i<shape.length; i++)
-            cells.add(referenceCellIndex+shape[i][1]*boardSize+shape[i][0]);
+        for(int i=0; i<shape.length; i++) {
+            cells.add(referenceCellIndex + shape[i][1] * board.size + shape[i][0]);
+            calculateMovesReduction();
+            stateChanging = checkIfIsStateChanging();
 
+        }
     }
 
     public static BrickBlock checkAndCreate(int index, BoardState board, BlockRotation rotation) {
@@ -52,7 +58,37 @@ public class BrickBlock extends AbstractBlockType1 {
             if (board.getCell(index + shape[i][1] * board.size + shape[i][0]) == 0)
                 return null;
         }
-        return new BrickBlock(index, rotation, board.size);
+        return new BrickBlock(index, rotation, board);
     }
+
+    public int calculateMovesReduction(){
+        movesReduction = 0;
+        for(Integer index : cells)
+            movesReduction += Blocks.movesReductionIfSet(index, board);
+        stateChanging = checkIfIsStateChanging();
+        return movesReduction;
+    }
+
+    private boolean checkIfIsStateChanging(){
+        return movesReduction % 2 == 0;
+    }
+
+    public ArrayList<Integer> getCells() {
+        return cells;
+    }
+
+    public boolean isStateChanging() {
+        return stateChanging;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+" MR: "+movesReduction+"; SC: "+stateChanging;
+    }
+
+    public int getMovesReduction() {
+        return movesReduction;
+    }
+
 
 }
