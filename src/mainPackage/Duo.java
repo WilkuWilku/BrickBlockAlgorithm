@@ -37,7 +37,7 @@ public class Duo<T> {
         this.right = right;
     }
 
-    public void put(T value) throws Exception {
+    public void insert(T value) throws Exception {
         if(right == null)
             this.right = value;
         else

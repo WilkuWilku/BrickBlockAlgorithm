@@ -3,7 +3,6 @@ package mainPackage;
 import mainPackage.blocks.BlockRotation;
 import mainPackage.blocks.blocks1type.BrickBlock;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -14,24 +13,22 @@ public class AnalyzingThread implements Runnable {
     private int nThreads;
     private int idNum;
     private BoardState board;
-    private HashMap<Integer, Duo<BrickBlock>> moves;
-    private int nStateChangeables;
-    private int nMoves;
+    private BoardStatistics stats;
 
     public AnalyzingThread(int nThreads, int idNum, BoardState board){
         this.nThreads = nThreads;
         this.idNum = idNum;
         this.board = board;
-        moves = new HashMap<>(board.size*board.size/nThreads+1);
+        stats = new BoardStatistics();
     }
 
     private void addToMovesMap(int index, BrickBlock block){
-        Duo move = moves.get(index);
+        Duo move = stats.getMovesMap().get(index);
         if(move == null)
-            moves.put(index, new Duo<BrickBlock>(block));
+            stats.getMovesMap().put(index, new Duo<>(block));
         else
             try {
-                move.put(block);
+                move.insert(block);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -42,9 +39,9 @@ public class AnalyzingThread implements Runnable {
             BrickBlock result = BrickBlock.checkAndCreate(index, board, rotation);
             if (result != null) {
                 addToMovesMap(index, result);
-                nMoves++;
+                stats.nMoves++;
                 if(result.isStateChanging())
-                    nStateChangeables++;
+                    stats.nStateChangeables++;
             }
         }
     }
@@ -56,15 +53,7 @@ public class AnalyzingThread implements Runnable {
                 searchMoves(i);
     }
 
-    public HashMap<Integer, Duo<BrickBlock>> getMoves() {
-        return moves;
-    }
-
-    public int getNStateChangeables() {
-        return nStateChangeables;
-    }
-
-    public int getNMoves() {
-        return nMoves;
+    public BoardStatistics getStats() {
+        return stats;
     }
 }
