@@ -1,19 +1,11 @@
 package mainPackage;
 
-import mainPackage.blocks.AbstractBlock;
 import mainPackage.blocks.BlockRotation;
-import mainPackage.blocks.BlockTypes;
 import mainPackage.blocks.blocks1type.BrickBlock;
-import mainPackage.blocks.blocks2type.Blockible;
-import mainPackage.blocks.blocks2type.Reducible;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.math.BigDecimal;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -21,8 +13,9 @@ import java.util.ArrayList;
  */
 public class BoardAnalyzer {
     private BoardState board;
-    private ArrayList<BrickBlock> moves;
+    private HashMap<Integer, Duo<BrickBlock>> moves;
     private int nStateChangeable;
+    private int nMoves;
 
     public BoardAnalyzer(BoardState board) {
         this.board = board;
@@ -30,9 +23,9 @@ public class BoardAnalyzer {
     }
 
 
-    public ArrayList<BrickBlock> findAllMoves(){
+    public HashMap<Integer, Duo<BrickBlock>> findAllMoves(){
         final int nThreads = 2;
-        moves = new ArrayList<>(board.size*board.size);
+        moves = new HashMap<>();
         AnalyzingThread[] analyzingThreads = new AnalyzingThread[nThreads];
         Thread[] threads = new Thread[nThreads];
 
@@ -47,9 +40,11 @@ public class BoardAnalyzer {
             }
         }
         nStateChangeable = 0;
+        nMoves = 0;
         for(int i=0; i<nThreads; i++){
-            moves.addAll(analyzingThreads[i].getPossibilities());
+            moves.putAll(analyzingThreads[i].getMoves());
             nStateChangeable += analyzingThreads[i].getNStateChangeables();
+            nMoves += analyzingThreads[i].getNMoves();
         }
         return moves;
     }
@@ -58,7 +53,31 @@ public class BoardAnalyzer {
         return nStateChangeable;
     }
 
-    public ArrayList<BrickBlock> getMoves() {
+    public HashMap<Integer, Duo<BrickBlock>> getMoves() {
         return moves;
+    }
+
+    public void printMoves(HashMap<Integer, Duo<BrickBlock>> moves){
+        for (Duo<BrickBlock> move : moves.values()) {
+            if(move.getLeft()!=null)
+                System.out.println(move.getLeft().toString() + "; MovesLeft: "+(nMoves-move.getLeft().getMovesReduction()));
+            if(move.getRight()!=null)
+                System.out.println(move.getRight().toString() + "; MovesLeft: "+(nMoves-move.getRight().getMovesReduction()));
+        }
+    }
+
+    public BrickBlock getMove(int index, BlockRotation rotation){
+        Duo<BrickBlock> move = moves.get(index);
+        if(move.getLeft().getRotation() == rotation)
+            return move.getLeft();
+        else if(move.getRight() != null) {
+                if (move.getRight().getRotation() == rotation)
+                    return move.getRight();
+            }
+        return null;
+    }
+
+    public int getNMoves() {
+        return nMoves;
     }
 }

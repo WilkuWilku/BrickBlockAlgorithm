@@ -66,7 +66,7 @@ public class BrickBlock extends AbstractBlockType1 {
         for(Integer index : cells)
             movesReduction += Blocks.movesReductionIfSet(index, board);
         stateChanging = checkIfIsStateChanging();
-        return movesReduction;
+        return movesReduction-1;
     }
 
     private boolean checkIfIsStateChanging(){
@@ -88,6 +88,11 @@ public class BrickBlock extends AbstractBlockType1 {
 
     public int getMovesReduction() {
         return movesReduction;
+    }
+
+    public void decrementMovesReduction(){
+        if(movesReduction>0)
+            movesReduction--;
     }
 
 

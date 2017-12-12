@@ -13,7 +13,7 @@ public class IOHandler {
         this.boardSize = boardSize;
     }
 
-    public Dual getNextMove() {
+    public Duo getNextMove() {
         String input = scanner.nextLine();
         String[] parts = input.split("x|_");
         int coords[] = new int[4];
@@ -23,6 +23,6 @@ public class IOHandler {
         int index1 = IndexConverter.xyToIndex(coords[0], coords[1], boardSize);
         int index2 = IndexConverter.xyToIndex(coords[2], coords[3], boardSize);
 
-        return new Dual(index1, index2);
+        return new Duo(index1, index2);
     }
 }

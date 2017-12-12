@@ -1,9 +1,11 @@
 package mainPackage;
 
+import mainPackage.blocks.BlockRotation;
 import mainPackage.blocks.Blocks;
 import mainPackage.blocks.blocks1type.BrickBlock;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -80,12 +82,13 @@ public class BoardState {
     }
 
     public void addBrick(BrickBlock brick, BoardAnalyzer analyzer){
-        ArrayList<BrickBlock> moves = analyzer.getMoves();
+        HashMap<Integer, Duo<BrickBlock>> moves = analyzer.getMoves();
         int index = brick.getReferenceCellIndex();
         for (int i = 0; i < brick.getCells().size(); i++)
             setCell(brick.getCells().get(i));
-        //TODO zaktualizować MR BrickBlocków dookoła
     }
+
+
 
 
     /*

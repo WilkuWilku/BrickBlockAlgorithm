@@ -13,8 +13,8 @@ public final class IndexConverter {
         return y*size+x;
     }
 
-    public static Dual indexToXY(int index, int size){
-        return new Dual(xOfIndex(index, size), yOfIndex(index, size));
+    public static Duo indexToXY(int index, int size){
+        return new Duo(xOfIndex(index, size), yOfIndex(index, size));
     }
 
     public static int xOfIndex(int index, int size){

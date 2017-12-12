@@ -1,11 +1,10 @@
 package mainPackage;
 
-import mainPackage.blocks.AbstractBlock;
 import mainPackage.blocks.BlockRotation;
-import mainPackage.blocks.BlockTypes;
 import mainPackage.blocks.blocks1type.BrickBlock;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Inf on 2017-11-14.
@@ -17,26 +16,27 @@ public class BloccLauncher {
         BoardAnalyzer analyzer = new BoardAnalyzer(board);
 
         long curT = System.nanoTime();
-        ArrayList<BrickBlock> list = analyzer.findAllMoves();
+        HashMap<Integer, Duo<BrickBlock>> allMoves = analyzer.findAllMoves();
 
         double delta = (double)(System.nanoTime() - curT)/1000000;
 
-        for (BrickBlock block : list) {
-            System.out.println(block.toString() + "; MovesLeft: "+(list.size()-block.getMovesReduction()+1));
-        }
+        analyzer.printMoves(allMoves);
         board.print();
-        System.out.println("Czas: "+delta+"ms, znaleziono "+list.size()+" możliwych ruchów");
-        //board.addBrick(new BrickBlock(8, BlockRotation.R90, board));
-        System.out.println();
-        for (BrickBlock block : list) {
-            System.out.println(block.toString() + "; MovesLeft: "+(list.size()-block.getMovesReduction()+1));
-        }
-        board.print();
-        System.out.println("Czas: "+delta+"ms, znaleziono "+list.size()+" możliwych ruchów");
+        System.out.println("Czas: "+delta+"ms, możliwych ruchów: "+analyzer.getNMoves());
 
         IOHandler io = new IOHandler(board.size);
+        Duo<Integer> move = io.getNextMove();
+        try {
+            BrickBlock nextMove = Duo.createBrickBlock(move.getLeft(), move.getRight(), board);
+            board.addBrick(nextMove, analyzer);
+            allMoves = analyzer.findAllMoves();
+            analyzer.printMoves(allMoves);
+            board.print();
+            System.out.println("Czas: "+delta+"ms, możliwych ruchów: "+analyzer.getNMoves());
 
-        Dual move = io.getNextMove();
-        System.out.println(move.getLeft() + " x "+move.getRight());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }
