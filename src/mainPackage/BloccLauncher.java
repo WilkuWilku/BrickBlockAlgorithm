@@ -33,5 +33,10 @@ public class BloccLauncher {
         }
         board.print();
         System.out.println("Czas: "+delta+"ms, znaleziono "+list.size()+" możliwych ruchów");
+
+        IOHandler io = new IOHandler(board.size);
+
+        Dual move = io.getNextMove();
+        System.out.println(move.getLeft() + " x "+move.getRight());
     }
 }
