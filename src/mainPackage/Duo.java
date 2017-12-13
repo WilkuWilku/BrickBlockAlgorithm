@@ -4,6 +4,10 @@ import com.sun.deploy.panel.ExceptionListDialog;
 import mainPackage.blocks.BlockRotation;
 import mainPackage.blocks.blocks1type.BrickBlock;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by Inf on 2017-11-18.
  */
@@ -62,4 +66,5 @@ public class Duo<T> {
             return new BrickBlock(index1, BlockRotation.R90, board);
         return null;
     }
+
 }

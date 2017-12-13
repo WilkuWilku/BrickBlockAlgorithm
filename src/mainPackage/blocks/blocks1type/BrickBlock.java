@@ -1,6 +1,7 @@
 package mainPackage.blocks.blocks1type;
 
 import mainPackage.BoardState;
+import mainPackage.GameState;
 import mainPackage.IndexConverter;
 import mainPackage.blocks.BlockRotation;
 import mainPackage.blocks.Blocks;
@@ -27,6 +28,7 @@ public class BrickBlock extends AbstractBlockType1 {
     private boolean stateChanging;
     private ArrayList<Integer> cells;
     private int movesReduction = 0;
+    private GameState result = GameState.UNDEFINED;
 
     public BrickBlock(int referenceCellIndex, BlockRotation rotation, BoardState board){
         this.referenceCellIndex = referenceCellIndex;
@@ -96,5 +98,11 @@ public class BrickBlock extends AbstractBlockType1 {
             movesReduction--;
     }
 
+    public GameState getResult() {
+        return result;
+    }
 
+    public void setResult(GameState result) {
+        this.result = result;
+    }
 }

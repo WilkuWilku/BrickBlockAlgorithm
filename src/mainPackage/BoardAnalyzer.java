@@ -5,6 +5,8 @@ import mainPackage.blocks.blocks1type.BrickBlock;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -52,7 +54,16 @@ public class BoardAnalyzer {
             if(move.getRight()!=null)
                 System.out.println(move.getRight().toString() + "; MovesLeft: "+(stats.nMoves-move.getRight().getMovesReduction()));
         }
+    }
 
+    public static HashSet<BrickBlock> mapValuesToSet(HashMap<Integer, Duo<BrickBlock>> map) {
+        HashSet<BrickBlock> valuesSet = new HashSet<>();
+        for (Duo<BrickBlock> value : map.values()) {
+            valuesSet.add(value.getLeft());
+            if (value.getRight() != null)
+                valuesSet.add(value.getRight());
+        }
+        return valuesSet;
     }
 
     public BrickBlock getMove(int index, BlockRotation rotation){
@@ -69,8 +80,13 @@ public class BoardAnalyzer {
     public void createMRStats(){
         for(Duo<BrickBlock> moves : getStats().getMovesMap().values()) {
             getMRStatsOfBrickBlock(moves.getLeft());
-            if(moves.getRight() != null)
+            if (moves.getLeft().getMovesReduction() == 1)
+                stats.nMR1++;
+            if (moves.getRight() != null) {
                 getMRStatsOfBrickBlock(moves.getRight());
+                if(moves.getRight().getMovesReduction() == 1)
+                    stats.nMR1++;
+            }
         }
     }
 
@@ -91,5 +107,9 @@ public class BoardAnalyzer {
 
     public BoardStatistics getStats() {
         return stats;
+    }
+
+    public BoardState getBoard() {
+        return board;
     }
 }

@@ -13,7 +13,6 @@ import java.util.Random;
 public class BoardState {
     public static int size;             // szerokość planszy
     private int[] cells;            // == 0 -> zajęta;  > 0 -> wolna
-    //private ArrayList<Integer> freeCells;
 
 
     /* nowa pusta plansza o wielkości size */
@@ -160,6 +159,16 @@ public class BoardState {
         return cells;
     }
 
+    public void setCells(int[] cells) {
+        this.cells = cells;
+    }
 
+    public BoardState copyBoard(){
+        BoardState newBoard = new BoardState(size);
+        int[] newCells = new int[cells.length];
+        System.arraycopy(cells, 0, newCells, 0, cells.length);
+        newBoard.setCells(newCells);
+        return newBoard;
+    }
 
 }
