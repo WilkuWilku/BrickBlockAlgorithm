@@ -49,11 +49,17 @@ public class SlipperBlock extends AbstractBlockType2or1 {
     public static SlipperBlock check(int index, BoardState board, BlockRotation rotation) {
 
         BlockFinder<SlipperBlock> finder = new BlockFinder<>(SlipperBlock.class);
-        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, 4, 2, board, rotation);
+        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, Block2or1Types.SlipperBlock, board, rotation);
+    }
+
+
+    @Override
+    public void leaveZeroMoves() {
+
     }
 
     @Override
-    public boolean hasNeighbours() {
-        throw new UnsupportedOperationException();
+    public void leaveOneMove() {
+
     }
 }

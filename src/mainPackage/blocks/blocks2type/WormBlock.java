@@ -47,9 +47,8 @@ public class WormBlock extends AbstractBlockType2 implements Blockible, Reducibl
     }
 
     public static WormBlock check(int index, BoardState board, BlockRotation rotation) {
-
         BlockFinder<WormBlock> finder = new BlockFinder<>(WormBlock.class);
-        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, 4, 2, board, rotation);
+        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, Block2Types.WormBlock, board, rotation);
     }
 
     @Override
@@ -62,8 +61,9 @@ public class WormBlock extends AbstractBlockType2 implements Blockible, Reducibl
 
     }
 
+
     @Override
-    public boolean hasNeighbours() {
-        throw new UnsupportedOperationException();
+    public void makeMove() {
+
     }
 }

@@ -47,13 +47,18 @@ public class CrossBlock extends AbstractBlockType2or1{
     }
 
     public static CrossBlock check(int index, BoardState board, BlockRotation rotation) {
-
         BlockFinder<CrossBlock> finder = new BlockFinder<>(CrossBlock.class);
-        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, 3, 4, board, rotation);
+        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, Block2or1Types.CrossBlock, board, rotation);
+    }
+
+
+    @Override
+    public void leaveZeroMoves() {
+
     }
 
     @Override
-    public boolean hasNeighbours() {
-        throw new UnsupportedOperationException();
+    public void leaveOneMove() {
+
     }
 }

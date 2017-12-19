@@ -77,9 +77,7 @@ public class BoardState {
         setCell(IndexConverter.xyToIndex(x, y, size));
     }
 
-    public void addBrick(BrickBlock brick, BoardAnalyzer analyzer){
-        HashMap<Integer, Duo<BrickBlock>> moves = analyzer.getStats().getMovesMap();
-        int index = brick.getReferenceCellIndex();
+    public void addBrick(BrickBlock brick){
         for (int i = 0; i < brick.getCells().size(); i++)
             setCell(brick.getCells().get(i));
     }
@@ -124,7 +122,7 @@ public class BoardState {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (cells[i * size + j] == 0)
-                    System.out.print("X ");
+                    System.out.print(". ");
                 else
                     System.out.print(cells[i * size + j] + " ");
             }

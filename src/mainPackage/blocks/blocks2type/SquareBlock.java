@@ -31,7 +31,7 @@ public class SquareBlock extends AbstractBlockType2 implements Blockible{
 
     public static SquareBlock check(int index, BoardState board, BlockRotation rotation) {
         BlockFinder<SquareBlock> finder = new BlockFinder<>(SquareBlock.class);
-        return finder.find(index, shapeR0, null,null, null, 2, 2, board, rotation);
+        return finder.find(index, shapeR0, null,null, null, Block2Types.SquareBlock, board, rotation);
     }
 
 
@@ -40,8 +40,9 @@ public class SquareBlock extends AbstractBlockType2 implements Blockible{
 
     }
 
+
     @Override
-    public boolean hasNeighbours() {
-        throw new UnsupportedOperationException();
+    public void makeMove() {
+
     }
 }

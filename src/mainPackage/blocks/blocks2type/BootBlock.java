@@ -49,7 +49,7 @@ public class BootBlock extends AbstractBlockType2 implements Blockible, Reducibl
     public static BootBlock check(int index, BoardState board, BlockRotation rotation) {
 
         BlockFinder<BootBlock> finder = new BlockFinder<>(BootBlock.class);
-        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, 3, 2, board, rotation);
+        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, Block2Types.BootBlock, board, rotation);
     }
 
     @Override
@@ -62,8 +62,10 @@ public class BootBlock extends AbstractBlockType2 implements Blockible, Reducibl
 
     }
 
+
     @Override
-    public boolean hasNeighbours() {
-        throw new UnsupportedOperationException();
+    public void makeMove() {
+
+
     }
 }

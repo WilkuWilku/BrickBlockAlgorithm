@@ -52,7 +52,7 @@ public class InvertedWormBlock extends AbstractBlockType2 implements Reducible, 
     public static InvertedWormBlock check(int index, BoardState board, BlockRotation rotation) {
 
         BlockFinder<InvertedWormBlock> finder = new BlockFinder<>(InvertedWormBlock.class);
-        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, 4, 2, board, rotation);
+        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, Block2Types.InvertedWormBlock, board, rotation);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class InvertedWormBlock extends AbstractBlockType2 implements Reducible, 
     }
 
     @Override
-    public boolean hasNeighbours() {
-        throw new UnsupportedOperationException();
+    public void makeMove() {
+
     }
 }

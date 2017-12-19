@@ -50,7 +50,7 @@ public class InvertedBootBlock extends AbstractBlockType2 implements Reducible, 
     public static InvertedBootBlock check(int index, BoardState board, BlockRotation rotation) {
 
         BlockFinder<InvertedBootBlock> finder = new BlockFinder<>(InvertedBootBlock.class);
-        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, 3, 2, board, rotation);
+        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, Block2Types.InvertedBootBlock, board, rotation);
     }
 
     @Override
@@ -63,8 +63,9 @@ public class InvertedBootBlock extends AbstractBlockType2 implements Reducible, 
 
     }
 
+
     @Override
-    public boolean hasNeighbours() {
-        throw new UnsupportedOperationException();
+    public void makeMove() {
+
     }
 }

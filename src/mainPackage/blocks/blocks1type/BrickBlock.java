@@ -28,7 +28,6 @@ public class BrickBlock extends AbstractBlockType1 {
     private boolean stateChanging;
     private ArrayList<Integer> cells;
     private int movesReduction = 0;
-    private GameState result = GameState.UNDEFINED;
 
     public BrickBlock(int referenceCellIndex, BlockRotation rotation, BoardState board){
         this.referenceCellIndex = referenceCellIndex;
@@ -98,11 +97,8 @@ public class BrickBlock extends AbstractBlockType1 {
             movesReduction--;
     }
 
-    public GameState getResult() {
-        return result;
-    }
+    @Override
+    public void makeMove() {
 
-    public void setResult(GameState result) {
-        this.result = result;
     }
 }

@@ -20,6 +20,11 @@ public class PlusBlock extends AbstractBlockType1 {
     public static PlusBlock check(int index, BoardState board, BlockRotation rotation) {
 
         BlockFinder<PlusBlock> finder = new BlockFinder<>(PlusBlock.class);
-        return finder.find(index, shapeR0, null, null, null, 3, 3, board, rotation);
+        return finder.find(index, shapeR0, null, null, null, Block1Types.PlusBlock, board, rotation);
+    }
+
+    @Override
+    public void makeMove() {
+
     }
 }

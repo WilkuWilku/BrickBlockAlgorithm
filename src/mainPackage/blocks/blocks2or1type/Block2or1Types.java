@@ -1,28 +1,35 @@
 package mainPackage.blocks.blocks2or1type;
 
 import mainPackage.EnumWithClass;
+import mainPackage.Summable;
 
 /**
  * Created by Inf on 2017-11-21.
  */
-public enum Block2or1Types implements EnumWithClass{
-    Straight4Block (Straight4Block.class),
-    TBlock (TBlock.class),
-    ThunderBlock (ThunderBlock.class),
-    InvertedThunderBlock (InvertedThunderBlock.class),
-    SlipperBlock (SlipperBlock.class),
-    InvertedSlipperBlock (InvertedSlipperBlock.class),
-    CrossBlock (CrossBlock.class),
-    DuckBlock (DuckBlock.class),
-    InvertedDuckBlock (InvertedDuckBlock.class);
+public enum Block2or1Types implements EnumWithClass, Summable{
+    Straight4Block (Straight4Block.class, 6),
+    TBlock (TBlock.class, 8),
+    ThunderBlock (ThunderBlock.class, 6),
+    InvertedThunderBlock (InvertedThunderBlock.class, 6),
+    SlipperBlock (SlipperBlock.class, 8),
+    InvertedSlipperBlock (InvertedSlipperBlock.class, 8),
+    CrossBlock (CrossBlock.class, 10),
+    DuckBlock (DuckBlock.class, 8),
+    InvertedDuckBlock (InvertedDuckBlock.class, 8);
 
     private Class blockClass;
+    private int sum;
 
-    Block2or1Types(Class blockClass) {
+    Block2or1Types(Class blockClass, int sum) {
         this.blockClass = blockClass;
+        this.sum = sum;
     }
 
-    public Class getBlockClass() {
+    public Class getClassOfValue() {
         return blockClass;
+    }
+
+    public int getSum() {
+        return sum;
     }
 }

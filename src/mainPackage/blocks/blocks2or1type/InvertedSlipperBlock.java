@@ -50,11 +50,17 @@ public class InvertedSlipperBlock extends AbstractBlockType2or1 {
     public static InvertedSlipperBlock check(int index, BoardState board, BlockRotation rotation) {
 
         BlockFinder<InvertedSlipperBlock> finder = new BlockFinder<>(InvertedSlipperBlock.class);
-        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, 4, 2, board, rotation);
+        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, Block2or1Types.InvertedSlipperBlock, board, rotation);
+    }
+
+
+    @Override
+    public void leaveZeroMoves() {
+
     }
 
     @Override
-    public boolean hasNeighbours() {
-        throw new UnsupportedOperationException();
+    public void leaveOneMove() {
+
     }
 }

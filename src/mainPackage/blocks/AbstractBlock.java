@@ -29,11 +29,12 @@ public abstract class AbstractBlock {
             board.unsetCell(referenceCellIndex+shape[i][1]*board.size+shape[i][0]);
     }
 */
-    public abstract boolean hasNeighbours();
 
 
     @Override
     public String toString() {
         return getClass().getSimpleName() + "[refCellID: "+referenceCellIndex+", rot: "+rotation+"]";
     }
+
+
 }

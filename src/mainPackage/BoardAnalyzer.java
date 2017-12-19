@@ -3,10 +3,7 @@ package mainPackage;
 import mainPackage.blocks.BlockRotation;
 import mainPackage.blocks.blocks1type.BrickBlock;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 /**
@@ -78,32 +75,40 @@ public class BoardAnalyzer {
     }
 
     public void createMRStats(){
+        stats.nMR1 = 0;
+        Arrays.fill(stats.n, 0);
+        createNStats();
         for(Duo<BrickBlock> moves : getStats().getMovesMap().values()) {
-            getMRStatsOfBrickBlock(moves.getLeft());
             if (moves.getLeft().getMovesReduction() == 1)
                 stats.nMR1++;
             if (moves.getRight() != null) {
-                getMRStatsOfBrickBlock(moves.getRight());
                 if(moves.getRight().getMovesReduction() == 1)
                     stats.nMR1++;
             }
         }
     }
 
-    private void getMRStatsOfCell(int index){
-        int moveReduction = board.getCell(index);
-        switch (moveReduction){
-            case 1: stats.n[1]++; break;
-            case 2: stats.n[2]++; break;
-            case 3: stats.n[3]++; break;
-            case 4: stats.n[4]++; break;
+
+    public void createNStats(){
+        for(int i=0; i<board.size*board.size; i++){
+            int moveReduction = board.getCell(i);
+            switch (moveReduction) {
+                case 1:
+                    stats.n[1]++;
+                    break;
+                case 2:
+                    stats.n[2]++;
+                    break;
+                case 3:
+                    stats.n[3]++;
+                    break;
+                case 4:
+                    stats.n[4]++;
+                    break;
+            }
         }
     }
 
-    private void getMRStatsOfBrickBlock(BrickBlock block){
-        for(Integer i : block.getCells())
-            getMRStatsOfCell(i);
-    }
 
     public BoardStatistics getStats() {
         return stats;

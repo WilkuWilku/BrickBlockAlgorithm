@@ -39,11 +39,17 @@ public class InvertedThunderBlock extends AbstractBlockType2or1 {
     public static InvertedThunderBlock check(int index, BoardState board, BlockRotation rotation) {
 
         BlockFinder<InvertedThunderBlock> finder = new BlockFinder<>(InvertedThunderBlock.class);
-        return finder.find(index, shapeR0, shapeR90, null, null, 2, 3, board, rotation);
+        return finder.find(index, shapeR0, shapeR90, null, null, Block2or1Types.InvertedThunderBlock, board, rotation);
+    }
+
+
+    @Override
+    public void leaveZeroMoves() {
+
     }
 
     @Override
-    public boolean hasNeighbours() {
-        throw new UnsupportedOperationException();
+    public void leaveOneMove() {
+
     }
 }

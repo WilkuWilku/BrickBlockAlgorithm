@@ -1,13 +1,11 @@
 package mainPackage.blocks.blocks1type;
 
 import mainPackage.blocks.AbstractBlock;
+import mainPackage.blocks.Move;
 
 /**
  * Created by Inf on 2017-12-09.
  */
-public class AbstractBlockType1 extends AbstractBlock {
-    @Override
-    public boolean hasNeighbours() {
-        throw new UnsupportedOperationException();
-    }
+public abstract class AbstractBlockType1 extends AbstractBlock implements Move {
+
 }

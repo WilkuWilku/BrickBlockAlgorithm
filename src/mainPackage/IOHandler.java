@@ -1,5 +1,8 @@
 package mainPackage;
 
+import mainPackage.blocks.BlockRotation;
+import mainPackage.blocks.blocks1type.Straight3Block;
+
 import java.util.Scanner;
 
 /**
@@ -24,5 +27,17 @@ public class IOHandler {
         int index2 = IndexConverter.xyToIndex(coords[2], coords[3], boardSize);
 
         return new Duo(index1, index2);
+    }
+
+    public Duo getNextMove(int n){
+        String input = scanner.nextLine();
+        String[] parts = input.split("-");
+        int index = Integer.parseInt(parts[0]);
+        if(parts[1].equals("R0"))
+            return new Duo(index, index+1);
+        if(parts[1].equals("R90"))
+            return new Duo(index, index+boardSize);
+
+        return null;
     }
 }

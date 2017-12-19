@@ -45,7 +45,7 @@ public class threadTest {
         BoardState b1 = new BoardState(3);
         BoardAnalyzer analyzer = new BoardAnalyzer(b1);
         BoardState b2 = analyzer.getBoard().copyBoard();
-        b2.addBrick(new BrickBlock(0, BlockRotation.R0, b2), new BoardAnalyzer(b2));
+        //b2.addBrick(new BrickBlock(0, BlockRotation.R0, b2), new BoardAnalyzer(b2));
         b1.print();
         System.out.println();
         b2.print();

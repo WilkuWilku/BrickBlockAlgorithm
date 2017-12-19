@@ -51,11 +51,17 @@ public class TBlock extends AbstractBlockType2or1 {
     public static TBlock check(int index, BoardState board, BlockRotation rotation) {
 
         BlockFinder<TBlock> finder = new BlockFinder<>(TBlock.class);
-        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, 3, 3, board, rotation);
+        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, Block2or1Types.TBlock, board, rotation);
+    }
+
+
+    @Override
+    public void leaveZeroMoves() {
+
     }
 
     @Override
-    public boolean hasNeighbours() {
-        throw new UnsupportedOperationException();
+    public void leaveOneMove() {
+
     }
 }

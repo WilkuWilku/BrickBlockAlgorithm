@@ -27,6 +27,11 @@ public class TurnBlock extends AbstractBlockType1 {
     public static TurnBlock check(int index, BoardState board, BlockRotation rotation) {
 
         BlockFinder<TurnBlock> finder = new BlockFinder<>(TurnBlock.class);
-        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, 2, 2, board, rotation);
+        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, Block1Types.TurnBlock, board, rotation);
+    }
+
+    @Override
+    public void makeMove() {
+
     }
 }

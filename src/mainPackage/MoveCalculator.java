@@ -24,35 +24,29 @@ public final class MoveCalculator {
     public static BrickBlock nextMove(BoardAnalyzer analyzer){
         //TODO poprawić funkcję obliczającą ruchy
         BoardStatistics stats = analyzer.getStats();
-        int n1WithoutBrickBlocks = stats.n[1]-stats.nMR1*2;                 //liczba komórek z MR==1, które nie należą do BrickBlocka z MR==1
-        GameState gameState = checkGameState(stats, n1WithoutBrickBlocks, stats.n[2], stats.n[3], stats.n[4], AI);
-        //HashMap<Integer, Duo<BrickBlock>> resultMap;
+        analyzer.findAllMoves();
+        GameState gameState = checkGameState(stats, stats.n[2], stats.n[3], stats.n[4]);
         HashSet<BrickBlock> moves = BoardAnalyzer.mapValuesToSet(stats.getMovesMap());
         BoardStatistics resultStats;
-        ArrayList<BrickBlock> winningMoves = new ArrayList<>();
-        ArrayList<BrickBlock> changingMoves = new ArrayList<>();
-        ArrayList<BrickBlock> otherMoves = new ArrayList<>();
+        ArrayList<BrickBlock> enemyLosingMoves = new ArrayList<>();
+        ArrayList<BrickBlock> enemyChangingMoves = new ArrayList<>();
+        ArrayList<BrickBlock> enemyOtherMoves = new ArrayList<>();
         for(BrickBlock move : moves){
             BoardState boardAfterMove = analyzer.getBoard().copyBoard();
             BoardAnalyzer newAnalyzer = new BoardAnalyzer(boardAfterMove);
-            boardAfterMove.addBrick(move, newAnalyzer);
-            analyzer.findAllMoves();
-            resultStats = analyzer.getStats();
-            int n1WithoutBrickBlocksInResult = resultStats.n[1] - resultStats.nMR1*2;
-            GameState gameStateOfResult = checkGameState(stats, n1WithoutBrickBlocksInResult, resultStats.n[2], resultStats.n[3], resultStats.n[4], ENEMY);
-            move.setResult(gameStateOfResult);
+            boardAfterMove.addBrick(move);
+            newAnalyzer.findAllMoves();
+            resultStats = newAnalyzer.getStats();
+            GameState gameStateOfResult = checkGameState(resultStats, resultStats.n[2], resultStats.n[3], resultStats.n[4]);
             switch (gameStateOfResult){
-                case WIN: winningMoves.add(move); break;
-                case CHANGEABLE: changingMoves.add(move); break;
-                case UNDEFINED: otherMoves.add(move); break;
+                case LOSE: enemyLosingMoves.add(move); break;
+                case CHANGEABLE: enemyChangingMoves.add(move); break;
+                case UNDEFINED: enemyOtherMoves.add(move); break;
             }
         }
-        if(winningMoves.size()!=0)
-            return winningMoves.get(0);
-        else if(gameState == GameState.CHANGEABLE && changingMoves.size() != 0)
-            return changingMoves.get(0);
-        else if(gameState == GameState.UNDEFINED && otherMoves.size() != 0){
-            for (BrickBlock block : otherMoves){
+        System.out.println("Stan gry dla programu: "+gameState.name());
+        if(gameState == GameState.UNDEFINED && enemyOtherMoves.size() > 0){
+            for (BrickBlock block : enemyOtherMoves){
                 if(block.getMovesReduction() == 7)
                     return block;
                 if(block.getMovesReduction() == 6)
@@ -64,11 +58,18 @@ public final class MoveCalculator {
                 return block;
             }
         }
+        else if(enemyLosingMoves.size() > 0)
+            return enemyLosingMoves.get(0);
+        else if(gameState == GameState.CHANGEABLE && enemyChangingMoves.size() > 0)
+            return enemyChangingMoves.get(0);
+        else if(enemyOtherMoves.size() > 0)
+            return enemyChangingMoves.get(0);
         return null;
     }
 
     /* whoPlays = z czyjego punktu widzenia ma być obliczany stan planszy (AI/ENEMY) */
-    private static GameState checkGameState(BoardStatistics stats, int n1WithoutBrickBlocks, int n2, int n3, int n4, int whoPlays){
+    private static GameState checkGameState(BoardStatistics stats, int n2, int n3, int n4){
+        int n1WithoutBrickBlocks = stats.n[1]-stats.nMR1*2;                 //liczba komórek z MR==1, które nie należą do BrickBlocka z MR==1
         int n2without212s = n2-n1WithoutBrickBlocks/2;        //liczba dwójek po usunięciu bloków 121 (MR==1)
         int certainMovesLeft = stats.nMR1 + n1WithoutBrickBlocks/2;
         if(n4>0 || n3>0)
@@ -76,7 +77,7 @@ public final class MoveCalculator {
             return GameState.UNDEFINED;
         else if(n2without212s==2 || n2without212s > 3)
             return GameState.CHANGEABLE;
-        if((certainMovesLeft % 2 == (0 + whoPlays) && n2without212s == 1) || (certainMovesLeft % 2 == (1 - whoPlays) && n2without212s == 3))
+        if((certainMovesLeft % 2 == 0 && n2without212s == 1) || (certainMovesLeft % 2 == 1 && n2without212s == 3))
             return GameState.WIN;
         else
             return GameState.LOSE;

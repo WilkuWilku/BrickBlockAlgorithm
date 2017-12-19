@@ -38,11 +38,17 @@ public class ThunderBlock extends AbstractBlockType2or1 {
     public static ThunderBlock check(int index, BoardState board, BlockRotation rotation) {
 
         BlockFinder<ThunderBlock> finder = new BlockFinder<>(ThunderBlock.class);
-        return finder.find(index, shapeR0,shapeR90, null, null, 2, 3, board, rotation);
+        return finder.find(index, shapeR0,shapeR90, null, null, Block2or1Types.ThunderBlock, board, rotation);
+    }
+
+
+    @Override
+    public void leaveZeroMoves() {
+
     }
 
     @Override
-    public boolean hasNeighbours() {
-        throw new UnsupportedOperationException();
+    public void leaveOneMove() {
+
     }
 }

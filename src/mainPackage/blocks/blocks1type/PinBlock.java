@@ -48,6 +48,11 @@ public class PinBlock extends AbstractBlockType1 {
     public static PinBlock check(int index, BoardState board, BlockRotation rotation) {
 
         BlockFinder<PinBlock> finder = new BlockFinder<>(PinBlock.class);
-        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, 3, 3, board, rotation);
+        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, Block1Types.PinBlock,  board, rotation);
+    }
+
+    @Override
+    public void makeMove() {
+
     }
 }
