@@ -1,11 +1,9 @@
 package mainPackage;
 
-import mainPackage.blocks.AbstractBlock;
 import mainPackage.blocks.BlockRotation;
+import mainPackage.blocks.blocks1type.BrickBlock;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Inf on 2017-11-24.
@@ -15,56 +13,47 @@ public class AnalyzingThread implements Runnable {
     private int nThreads;
     private int idNum;
     private BoardState board;
-    private ArrayList<AbstractBlock> possibilities;
-    private EnumWithClass[] types;
+    private BoardStatistics stats;
 
-    public AnalyzingThread(int nThreads, int idNum, BoardState board, EnumWithClass[] types){
+    public AnalyzingThread(int nThreads, int idNum, BoardState board){
         this.nThreads = nThreads;
         this.idNum = idNum;
         this.board = board;
-        this.types = types;
-        possibilities = new ArrayList<>(board.size*board.size/nThreads+1);
+        stats = new BoardStatistics();
     }
 
-    /* sprawdza czy istnieje jakikolwiek blok w jakiejkolwiek rotacji dla każdej komórki.
-     * jeśli istnieje - dodaje go do listy possibilities */
-    private void researchPossibilities(EnumWithClass[] types, int index){
-        for (int j = 0; j < types.length; j++) {
+    private void addToMovesMap(int index, BrickBlock block){
+        Duo move = stats.getMovesMap().get(index);
+        if(move == null)
+            stats.getMovesMap().put(index, new Duo<>(block));
+        else
             try {
-                Class blockClass = types[j].getBlockClass();
-                Method method = blockClass.getMethod("check", int.class, BoardState.class, BlockRotation.class);
-                for (BlockRotation rot : BlockRotation.values()) {
-                    addBlock(index, board, rot, method);
-                }
-            } catch (NoSuchMethodException e) {
+                move.insert(block);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
     }
 
-    /* dodaje blok jeśli istnieje dla danej komórki i rotacji */
-    private void addBlock(int index, BoardState board, BlockRotation rotation, Method method){
-        AbstractBlock result;
-        try {
-            result = (AbstractBlock) method.invoke(null, index, board, rotation);
-                if (result != null)
-                    possibilities.add(result);
-
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
+    private void searchMoves(int index){
+        for(BlockRotation rotation : BlockRotation.values()) {
+            BrickBlock result = BrickBlock.checkAndCreate(index, board, rotation);
+            if (result != null) {
+                addToMovesMap(index, result);
+                stats.nMoves++;
+                if(result.isStateChanging())
+                    stats.nStateChangeables++;
+            }
         }
     }
 
     @Override
     public void run() {
-        ArrayList<Integer> listOfCells = board.getFreeCells();
-        for(int i=idNum; i<board.getNFreeCells(); i+=nThreads)
-            researchPossibilities(types, listOfCells.get(i));
+        for(int i=idNum; i<board.getCells().length; i+=nThreads)
+            if(board.getCell(i) > 0)
+                searchMoves(i);
     }
 
-    public ArrayList<AbstractBlock> getPossibilities() {
-        return possibilities;
+    public BoardStatistics getStats() {
+        return stats;
     }
 }

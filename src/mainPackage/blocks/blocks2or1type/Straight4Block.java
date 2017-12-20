@@ -3,7 +3,7 @@ package mainPackage.blocks.blocks2or1type;
 import mainPackage.BoardState;
 import mainPackage.blocks.BlockFinder;
 import mainPackage.blocks.BlockRotation;
-import mainPackage.blocks.blocks2type.LBlock;
+import mainPackage.blocks.blocks1type.BrickBlock;
 
 /**
  * Created by Inf on 2017-11-20.
@@ -37,11 +37,25 @@ public class Straight4Block extends AbstractBlockType2or1 {
     public static Straight4Block check(int index, BoardState board, BlockRotation rotation) {
 
         BlockFinder<Straight4Block> finder = new BlockFinder<>(Straight4Block.class);
-        return finder.find(index, shapeR0,shapeR90, null, null, 4, 1, board, rotation);
+        return finder.find(index, shapeR0,shapeR90, null, null, Block2or1Types.Straight4Block, board, rotation);
+    }
+
+
+    @Override
+    public BrickBlock leaveZeroMoves(BoardState board) {
+        switch (rotation){
+            case R0: return new BrickBlock(referenceCellIndex+1, BlockRotation.R0, board);
+            case R90: return new BrickBlock(referenceCellIndex+board.size, BlockRotation.R90, board);
+            default: return null;
+        }
     }
 
     @Override
-    public boolean hasNeighbours() {
-        throw new UnsupportedOperationException();
+    public BrickBlock leaveOneMove(BoardState board) {
+        switch (rotation){
+            case R0: return new BrickBlock(referenceCellIndex, BlockRotation.R0, board);
+            case R90: return new BrickBlock(referenceCellIndex+2*board.size, BlockRotation.R90, board);
+            default: return null;
+        }
     }
 }

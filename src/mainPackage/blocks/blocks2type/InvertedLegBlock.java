@@ -3,6 +3,7 @@ package mainPackage.blocks.blocks2type;
 import mainPackage.BoardState;
 import mainPackage.blocks.BlockFinder;
 import mainPackage.blocks.BlockRotation;
+import mainPackage.blocks.blocks1type.BrickBlock;
 
 /**
  * Created by Inf on 2017-11-20.
@@ -52,7 +53,7 @@ public class InvertedLegBlock extends AbstractBlockType2 implements Reducible, B
 
     public static InvertedLegBlock check(int index, BoardState board, BlockRotation rotation) {
         BlockFinder<InvertedLegBlock> finder = new BlockFinder<>(InvertedLegBlock.class);
-        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, 2, 4, board, rotation);
+        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, Block2Types.InvertedLegBlock, board, rotation);
     }
 
 
@@ -67,8 +68,9 @@ public class InvertedLegBlock extends AbstractBlockType2 implements Reducible, B
 
     }
 
+
     @Override
-    public boolean hasNeighbours() {
-        throw new UnsupportedOperationException();
+    public BrickBlock nextMove(BoardState board) {
+
     }
 }

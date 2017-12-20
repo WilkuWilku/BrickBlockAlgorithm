@@ -1,5 +1,8 @@
 package mainPackage;
 
+import mainPackage.blocks.BlockRotation;
+import mainPackage.blocks.blocks1type.BrickBlock;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -37,71 +40,15 @@ public class threadTest {
     }
 
 
+
     public static void main(String[] args) {
-        /*ExecutorService executor = Executors.newFixedThreadPool(4);
-        Work w = new Work();
-        Thread t0 = new Thread(){
-            @Override
-            public void run() {
-                w.work(4, 0);
-            }
-        };
-
-        Thread t1 = new Thread(){
-            @Override
-            public void run() {
-                w.work(4, 1);
-            }
-        };
-
-        Thread t2 = new Thread(){
-            @Override
-            public void run() {
-                w.work(4, 2);
-            }
-        };
-
-        Thread t3 = new Thread(){
-            @Override
-            public void run() {
-                w.work(4, 3);
-            }
-        };
-
-        long curT = System.currentTimeMillis();
-        executor.execute(t0);
-        executor.execute(t1);
-        executor.execute(t2);
-        executor.execute(t3);
-        executor.shutdown();
-        while(!executor.isTerminated()){}*/
-        /*t0.start();
-        t1.start();
-        t2.start();
-        t3.start();
-        try {
-            t0.join();
-            t1.join();
-            t2.join();
-            t3.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*//*
-        long delta = System.currentTimeMillis() - curT;
-        System.out.println("Czas: "+delta+" Wykonano iteracji: "+w.it);*/
-        DatabaseHandler dbh = DatabaseHandler.getInstance();
-        dbh.connect();
-        //long t = System.currentTimeMillis();
-        //dbh.testQuery();
-        //dbh.addValues();
-        //ResultSet resultSet = dbh.getValuesFromDB();
-        //dbh.printResults(resultSet);
-        //long d = System.currentTimeMillis() - t;
-        dbh.addAllBlockTypes();
-        //dbh.dropTable("table2");
-        dbh.closeConnection();
-        //System.out.println(d);
-
+        BoardState b1 = new BoardState(3);
+        BoardAnalyzer analyzer = new BoardAnalyzer(b1);
+        BoardState b2 = analyzer.getBoard().copyBoard();
+        //b2.addBrick(new BrickBlock(0, BlockRotation.R0, b2), new BoardAnalyzer(b2));
+        b1.print();
+        System.out.println();
+        b2.print();
 
     }
 }

@@ -3,6 +3,7 @@ package mainPackage.blocks.blocks2type;
 import mainPackage.BoardState;
 import mainPackage.blocks.BlockFinder;
 import mainPackage.blocks.BlockRotation;
+import mainPackage.blocks.blocks1type.BrickBlock;
 
 /**
  * Created by Inf on 2017-11-19.
@@ -50,11 +51,12 @@ public class StairsBlock extends AbstractBlockType2 {
     public static StairsBlock check(int index, BoardState board, BlockRotation rotation) {
 
         BlockFinder<StairsBlock> finder = new BlockFinder<>(StairsBlock.class);
-        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, 3, 3, board, rotation);
+        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, Block2Types.StairsBlock, board, rotation);
     }
 
+
     @Override
-    public boolean hasNeighbours() {
-        throw new UnsupportedOperationException();
+    public BrickBlock nextMove(BoardState board) {
+
     }
 }

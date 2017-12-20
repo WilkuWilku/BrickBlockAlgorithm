@@ -1,10 +1,13 @@
 package mainPackage.blocks;
 
-import mainPackage.BoardState;
-import mainPackage.IndexConverter;
+import mainPackage.*;
+import mainPackage.blocks.blocks1type.AbstractBlockType1;
+import mainPackage.blocks.blocks2or1type.AbstractBlockType2or1;
+import mainPackage.blocks.blocks2type.AbstractBlockType2;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * Created by Inf on 2017-11-18.
@@ -20,19 +23,25 @@ public class BlockFinder<T extends AbstractBlock>{
      * x = coords[a][0]
      * y = coords[a][1]
      * */
-    private T findWithRotation(int index, int[][] coords, int width, int height, BoardState board, BlockRotation rotation) {
+    private T findWithRotation(int index, int[][] coords, Summable type, BoardState board, BlockRotation rotation ) {
         if(coords == null)
             return null;
+        int targetSum = type.getSum();
+        int currentSum = 0;
+        int cellReduction = 0;
         int x = IndexConverter.xOfIndex(index, board.size);
         int y = IndexConverter.yOfIndex(index, board.size);
-        //if(index+height*board.size+width < board.size * board.size){
             for(int i=0; i<coords.length; i++){
-                    //if(board.getCell(index+coords[i][1]*board.size+coords[i][0]))
-                if(board.getCell(x+coords[i][0], y+coords[i][1]))
+                if((cellReduction = board.getCell(x+coords[i][0], y+coords[i][1])) == 0)
                     return null;
+                else currentSum += cellReduction;
                 }
 
-            /* wszystkie pola bloku są false */
+            /* jeśli sumy się nie zgadzają, to blok ma sąsiada - wówczas nie można jednoznacznie określić typu */
+            if(currentSum != targetSum)
+                return null;
+
+            /* blok nie ma sąsiadów, jest więc typu 1, 2, albo 2/1 */
             /* stwarza nowy obiekt szukanego bloku */
             try {
                 Constructor<T> constructor = tClass.getConstructor(int.class, BlockRotation.class);
@@ -46,20 +55,73 @@ public class BlockFinder<T extends AbstractBlock>{
             } catch (InvocationTargetException e) {
                 e.printStackTrace();
             }
-        //}
         return null;
     }
 
     /* wywołuje metodę findWithRotation() z int[][] shape odpowiednim dla danej rotacji */
-    public T find(int index, int[][] shapeR0, int[][] shapeR90, int[][] shapeR180, int[][] shapeR270, int initWidth, int initHeight, BoardState board, BlockRotation rotation){
+    public T find(int index, int[][] shapeR0, int[][] shapeR90, int[][] shapeR180, int[][] shapeR270, Summable type, BoardState board, BlockRotation rotation){
         switch (rotation){
-            case R0: return findWithRotation(index, shapeR0, initWidth, initHeight, board, rotation);
-            case R90: return findWithRotation(index, shapeR90, initHeight, initWidth,board, rotation);
-            case R180: return findWithRotation(index, shapeR180, initWidth, initHeight,board, rotation);
-            case R270: return findWithRotation(index, shapeR270, initHeight, initWidth,board, rotation);
+            case R0: return findWithRotation(index, shapeR0, type, board, rotation);
+            case R90: return findWithRotation(index, shapeR90, type,board, rotation);
+            case R180: return findWithRotation(index, shapeR180, type,board, rotation);
+            case R270: return findWithRotation(index, shapeR270, type,board, rotation);
             default: return null;
         }
     }
+
+    public static void searchForBlocks(BoardStatistics stats, BoardState board){
+        for(int i=0; i<board.size*board.size; i++){
+            if(board.getCell(i) > 0)
+                searchForBlocksAtIndex(i, stats, board);
+        }
+    }
+
+
+    private static void searchForBlocksAtIndex(int index, BoardStatistics stats, BoardState board){
+        /* Enum z typami bloków */
+        Class typesRootClass = BlockTypes.class;
+        /* Tablica wartości z klasami typów bloków */
+        EnumWithClass[] types = (EnumWithClass[]) typesRootClass.getEnumConstants();
+        for(int i=0; i<types.length; i++) {
+            /* Enum z klasami bloków danego typu */
+            Class typeClass = types[i].getClassOfValue();
+            /* Tablica wartości z klasami bloków danego typu */
+            EnumWithClass[] blockTypes = (EnumWithClass[])  typeClass.getEnumConstants();
+            for (int j = 0; j < blockTypes.length; j++) {
+                try {
+                    /* Klasa bloku danego typu */
+                    Class blockClass = blockTypes[j].getClassOfValue();
+                    Method method = blockClass.getMethod("check", int.class, BoardState.class, BlockRotation.class);
+                    for (BlockRotation rot : BlockRotation.values()) {
+                        addBlockToList(index, board, rot, method, stats);
+                    }
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    /* dodaje blok jeśli istnieje dla danej komórki i rotacji */
+    private static void addBlockToList(int index, BoardState board, BlockRotation rotation, Method method, BoardStatistics stats){
+        AbstractBlock result;
+        try {
+            result = (AbstractBlock) method.invoke(null, index, board, rotation);
+            if (result != null){
+                if(result instanceof AbstractBlockType1)
+                    stats.getBlocksType1().add((AbstractBlockType1) result);
+                else if(result instanceof AbstractBlockType2)
+                    stats.getBlocksType2().add((AbstractBlockType2) result);
+                else if(result instanceof AbstractBlockType2or1)
+                    stats.getBlocksType2or1().add((AbstractBlockType2or1) result);
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 }

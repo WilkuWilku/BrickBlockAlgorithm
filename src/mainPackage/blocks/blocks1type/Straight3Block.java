@@ -3,7 +3,6 @@ package mainPackage.blocks.blocks1type;
 import mainPackage.BoardState;
 import mainPackage.blocks.BlockFinder;
 import mainPackage.blocks.BlockRotation;
-import mainPackage.blocks.blocks2type.LBlock;
 
 /**
  * Created by Inf on 2017-12-09.
@@ -24,6 +23,16 @@ public class Straight3Block extends AbstractBlockType1 {
     public static Straight3Block check(int index, BoardState board, BlockRotation rotation) {
 
         BlockFinder<Straight3Block> finder = new BlockFinder<>(Straight3Block.class);
-        return finder.find(index, shapeR0, shapeR90, null, null, 3, 3, board, rotation);
+        return finder.find(index, shapeR0, shapeR90, null, null, Block1Types.Straight3Block, board, rotation);
+    }
+
+    @Override
+    public BrickBlock nextMove(BoardState board) {
+        switch (rotation){
+            case R0: return new BrickBlock(referenceCellIndex, BlockRotation.R0, board);
+            case R90:  return new BrickBlock(referenceCellIndex, BlockRotation.R90, board);
+            default: return null;
+        }
+
     }
 }

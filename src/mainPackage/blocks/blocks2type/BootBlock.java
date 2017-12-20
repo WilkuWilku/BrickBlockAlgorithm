@@ -3,6 +3,7 @@ package mainPackage.blocks.blocks2type;
 import mainPackage.BoardState;
 import mainPackage.blocks.BlockFinder;
 import mainPackage.blocks.BlockRotation;
+import mainPackage.blocks.blocks1type.BrickBlock;
 
 /**
  * Created by Inf on 2017-11-19.
@@ -49,7 +50,7 @@ public class BootBlock extends AbstractBlockType2 implements Blockible, Reducibl
     public static BootBlock check(int index, BoardState board, BlockRotation rotation) {
 
         BlockFinder<BootBlock> finder = new BlockFinder<>(BootBlock.class);
-        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, 3, 2, board, rotation);
+        return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, Block2Types.BootBlock, board, rotation);
     }
 
     @Override
@@ -62,8 +63,10 @@ public class BootBlock extends AbstractBlockType2 implements Blockible, Reducibl
 
     }
 
+
     @Override
-    public boolean hasNeighbours() {
-        throw new UnsupportedOperationException();
+    public BrickBlock nextMove(BoardState board) {
+
+
     }
 }

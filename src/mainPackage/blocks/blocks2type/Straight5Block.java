@@ -3,6 +3,7 @@ package mainPackage.blocks.blocks2type;
 import mainPackage.BoardState;
 import mainPackage.blocks.BlockFinder;
 import mainPackage.blocks.BlockRotation;
+import mainPackage.blocks.blocks1type.BrickBlock;
 
 /**
  * Created by Inf on 2017-11-18.
@@ -36,7 +37,7 @@ public class Straight5Block extends AbstractBlockType2 implements Reducible {
 
     public static Straight5Block check(int index, BoardState board, BlockRotation rotation){
         BlockFinder<Straight5Block> finder = new BlockFinder<>(Straight5Block.class);
-        return finder.find(index, shapeR0, shapeR90, null, null, 5, 1, board, rotation);
+        return finder.find(index, shapeR0, shapeR90, null, null, Block2Types.Straight5Block, board, rotation);
     }
 
     @Override
@@ -44,8 +45,9 @@ public class Straight5Block extends AbstractBlockType2 implements Reducible {
 
     }
 
+
     @Override
-    public boolean hasNeighbours() {
-        throw new UnsupportedOperationException();
+    public BrickBlock nextMove(BoardState board) {
+
     }
 }

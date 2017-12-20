@@ -4,6 +4,7 @@ package mainPackage.blocks.blocks2type;
 import mainPackage.BoardState;
 import mainPackage.blocks.BlockFinder;
 import mainPackage.blocks.BlockRotation;
+import mainPackage.blocks.blocks1type.BrickBlock;
 
 /**
  * Created by Inf on 2017-11-18.
@@ -31,7 +32,7 @@ public class SquareBlock extends AbstractBlockType2 implements Blockible{
 
     public static SquareBlock check(int index, BoardState board, BlockRotation rotation) {
         BlockFinder<SquareBlock> finder = new BlockFinder<>(SquareBlock.class);
-        return finder.find(index, shapeR0, null,null, null, 2, 2, board, rotation);
+        return finder.find(index, shapeR0, null,null, null, Block2Types.SquareBlock, board, rotation);
     }
 
 
@@ -40,8 +41,9 @@ public class SquareBlock extends AbstractBlockType2 implements Blockible{
 
     }
 
+
     @Override
-    public boolean hasNeighbours() {
-        throw new UnsupportedOperationException();
+    public BrickBlock nextMove(BoardState board) {
+
     }
 }

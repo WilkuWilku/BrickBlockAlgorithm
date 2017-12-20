@@ -1,39 +1,54 @@
 package mainPackage;
 
-import mainPackage.blocks.AbstractBlock;
-import mainPackage.blocks.BlockTypes;
-
-import java.util.ArrayList;
+import mainPackage.blocks.BlockFinder;
 
 /**
  * Created by Inf on 2017-11-14.
  */
 public class BloccLauncher {
     public static void main(String[] args) {
-        //BoardState board = new BoardState(7, new int[]{0, 2,5, 7,8, 9,11, 13, 15,19, 20, 22, 24, 25, 26, 27, 30, 32,33, 36, 40, 41, 44, 45, 46});
-        //BoardState board = BoardState.randomBoard(50, 1000);
-        BoardState board = new BoardState(4, new int[]{1, 2, 3, 7, 8, 14, 15});
+        long curT;
+        double delta;
+        BoardState board = BoardState.randomBoard(100, 7200);
+        //BoardState board = new BoardState(5, new int[]{1, 3, 4, 8, 9, 10, 11, 12, 13, 14, 16, 18, 20, 21});
         BoardAnalyzer analyzer = new BoardAnalyzer(board);
+        curT = System.nanoTime();
+        analyzer.findAllMoves();
+        if(analyzer.getStats().nMoves < 1000)
+            BlockFinder.searchForBlocks(analyzer.getStats(), board);
+        delta = (double)(System.nanoTime() - curT)/1000000;
+        IOHandler io = new IOHandler(board.size);
 
-        long curT = System.nanoTime();
-        board.cleanBoard();
-        for(BlockTypes types : BlockTypes.values())
-            analyzer.findAllPossibilities(types.getBlockTypeClass());
-
-        ArrayList<AbstractBlock> list = analyzer.getPossibilities();
-
-        int reducibles = analyzer.getNReducibles();
-        int blockibles = analyzer.getNBlockibles();
-        double delta = (double)(System.nanoTime() - curT)/1000000;
-        //analyzer.findBoardCoverings(board);
-        for (AbstractBlock block : list) {
-            System.out.println(block.toString());
-        }
         board.print();
+        System.out.println(analyzer.getStats().toString());
+        System.out.println("Czas: " + delta);
+        /*while(analyzer.getStats().nMoves > 0) {
+            System.out.println("TURA GRACZA");
+            Duo<Integer> move = io.getNextMove();
+            try {
+                BrickBlock nextMove = Duo.createBrickBlock(move.getLeft(), move.getRight(), board);
+                board.addBrick(nextMove);
+                System.out.println("Gracz dodał "+nextMove.toString());
+                curT = System.nanoTime();
+                board.print();
+                nextMove = MoveCalculator.nextMove(analyzer);
+                if(analyzer.getStats().nMoves == 0)
+                    System.out.println("\n\n\t\t<< KOMPUTER ZOSTAL POKONANY >>");
+                board.addBrick(nextMove);
+                delta = (double)(System.nanoTime() - curT)/1000000;
+                System.out.println("TURA PROGRAMU");
+                System.out.println("Program dodał "+nextMove.toString());
+                System.out.println(analyzer.getStats().toString());
+                System.out.println("Czas: " + delta);
+                board.print();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            analyzer.findAllMoves();
+            if(analyzer.getStats().nMoves == 0)
+                System.out.println("\n\n\t\t<< ZOSTALES POKONANY PRZEZ KOMPUTER >>");
+        }
+        */
 
-        System.out.println("Czas: "+delta+"ms, znaleziono "+list.size()+" bloków");
-        System.out.println(blockibles + " możliwych do zablokowania, "+reducibles+" możwliwych do zredukowania");
-        System.out.println(board.getNFreeCells() + " wolnych komórek");
-        System.out.println(analyzer.getNBrickBlocks() + " możliwych ruchów");
     }
 }

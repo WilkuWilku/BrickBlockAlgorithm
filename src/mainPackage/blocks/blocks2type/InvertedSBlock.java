@@ -3,6 +3,7 @@ package mainPackage.blocks.blocks2type;
 import mainPackage.BoardState;
 import mainPackage.blocks.BlockFinder;
 import mainPackage.blocks.BlockRotation;
+import mainPackage.blocks.blocks1type.BrickBlock;
 
 /**
  * Created by Inf on 2017-11-20.
@@ -39,7 +40,7 @@ public class InvertedSBlock extends AbstractBlockType2 implements Reducible, Blo
     public static InvertedSBlock check(int index, BoardState board, BlockRotation rotation) {
 
         BlockFinder<InvertedSBlock> finder = new BlockFinder<>(InvertedSBlock.class);
-        return finder.find(index, shapeR0, shapeR90, null, null, 3, 3, board, rotation);
+        return finder.find(index, shapeR0, shapeR90, null, null, Block2Types.InvertedSBlock, board, rotation);
     }
 
 
@@ -53,8 +54,9 @@ public class InvertedSBlock extends AbstractBlockType2 implements Reducible, Blo
 
     }
 
+
     @Override
-    public boolean hasNeighbours() {
-        throw new UnsupportedOperationException();
+    public BrickBlock nextMove(BoardState board) {
+
     }
 }
