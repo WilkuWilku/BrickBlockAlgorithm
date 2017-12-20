@@ -3,6 +3,7 @@ package mainPackage.blocks.blocks2type;
 import mainPackage.BoardState;
 import mainPackage.blocks.BlockFinder;
 import mainPackage.blocks.BlockRotation;
+import mainPackage.blocks.blocks1type.BrickBlock;
 
 /**
  * Created by Inf on 2017-11-20.
@@ -65,7 +66,7 @@ public class InvertedBootBlock extends AbstractBlockType2 implements Reducible, 
 
 
     @Override
-    public void makeMove() {
+    public BrickBlock nextMove(BoardState board) {
 
     }
 }

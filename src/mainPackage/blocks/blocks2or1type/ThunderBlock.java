@@ -3,6 +3,7 @@ package mainPackage.blocks.blocks2or1type;
 import mainPackage.BoardState;
 import mainPackage.blocks.BlockFinder;
 import mainPackage.blocks.BlockRotation;
+import mainPackage.blocks.blocks1type.BrickBlock;
 
 
 /**
@@ -43,12 +44,21 @@ public class ThunderBlock extends AbstractBlockType2or1 {
 
 
     @Override
-    public void leaveZeroMoves() {
-
+    public BrickBlock leaveZeroMoves(BoardState board) {
+        switch (rotation){
+            case R0: return new BrickBlock(referenceCellIndex+board.size, BlockRotation.R0, board);
+            case R90: return new BrickBlock(referenceCellIndex, BlockRotation.R90, board);
+            default: return null;
+        }
     }
 
     @Override
-    public void leaveOneMove() {
+    public BrickBlock leaveOneMove(BoardState board) {
+        switch (rotation){
+            case R0: return new BrickBlock(referenceCellIndex, BlockRotation.R90, board);
+            case R90: return new BrickBlock(referenceCellIndex+board.size-1, BlockRotation.R0, board);
+            default: return null;
+        }
 
     }
 }

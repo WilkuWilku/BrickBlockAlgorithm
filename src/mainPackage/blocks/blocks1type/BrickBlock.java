@@ -1,7 +1,6 @@
 package mainPackage.blocks.blocks1type;
 
 import mainPackage.BoardState;
-import mainPackage.GameState;
 import mainPackage.IndexConverter;
 import mainPackage.blocks.BlockRotation;
 import mainPackage.blocks.Blocks;
@@ -98,7 +97,7 @@ public class BrickBlock extends AbstractBlockType1 {
     }
 
     @Override
-    public void makeMove() {
-
+    public BrickBlock nextMove(BoardState board) {
+        return this;
     }
 }

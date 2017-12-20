@@ -3,7 +3,6 @@ package mainPackage.blocks.blocks1type;
 import mainPackage.BoardState;
 import mainPackage.blocks.BlockFinder;
 import mainPackage.blocks.BlockRotation;
-import mainPackage.blocks.blocks2type.LBlock;
 
 /**
  * Created by Inf on 2017-12-09.
@@ -24,7 +23,7 @@ public class PlusBlock extends AbstractBlockType1 {
     }
 
     @Override
-    public void makeMove() {
-
+    public BrickBlock nextMove(BoardState board) {
+        return new BrickBlock(referenceCellIndex, BlockRotation.R0, board);
     }
 }

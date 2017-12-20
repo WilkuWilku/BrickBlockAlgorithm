@@ -31,7 +31,7 @@ public class TurnBlock extends AbstractBlockType1 {
     }
 
     @Override
-    public void makeMove() {
-
+    public BrickBlock nextMove(BoardState board) {
+        return new BrickBlock(referenceCellIndex, BlockRotation.R0, board);
     }
 }

@@ -1,5 +1,8 @@
 package mainPackage.blocks.blocks2or1type;
 
+import mainPackage.BoardState;
+import mainPackage.blocks.blocks1type.BrickBlock;
+
 /**
  * Created by Inf on 2017-12-19.
  */
@@ -7,5 +10,5 @@ package mainPackage.blocks.blocks2or1type;
 /*Ruch pozostawiający następny ruch przeciwnikowi w danym bloku */
 
 public interface MoveLeavingOne {
-    void leaveOneMove();
+    BrickBlock leaveOneMove(BoardState board);
 }

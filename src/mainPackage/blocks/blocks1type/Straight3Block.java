@@ -3,7 +3,6 @@ package mainPackage.blocks.blocks1type;
 import mainPackage.BoardState;
 import mainPackage.blocks.BlockFinder;
 import mainPackage.blocks.BlockRotation;
-import mainPackage.blocks.blocks2type.LBlock;
 
 /**
  * Created by Inf on 2017-12-09.
@@ -28,7 +27,12 @@ public class Straight3Block extends AbstractBlockType1 {
     }
 
     @Override
-    public void makeMove() {
+    public BrickBlock nextMove(BoardState board) {
+        switch (rotation){
+            case R0: return new BrickBlock(referenceCellIndex, BlockRotation.R0, board);
+            case R90:  return new BrickBlock(referenceCellIndex, BlockRotation.R90, board);
+            default: return null;
+        }
 
     }
 }
