@@ -35,7 +35,7 @@ public class LBlock extends AbstractBlockType2 implements Reducible, Blockible {
     private static final int[][] shapeR0 = new int[][]{{0,0}, {0,1}, {0,2}, {1,2}, {2,2}};
     private static final int[][] shapeR90 = new int[][]{{0,0}, {1,0}, {2,0}, {0, 1}, {0, 2}};
     private static final int[][] shapeR180 = new int[][]{{0,0}, {1,0}, {2,0}, {2, 1}, {2, 2}};
-    private static final int[][] shapeR270 = new int[][]{{0,2}, {1,2}, {0,2}, {2,1}, {2, 2}};
+    private static final int[][] shapeR270 = new int[][]{{2,0}, {1,2}, {0,2}, {2,1}, {2, 2}};
 
     public LBlock(int referenceCellIndex, BlockRotation rotation){
         this.referenceCellIndex = referenceCellIndex;
