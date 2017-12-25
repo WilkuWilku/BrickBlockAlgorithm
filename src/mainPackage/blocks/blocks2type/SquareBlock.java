@@ -44,6 +44,6 @@ public class SquareBlock extends AbstractBlockType2 implements Blockible{
 
     @Override
     public BrickBlock nextMove(BoardState board) {
-
+        return new BrickBlock(referenceCellIndex, BlockRotation.R0, board);
     }
 }

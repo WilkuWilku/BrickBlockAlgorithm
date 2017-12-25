@@ -66,7 +66,13 @@ public class BootBlock extends AbstractBlockType2 implements Blockible, Reducibl
 
     @Override
     public BrickBlock nextMove(BoardState board) {
-
+        switch (rotation){
+            case R0: return new BrickBlock(referenceCellIndex, BlockRotation.R0, board);
+            case R90: return new BrickBlock(referenceCellIndex, BlockRotation.R0, board);
+            case R180: return new BrickBlock(referenceCellIndex, BlockRotation.R0, board);
+            case R270: return new BrickBlock(referenceCellIndex+board.size, BlockRotation.R90, board);
+            default: return null;
+        }
 
     }
 }

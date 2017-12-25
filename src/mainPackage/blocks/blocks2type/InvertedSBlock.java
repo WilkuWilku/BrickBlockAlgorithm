@@ -57,6 +57,6 @@ public class InvertedSBlock extends AbstractBlockType2 implements Reducible, Blo
 
     @Override
     public BrickBlock nextMove(BoardState board) {
-
+        return new BrickBlock(referenceCellIndex, BlockRotation.R0, board);
     }
 }

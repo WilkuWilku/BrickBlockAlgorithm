@@ -71,6 +71,12 @@ public class InvertedLegBlock extends AbstractBlockType2 implements Reducible, B
 
     @Override
     public BrickBlock nextMove(BoardState board) {
-
+        switch (rotation){
+            case R0: return new BrickBlock(referenceCellIndex, BlockRotation.R90, board);
+            case R90: return new BrickBlock(referenceCellIndex, BlockRotation.R90, board);
+            case R180: return new BrickBlock(referenceCellIndex, BlockRotation.R90, board);
+            case R270: return new BrickBlock(referenceCellIndex, BlockRotation.R0, board);
+            default: return null;
+        }
     }
 }

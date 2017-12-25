@@ -66,6 +66,12 @@ public class UBlock extends AbstractBlockType2 implements Reducible, Blockible {
 
     @Override
     public BrickBlock nextMove(BoardState board) {
-
+        switch (rotation){
+            case R0:
+            case R90:
+            case R180: return new BrickBlock(referenceCellIndex, BlockRotation.R90, board);
+            case R270: return new BrickBlock(referenceCellIndex, BlockRotation.R0, board);
+            default: return null;
+        }
     }
 }

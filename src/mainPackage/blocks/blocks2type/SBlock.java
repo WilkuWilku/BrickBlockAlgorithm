@@ -55,6 +55,6 @@ public class SBlock extends AbstractBlockType2 implements Reducible, Blockible {
 
     @Override
     public BrickBlock nextMove(BoardState board) {
-
+        return new BrickBlock(referenceCellIndex, BlockRotation.R90, board);
     }
 }
