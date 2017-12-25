@@ -32,7 +32,7 @@ R270    X
 
  */
 
-public class InvertedWormBlock extends AbstractBlockType2 implements Reducible, Blockible {
+public class InvertedWormBlock extends AbstractBlockType2  {
 
     private static final int[][] shapeR0 = new int[][]{{0,0}, {1,0}, {1,1}, {2,1}, {3,1}};
     private static final int[][] shapeR90 = new int[][]{{0,0}, {-1,1}, {0,1}, {-1, 2}, {-1, 3}};
@@ -56,15 +56,7 @@ public class InvertedWormBlock extends AbstractBlockType2 implements Reducible, 
         return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, Block2Types.InvertedWormBlock, board, rotation);
     }
 
-    @Override
-    public void block() {
 
-    }
-
-    @Override
-    public void reduce() {
-
-    }
 
     @Override
     public BrickBlock nextMove(BoardState board) {

@@ -29,7 +29,7 @@ R270    XX
  */
 
 
-public class BootBlock extends AbstractBlockType2 implements Blockible, Reducible{
+public class BootBlock extends AbstractBlockType2 {
 
     private static final int[][] shapeR0 = new int[][]{{0,0}, {1,0}, {0,1}, {1,1}, {2,1}};
     private static final int[][] shapeR90 = new int[][]{{0,0}, {1,0}, {0,1}, {1, 1}, {0, 2}};
@@ -53,15 +53,6 @@ public class BootBlock extends AbstractBlockType2 implements Blockible, Reducibl
         return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, Block2Types.BootBlock, board, rotation);
     }
 
-    @Override
-    public void block() {
-
-    }
-
-    @Override
-    public void reduce() {
-
-    }
 
 
     @Override

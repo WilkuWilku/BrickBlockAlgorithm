@@ -32,7 +32,7 @@ R270          X
  */
 
 
-public class LegBlock extends AbstractBlockType2 implements Reducible, Blockible {
+public class LegBlock extends AbstractBlockType2 {
 
     private static final int[][] shapeR0 = new int[][]{{0,0}, {0,1}, {0,2}, {0,3}, {1,3}};
     private static final int[][] shapeR90 = new int[][]{{0,0}, {1,0}, {2,0}, {3, 0}, {0, 1}};
@@ -56,16 +56,6 @@ public class LegBlock extends AbstractBlockType2 implements Reducible, Blockible
         return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, Block2Types.LegBlock, board, rotation);
     }
 
-
-        @Override
-    public void block() {
-
-    }
-
-    @Override
-    public void reduce() {
-
-    }
 
     @Override
     public BrickBlock nextMove(BoardState board) {

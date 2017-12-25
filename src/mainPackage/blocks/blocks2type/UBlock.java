@@ -28,7 +28,7 @@ R270     X
         XX
  */
 
-public class UBlock extends AbstractBlockType2 implements Reducible, Blockible {
+public class UBlock extends AbstractBlockType2 {
 
     private static final int[][] shapeR0 = new int[][]{{0,0}, {2,0}, {0,1}, {1,1}, {2,1}};
     private static final int[][] shapeR90 = new int[][]{{0,0}, {1,0}, {0,1}, {0, 2}, {1, 2}};
@@ -50,17 +50,6 @@ public class UBlock extends AbstractBlockType2 implements Reducible, Blockible {
 
         BlockFinder<UBlock> finder = new BlockFinder<>(UBlock.class);
         return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, Block2Types.UBlock, board, rotation);
-    }
-
-
-    @Override
-    public void block() {
-
-    }
-
-    @Override
-    public void reduce() {
-
     }
 
 

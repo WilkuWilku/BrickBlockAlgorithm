@@ -30,7 +30,7 @@ R270      X
 
  */
 
-public class LBlock extends AbstractBlockType2 implements Reducible, Blockible {
+public class LBlock extends AbstractBlockType2  {
 
     private static final int[][] shapeR0 = new int[][]{{0,0}, {0,1}, {0,2}, {1,2}, {2,2}};
     private static final int[][] shapeR90 = new int[][]{{0,0}, {1,0}, {2,0}, {0, 1}, {0, 2}};
@@ -55,17 +55,6 @@ public class LBlock extends AbstractBlockType2 implements Reducible, Blockible {
     }
 
 
-
-
-    @Override
-    public void block() {
-
-    }
-
-    @Override
-    public void reduce() {
-
-    }
 
     @Override
     public BrickBlock nextMove(BoardState board) {
