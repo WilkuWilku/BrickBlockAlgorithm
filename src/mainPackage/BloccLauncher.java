@@ -9,7 +9,7 @@ public class BloccLauncher {
     public static void main(String[] args) {
         long curT;
         double delta;
-        BoardState board = BoardState.randomBoard(100, 7200);
+        BoardState board = BoardState.randomBoard(10, 65);
         //BoardState board = new BoardState(5, new int[]{1, 3, 4, 8, 9, 10, 11, 12, 13, 14, 16, 18, 20, 21});
         BoardAnalyzer analyzer = new BoardAnalyzer(board);
         curT = System.nanoTime();
