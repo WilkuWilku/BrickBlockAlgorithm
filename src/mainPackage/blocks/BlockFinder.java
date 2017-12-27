@@ -80,17 +80,24 @@ public class BlockFinder<T extends AbstractBlock>{
     private static void searchForBlocksAtIndex(int index, BoardStatistics stats, BoardState board){
         /* Enum z typami bloków */
         Class typesRootClass = BlockTypes.class;
+
         /* Tablica wartości z klasami typów bloków */
         EnumWithClass[] types = (EnumWithClass[]) typesRootClass.getEnumConstants();
+
         for(int i=0; i<types.length; i++) {
+
             /* Enum z klasami bloków danego typu */
             Class typeClass = types[i].getClassOfValue();
+
             /* Tablica wartości z klasami bloków danego typu */
             EnumWithClass[] blockTypes = (EnumWithClass[])  typeClass.getEnumConstants();
+
             for (int j = 0; j < blockTypes.length; j++) {
                 try {
+
                     /* Klasa bloku danego typu */
                     Class blockClass = blockTypes[j].getClassOfValue();
+
                     Method method = blockClass.getMethod("check", int.class, BoardState.class, BlockRotation.class);
                     for (BlockRotation rot : BlockRotation.values()) {
                         addBlockToList(index, board, rot, method, stats);

@@ -40,8 +40,6 @@ public class AnalyzingThread implements Runnable {
             if (result != null) {
                 addToMovesMap(index, result);
                 stats.nMoves++;
-                if(result.isStateChanging())
-                    stats.nStateChangeables++;
             }
         }
     }
