@@ -11,20 +11,17 @@ public class BloccLauncher {
         double delta;
         BoardState board = BoardState.randomBoard(20, 270);
         //BoardState board = new BoardState(5, new int[]{1, 3, 4, 8, 9, 10, 11, 12, 13, 14, 16, 18, 20, 21});
+
+        BlocksData blocksData = BlockFinder.searchForBlocks(board);
+        board = board.getBoardWithoutBlocks(blocksData);
         BoardAnalyzer analyzer = new BoardAnalyzer(board);
         curT = System.nanoTime();
         MovesData movesData = analyzer.findAllMoves();
-        BlocksData blocksData = new BlocksData();
-        if(movesData.nMoves < 1000)
-            blocksData = BlockFinder.searchForBlocks(board);
-
         IOHandler io = new IOHandler(board.size);
-
-
 
         //MoveCalculator.nextMove(analyzer);
         board.print();
-        Tree movesTree = new Tree(board.getBoardWithoutBlocks(blocksData), movesData);
+        Tree movesTree = new Tree(board, movesData);
         movesTree.growTree(10);
         delta = (double)(System.nanoTime() - curT)/1000000;
 

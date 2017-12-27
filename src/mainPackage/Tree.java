@@ -1,5 +1,7 @@
 package mainPackage;
 
+import mainPackage.blocks.BlockFinder;
+
 /**
  * Created by Inf on 2017-12-25.
  */
@@ -10,10 +12,10 @@ public class Tree {
     private Node root;
 
 
-    public Tree(BoardState board, MovesData statistics){
+    public Tree(BoardState board, MovesData movesData){
         this.board = new BoardState(board);
-        root = Node.createRootNode(this.board, statistics);
-        root.createChildren(statistics);
+        root = Node.createRootNode(this.board, movesData);
+        root.createChildren();
     }
 
     public void growTree(int maxLevel){
@@ -23,9 +25,7 @@ public class Tree {
     private void growTree(int maxLevel, Node currentNode) {
         if (currentNode.getLevel() < maxLevel) {
             if(currentNode.getChildren() == null) {
-                BoardAnalyzer analyzer = currentNode.getAnalyzer();
-                MovesData statistics = analyzer.findAllMoves();
-                currentNode.createChildren(statistics);
+                currentNode.createChildren();
             }
             for (int i = 0; i < currentNode.getChildren().size(); i++)
                 growTree(maxLevel, currentNode.getChildren().get(i));
