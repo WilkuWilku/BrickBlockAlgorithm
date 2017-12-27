@@ -1,7 +1,5 @@
 package mainPackage;
 
-import mainPackage.blocks.BlockFinder;
-
 /**
  * Created by Inf on 2017-12-25.
  */
@@ -12,7 +10,7 @@ public class Tree {
     private Node root;
 
 
-    public Tree(BoardState board, BoardStatistics statistics){
+    public Tree(BoardState board, MovesData statistics){
         this.board = new BoardState(board);
         root = Node.createRootNode(this.board, statistics);
         root.createChildren(statistics);
@@ -26,7 +24,7 @@ public class Tree {
         if (currentNode.getLevel() < maxLevel) {
             if(currentNode.getChildren() == null) {
                 BoardAnalyzer analyzer = currentNode.getAnalyzer();
-                BoardStatistics statistics = analyzer.findAllMoves();
+                MovesData statistics = analyzer.findAllMoves();
                 currentNode.createChildren(statistics);
             }
             for (int i = 0; i < currentNode.getChildren().size(); i++)

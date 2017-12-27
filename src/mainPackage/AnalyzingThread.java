@@ -3,8 +3,6 @@ package mainPackage;
 import mainPackage.blocks.BlockRotation;
 import mainPackage.blocks.blocks1type.BrickBlock;
 
-import java.util.HashMap;
-
 /**
  * Created by Inf on 2017-11-24.
  */
@@ -13,19 +11,19 @@ public class AnalyzingThread implements Runnable {
     private int nThreads;
     private int idNum;
     private BoardState board;
-    private BoardStatistics stats;
+    private MovesData movesData;
 
     public AnalyzingThread(int nThreads, int idNum, BoardState board){
         this.nThreads = nThreads;
         this.idNum = idNum;
         this.board = board;
-        stats = new BoardStatistics();
+        movesData = new MovesData();
     }
 
     private void addToMovesMap(int index, BrickBlock block){
-        Duo move = stats.getMovesMap().get(index);
+        Duo move = movesData.getMovesMap().get(index);
         if(move == null)
-            stats.getMovesMap().put(index, new Duo<>(block));
+            movesData.getMovesMap().put(index, new Duo<>(block));
         else
             try {
                 move.insert(block);
@@ -39,7 +37,7 @@ public class AnalyzingThread implements Runnable {
             BrickBlock result = BrickBlock.checkAndCreate(index, board, rotation);
             if (result != null) {
                 addToMovesMap(index, result);
-                stats.nMoves++;
+                movesData.nMoves++;
             }
         }
     }
@@ -51,7 +49,7 @@ public class AnalyzingThread implements Runnable {
                 searchMoves(i);
     }
 
-    public BoardStatistics getStats() {
-        return stats;
+    public MovesData getMovesData() {
+        return movesData;
     }
 }

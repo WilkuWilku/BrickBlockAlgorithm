@@ -5,7 +5,6 @@ import mainPackage.blocks.blocks1type.BrickBlock;
 import mainPackage.blocks.blocks2or1type.AbstractBlockType2or1;
 import mainPackage.blocks.blocks2type.AbstractBlockType2;
 
-import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -126,16 +125,16 @@ public class BoardState {
         return cells;
     }
 
-    /* zwraca planszę po odfiltrowaniu wszystkich bloków podanych w stats */
-    public BoardState getBoardWithoutBlocks(BoardStatistics stats){
+    /* zwraca planszę po odfiltrowaniu wszystkich bloków podanych w blocksData */
+    public BoardState getBoardWithoutBlocks(BlocksData blocksData){
         BoardState resultBoard = new BoardState(this);
-        for(AbstractBlockType1 block1 : stats.getBlocksType1()){
+        for(AbstractBlockType1 block1 : blocksData.getBlocksType1()){
             block1.markOnBoard(resultBoard);
         }
-        for(AbstractBlockType2 block2 : stats.getBlocksType2()){
+        for(AbstractBlockType2 block2 : blocksData.getBlocksType2()){
             block2.markOnBoard(resultBoard);
         }
-        for(AbstractBlockType2or1 block2or1 : stats.getBlocksType2or1()){
+        for(AbstractBlockType2or1 block2or1 : blocksData.getBlocksType2or1()){
             block2or1.markOnBoard(resultBoard);
         }
         return resultBoard;

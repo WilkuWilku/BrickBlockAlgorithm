@@ -4,7 +4,6 @@ import mainPackage.blocks.BlockFinder;
 import mainPackage.blocks.blocks1type.BrickBlock;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 
 /**
@@ -17,34 +16,34 @@ public class Node {
     private ArrayList<Node> children;
     private int value = 0;
     private int level;
-    private BoardStatistics stats;
+    private MovesData movesData;
 
-    public Node(BrickBlock move, BoardState board, int level, BoardStatistics stats) {
+    public Node(BrickBlock move, BoardState board, int level, MovesData movesData) {
         this.level = level;
         this.move = move;
-        this.stats = stats;
+        this.movesData = movesData;
         this.board = new BoardState(board);
         analyzer = new BoardAnalyzer(this.board);
     }
 
     /* Node jako korzeń */
-    private Node(BoardState board, BoardStatistics statistics){
+    private Node(BoardState board, MovesData statistics){
         this(null, board, -1, statistics);
     }
 
-    public static Node createRootNode(BoardState board, BoardStatistics statistics){
-        return new Node(board, statistics);
+    public static Node createRootNode(BoardState board, MovesData movesData){
+        return new Node(board, movesData);
     }
 
-    public ArrayList<Node> createChildren(BoardStatistics statistics){
+    public ArrayList<Node> createChildren(MovesData statistics){
         this.children = new ArrayList<>();
         HashSet<BrickBlock> movesSet = BoardAnalyzer.mapValuesToSet(statistics.getMovesMap());
         for(BrickBlock move : movesSet){
             BoardState childBoard = new BoardState(this.board);
             move.markOnBoard(childBoard);
-            BoardStatistics childStats = new BoardStatistics();
-            BlockFinder.searchForBlocks(childStats, childBoard);
-            Node childMove = new Node(move, childBoard, level+1, childStats);
+            MovesData childMovesData = new MovesData();
+            BlockFinder.searchForBlocks(childBoard);
+            Node childMove = new Node(move, childBoard, level+1, childMovesData);
             children.add(childMove);
         }
         return children;

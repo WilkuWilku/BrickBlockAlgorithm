@@ -1,6 +1,5 @@
 package mainPackage;
 
-import mainPackage.blocks.BlockRotation;
 import mainPackage.blocks.blocks1type.BrickBlock;
 
 import java.util.*;
@@ -18,10 +17,10 @@ public class BoardAnalyzer {
     }
 
     /* znajduje wszystkie możliwe ruchy (BrickBlocki) */
-    public BoardStatistics findAllMoves(){
-        BoardStatistics stats = new BoardStatistics();
+    public MovesData findAllMoves(){
+        MovesData movesData = new MovesData();
         final int nThreads = 1;
-        stats.setMovesMap(new HashMap<>());
+        movesData.setMovesMap(new HashMap<>());
         AnalyzingThread[] analyzingThreads = new AnalyzingThread[nThreads];
         Thread[] threads = new Thread[nThreads];
 
@@ -35,11 +34,11 @@ public class BoardAnalyzer {
                 e.printStackTrace();
             }
         }
-        stats.nMoves = 0;
+        movesData.nMoves = 0;
         for(int i=0; i<nThreads; i++)
-            stats.addAllStats(analyzingThreads[i].getStats());
-        createMRStats(stats);
-        return stats;
+            movesData.addAllStats(analyzingThreads[i].getMovesData());
+        createMRStats(movesData);
+        return movesData;
     }
 
     /* wypisuje wszystkie BrickBlocki z mapy *//*
@@ -75,36 +74,36 @@ public class BoardAnalyzer {
     }*/
 
     /* aktualizuje liczbę BrickBlokców bez sąsiadów (nMoveReductionBy1) i liczby komórek o danym MoveReduction (n[]) */
-    private void createMRStats(BoardStatistics stats){
-        stats.nMoveReductionBy1 = 0;
-        Arrays.fill(stats.n, 0);
-        createNStats(stats);
-        for(Duo<BrickBlock> moves : stats.getMovesMap().values()) {
+    private void createMRStats(MovesData movesData){
+        movesData.nMoveReductionBy1 = 0;
+        Arrays.fill(movesData.n, 0);
+        createNStats(movesData);
+        for(Duo<BrickBlock> moves : movesData.getMovesMap().values()) {
             if (moves.getLeft().getMovesReduction() == 1)
-                stats.nMoveReductionBy1++;
+                movesData.nMoveReductionBy1++;
             if (moves.getRight() != null) {
                 if(moves.getRight().getMovesReduction() == 1)
-                    stats.nMoveReductionBy1++;
+                    movesData.nMoveReductionBy1++;
             }
         }
     }
 
     /* aktualizuje statystyki n[] */
-    private void createNStats(BoardStatistics stats){
+    private void createNStats(MovesData movesData){
         for(int i=0; i<board.size*board.size; i++){
             int moveReduction = board.getCell(i);
             switch (moveReduction) {
                 case 1:
-                    stats.n[1]++;
+                    movesData.n[1]++;
                     break;
                 case 2:
-                    stats.n[2]++;
+                    movesData.n[2]++;
                     break;
                 case 3:
-                    stats.n[3]++;
+                    movesData.n[3]++;
                     break;
                 case 4:
-                    stats.n[4]++;
+                    movesData.n[4]++;
                     break;
             }
         }

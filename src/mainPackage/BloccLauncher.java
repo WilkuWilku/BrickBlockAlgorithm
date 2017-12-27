@@ -13,9 +13,10 @@ public class BloccLauncher {
         //BoardState board = new BoardState(5, new int[]{1, 3, 4, 8, 9, 10, 11, 12, 13, 14, 16, 18, 20, 21});
         BoardAnalyzer analyzer = new BoardAnalyzer(board);
         curT = System.nanoTime();
-        BoardStatistics stats = analyzer.findAllMoves();
-        if(stats.nMoves < 1000)
-            BlockFinder.searchForBlocks(stats, board);
+        MovesData movesData = analyzer.findAllMoves();
+        BlocksData blocksData = new BlocksData();
+        if(movesData.nMoves < 1000)
+            blocksData = BlockFinder.searchForBlocks(board);
 
         IOHandler io = new IOHandler(board.size);
 
@@ -23,14 +24,14 @@ public class BloccLauncher {
 
         //MoveCalculator.nextMove(analyzer);
         board.print();
-        Tree movesTree = new Tree(board.getBoardWithoutBlocks(stats), stats);
+        Tree movesTree = new Tree(board.getBoardWithoutBlocks(blocksData), movesData);
         movesTree.growTree(10);
         delta = (double)(System.nanoTime() - curT)/1000000;
 
-        System.out.println(stats.toString());
+        System.out.println(movesData.toString());
         System.out.println("Time: " + delta);
 
-        /*while(analyzer.getStats().nMoves > 0) {
+        /*while(analyzer.getMovesData().nMoves > 0) {
             System.out.println("TURA GRACZA");
             Duo<Integer> move = io.getNextMove();
             try {
@@ -40,20 +41,20 @@ public class BloccLauncher {
                 curT = System.nanoTime();
                 board.print();
                 nextMove = MoveCalculator.nextMove(analyzer);
-                if(analyzer.getStats().nMoves == 0)
+                if(analyzer.getMovesData().nMoves == 0)
                     System.out.println("\n\n\t\t<< KOMPUTER ZOSTAL POKONANY >>");
                 board.addBrick(nextMove);
                 delta = (double)(System.nanoTime() - curT)/1000000;
                 System.out.println("TURA PROGRAMU");
                 System.out.println("Program dodał "+nextMove.toString());
-                System.out.println(analyzer.getStats().toString());
+                System.out.println(analyzer.getMovesData().toString());
                 System.out.println("Czas: " + delta);
                 board.print();
             } catch (Exception e) {
                 e.printStackTrace();
             }
             analyzer.findAllMoves();
-            if(analyzer.getStats().nMoves == 0)
+            if(analyzer.getMovesData().nMoves == 0)
                 System.out.println("\n\n\t\t<< ZOSTALES POKONANY PRZEZ KOMPUTER >>");
         }
         */

@@ -69,15 +69,17 @@ public class BlockFinder<T extends AbstractBlock>{
         }
     }
 
-    public static void searchForBlocks(BoardStatistics stats, BoardState board){
+    public static BlocksData searchForBlocks(BoardState board){
+        BlocksData blocksData = new BlocksData();
         for(int i=0; i<board.size*board.size; i++){
             if(board.getCell(i) > 0)
-                searchForBlocksAtIndex(i, stats, board);
+                searchForBlocksAtIndex(i, blocksData, board);
         }
+        return blocksData;
     }
 
 
-    private static void searchForBlocksAtIndex(int index, BoardStatistics stats, BoardState board){
+    private static void searchForBlocksAtIndex(int index, BlocksData blocksData, BoardState board){
         /* Enum z typami bloków */
         Class typesRootClass = BlockTypes.class;
 
@@ -100,7 +102,7 @@ public class BlockFinder<T extends AbstractBlock>{
 
                     Method method = blockClass.getMethod("check", int.class, BoardState.class, BlockRotation.class);
                     for (BlockRotation rot : BlockRotation.values()) {
-                        addBlockToList(index, board, rot, method, stats);
+                        addBlockToList(index, board, rot, method, blocksData);
                     }
                 } catch (NoSuchMethodException e) {
                     e.printStackTrace();
@@ -110,17 +112,17 @@ public class BlockFinder<T extends AbstractBlock>{
     }
 
     /* dodaje blok jeśli istnieje dla danej komórki i rotacji */
-    private static void addBlockToList(int index, BoardState board, BlockRotation rotation, Method method, BoardStatistics stats){
+    private static void addBlockToList(int index, BoardState board, BlockRotation rotation, Method method, BlocksData blocksData){
         AbstractBlock result;
         try {
             result = (AbstractBlock) method.invoke(null, index, board, rotation);
             if (result != null){
                 if(result instanceof AbstractBlockType1)
-                    stats.getBlocksType1().add((AbstractBlockType1) result);
+                    blocksData.getBlocksType1().add((AbstractBlockType1) result);
                 else if(result instanceof AbstractBlockType2)
-                    stats.getBlocksType2().add((AbstractBlockType2) result);
+                    blocksData.getBlocksType2().add((AbstractBlockType2) result);
                 else if(result instanceof AbstractBlockType2or1)
-                    stats.getBlocksType2or1().add((AbstractBlockType2or1) result);
+                    blocksData.getBlocksType2or1().add((AbstractBlockType2or1) result);
             }
         } catch (IllegalAccessException e) {
             e.printStackTrace();
