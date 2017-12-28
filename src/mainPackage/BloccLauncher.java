@@ -11,26 +11,16 @@ public class BloccLauncher {
         long curT;
         double delta;
         BoardState board = BoardState.randomBoard(20, 285);
-        //BoardState board = new BoardState(5, new int[]{1, 3, 4, 8, 9, 10, 11, 12, 13, 14, 16, 18, 20, 21});
         board.print();
 
         curT = System.nanoTime();
         IOHandler io = new IOHandler(board.size);
-        Tree movesTree;
-        //MoveCalculator.nextMove(analyzer);
 
-        //if(movesData.nMoves < 30) {
-            movesTree = new Tree(board);
-            movesTree.growTree(2);
-            BrickBlock nextMove = movesTree.getMatchingMove();
-        //}
+        BrickBlock move = MoveCalculator.nextMove(board);
+
         delta = (double)(System.nanoTime() - curT)/1000000;
 
-        //System.out.println(movesData.toString());
-        //System.out.println(blocksData.toString());
-        System.out.println("NextMove: "+nextMove.toString());
-        System.out.println("BlocksData: "+movesTree.getBlocksData().toString());
-        System.out.println("MovesData: "+movesTree.getMovesData().toString());
+        System.out.println("NEXT MOVE: "+move.toString());
         System.out.println("Time: " + delta);
 
         /*while(analyzer.getMovesData().nMoves > 0) {

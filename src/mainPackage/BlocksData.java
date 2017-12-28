@@ -21,11 +21,11 @@ public class BlocksData {
     }
 
     /* liczba pozostałych ruchów musi być nieparzysta, żeby wygrać */
-    public LeadingState checkMovesParity(){
+    public LeadingState checkLeadingState(){
         if(blocksType1.size() % 2 == 0)
-            return LeadingState.MUST_CHANGE;
+            return LeadingState.EVEN;
         else
-            return LeadingState.MUST_STAY;
+            return LeadingState.ODD;
     }
 
     /* liczba pozostałych bloków typu 2/1 musi być nieparzysta, aby kontrolować grę */
