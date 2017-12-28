@@ -14,25 +14,28 @@ public class Node {
     private BoardState board;
     private BoardAnalyzer analyzer;
     private ArrayList<Node> children;
-    private int value = 0;
     private int level;
     private MovesData nodeMovesData;
+    private ControlState nodeControl; // stan kontroli nowych bloków po wykonaniu ruchu z węzła (dla level+1)
 
-    public Node(BrickBlock move, BoardState board, int level, MovesData nodeMovesData) {
+
+
+    public Node(BrickBlock move, BoardState board, int level, MovesData nodeMovesData, ControlState nodeControl) {
         this.level = level;
         this.move = move;
         this.nodeMovesData = nodeMovesData;
         this.board = new BoardState(board);
+        this.nodeControl = nodeControl;
         analyzer = new BoardAnalyzer(this.board);
     }
 
     /* Node jako korzeń */
-    private Node(BoardState board, MovesData nodeMovesData){
-        this(null, board, -1, nodeMovesData);
+    private Node(BoardState board, MovesData nodeMovesData, ControlState mainControl){
+        this(null, board, -1, nodeMovesData, mainControl);
     }
 
-    public static Node createRootNode(BoardState board, MovesData movesData){
-        return new Node(board, movesData);
+    public static Node createRootNode(BoardState board, MovesData movesData, ControlState controlState){
+        return new Node(board, movesData, controlState );
     }
 
     public ArrayList<Node> createChildren(){
@@ -41,15 +44,18 @@ public class Node {
         for(BrickBlock move : movesSet){
             BoardState childBoard = new BoardState(this.board);
             move.markOnBoard(childBoard);
-            BlocksData childBlocksData = BlockFinder.searchForBlocks(childBoard);
+            BlocksData childBlocksData = BlockFinder.searchForBlocks(childBoard);           //nowe bloki znalezione po wykonaniu ruchu move
             BoardState childBoardWithoutBlocks = childBoard.getBoardWithoutBlocks(childBlocksData);
             BoardAnalyzer childBoardAnalyzer = new BoardAnalyzer(childBoardWithoutBlocks);
             MovesData childMovesData = childBoardAnalyzer.findAllMoves();
-            Node childMove = new Node(move, childBoardWithoutBlocks, level+1, childMovesData);
+            Node childMove = new Node(move, childBoardWithoutBlocks, level+1, childMovesData,
+                    childBlocksData.checkControlState());
             children.add(childMove);
         }
         return children;
     }
+
+
 
     public BrickBlock getMove() {
         return move;
@@ -59,15 +65,15 @@ public class Node {
         return children;
     }
 
-    public int getValue() {
-        return value;
-    }
-
     public int getLevel() {
         return level;
     }
 
     public BoardAnalyzer getAnalyzer() {
         return analyzer;
+    }
+
+    public ControlState getNodeControl() {
+        return nodeControl;
     }
 }

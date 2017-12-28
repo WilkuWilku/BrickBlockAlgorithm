@@ -21,19 +21,19 @@ public class BlocksData {
     }
 
     /* liczba pozostałych ruchów musi być nieparzysta, żeby wygrać */
-    public MovesParityState checkMovesParity(){
+    public LeadingState checkMovesParity(){
         if(blocksType1.size() % 2 == 0)
-            return MovesParityState.MUST_CHANGE;
+            return LeadingState.MUST_CHANGE;
         else
-            return MovesParityState.MUST_STAY;
+            return LeadingState.MUST_STAY;
     }
 
     /* liczba pozostałych bloków typu 2/1 musi być nieparzysta, aby kontrolować grę */
-    public Blocks2or1ParityState checkBlocks2or1Parity(){
+    public ControlState checkControlState(){
         if(blocksType2or1.size() % 2 == 0)
-            return Blocks2or1ParityState.MUST_CHANGE;
+            return ControlState.EVEN;
         else
-            return Blocks2or1ParityState.MUST_STAY;
+            return ControlState.ODD;
     }
 
 

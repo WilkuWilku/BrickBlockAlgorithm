@@ -1,6 +1,7 @@
 package mainPackage;
 
 import mainPackage.blocks.BlockFinder;
+import mainPackage.blocks.blocks1type.BrickBlock;
 
 /**
  * Created by Inf on 2017-11-14.
@@ -9,23 +10,27 @@ public class BloccLauncher {
     public static void main(String[] args) {
         long curT;
         double delta;
-        BoardState board = BoardState.randomBoard(20, 270);
+        BoardState board = BoardState.randomBoard(20, 285);
         //BoardState board = new BoardState(5, new int[]{1, 3, 4, 8, 9, 10, 11, 12, 13, 14, 16, 18, 20, 21});
-
-        BlocksData blocksData = BlockFinder.searchForBlocks(board);
-        board = board.getBoardWithoutBlocks(blocksData);
-        BoardAnalyzer analyzer = new BoardAnalyzer(board);
-        curT = System.nanoTime();
-        MovesData movesData = analyzer.findAllMoves();
-        IOHandler io = new IOHandler(board.size);
-
-        //MoveCalculator.nextMove(analyzer);
         board.print();
-        Tree movesTree = new Tree(board, movesData);
-        movesTree.growTree(10);
+
+        curT = System.nanoTime();
+        IOHandler io = new IOHandler(board.size);
+        Tree movesTree;
+        //MoveCalculator.nextMove(analyzer);
+
+        //if(movesData.nMoves < 30) {
+            movesTree = new Tree(board);
+            movesTree.growTree(2);
+            BrickBlock nextMove = movesTree.getMatchingMove();
+        //}
         delta = (double)(System.nanoTime() - curT)/1000000;
 
-        System.out.println(movesData.toString());
+        //System.out.println(movesData.toString());
+        //System.out.println(blocksData.toString());
+        System.out.println("NextMove: "+nextMove.toString());
+        System.out.println("BlocksData: "+movesTree.getBlocksData().toString());
+        System.out.println("MovesData: "+movesTree.getMovesData().toString());
         System.out.println("Time: " + delta);
 
         /*while(analyzer.getMovesData().nMoves > 0) {

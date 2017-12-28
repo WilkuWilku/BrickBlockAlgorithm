@@ -92,7 +92,7 @@ public class BrickBlock extends AbstractBlockType1 {
 
     @Override
     public String toString() {
-        return super.toString()+" ("+ IndexConverter.indexToXY(referenceCellIndex, board.size)+") MR: "+movesReduction;
+        return super.toString()+" ("+ IndexConverter.indexToXY(referenceCellIndex, board.size);
     }
 
     public int getMovesReduction() {

@@ -18,8 +18,8 @@ public final class MoveCalculator {
         //TODO poprawić funkcję obliczającą ruchy
         MovesData movesData = analyzer.findAllMoves();
         BlocksData blocksData = BlockFinder.searchForBlocks(analyzer.getBoard());
-        MovesParityState movesParity = blocksData.checkMovesParity();
-        Blocks2or1ParityState blocks2or1Parity = blocksData.checkBlocks2or1Parity();
+        LeadingState movesParity = blocksData.checkMovesParity();
+        ControlState blocks2or1Parity = blocksData.checkControlState();
 
         /* plansza wyłącznie z nieokreślonymi blokami */
         BoardState boardWithoutBlocks = analyzer.getBoard().getBoardWithoutBlocks(blocksData);
@@ -45,10 +45,10 @@ public final class MoveCalculator {
     }
 
     private static BrickBlock matchMove(BoardState board, BlocksData resultBlocksData, MovesData stats){
-        MovesParityState movesParity = resultBlocksData.checkMovesParity();
-        Blocks2or1ParityState blocks2or1Parity = resultBlocksData.checkBlocks2or1Parity();
-        if(movesParity == MovesParityState.MUST_STAY){
-            if(blocks2or1Parity == Blocks2or1ParityState.MUST_STAY){
+        LeadingState movesParity = resultBlocksData.checkMovesParity();
+        ControlState blocks2or1Parity = resultBlocksData.checkControlState();
+        if(movesParity == LeadingState.MUST_STAY){
+            if(blocks2or1Parity == ControlState.ODD){
 
             }
         }
