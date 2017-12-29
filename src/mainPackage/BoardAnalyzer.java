@@ -19,7 +19,7 @@ public class BoardAnalyzer {
     /* znajduje wszystkie możliwe ruchy (BrickBlocki) */
     public MovesData findAllMoves(){
         MovesData movesData = new MovesData();
-        final int nThreads = 1;
+        final int nThreads = 2;
         movesData.setMovesMap(new HashMap<>());
         AnalyzingThread[] analyzingThreads = new AnalyzingThread[nThreads];
         Thread[] threads = new Thread[nThreads];
@@ -37,7 +37,7 @@ public class BoardAnalyzer {
         movesData.nMoves = 0;
         for(int i=0; i<nThreads; i++)
             movesData.addAllStats(analyzingThreads[i].getMovesData());
-        createMRStats(movesData);
+        //createMRStats(movesData);
         return movesData;
     }
 

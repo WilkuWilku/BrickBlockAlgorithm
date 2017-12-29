@@ -2,6 +2,7 @@ package mainPackage.blocks;
 
 import mainPackage.*;
 import mainPackage.blocks.blocks1type.AbstractBlockType1;
+import mainPackage.blocks.blocks1type.BrickBlock;
 import mainPackage.blocks.blocks2or1type.AbstractBlockType2or1;
 import mainPackage.blocks.blocks2type.AbstractBlockType2;
 
@@ -44,8 +45,14 @@ public class BlockFinder<T extends AbstractBlock>{
             /* blok nie ma sąsiadów, jest więc typu 1, 2, albo 2/1 */
             /* stwarza nowy obiekt szukanego bloku */
             try {
-                Constructor<T> constructor = tClass.getConstructor(int.class, BlockRotation.class);
-                return (constructor.newInstance(index, rotation));
+                if(tClass == BrickBlock.class){
+                    Constructor<T> constructor = tClass.getConstructor(int.class, BlockRotation.class, BoardState.class);
+                    return (constructor.newInstance(index, rotation, board));
+                }
+                else {
+                    Constructor<T> constructor = tClass.getConstructor(int.class, BlockRotation.class);
+                    return (constructor.newInstance(index, rotation));
+                }
             } catch (InstantiationException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {

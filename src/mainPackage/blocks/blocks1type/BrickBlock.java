@@ -38,12 +38,12 @@ public class BrickBlock extends AbstractBlockType1 {
             case R90: shape = shapeR90; break;
         }
         for(int i=0; i<shape.length; i++) {
-            cells.add(referenceCellIndex + shape[i][1] * board.size + shape[i][0]);
+            cells.add(referenceCellIndex + (shape[i][1] * board.size) + shape[i][0]);
             calculateMovesReduction();
         }
     }
 
-    public BrickBlock(int referenceCellIndex, BlockRotation rotation){
+    /*public BrickBlock(int referenceCellIndex, BlockRotation rotation){
         this.referenceCellIndex = referenceCellIndex;
         this.rotation = rotation;
         switch (rotation){
@@ -51,14 +51,14 @@ public class BrickBlock extends AbstractBlockType1 {
             case R90: shape = shapeR90; break;
         }
     }
-
+*/
 
     public static BrickBlock check(int index, BoardState board, BlockRotation rotation){
         BlockFinder<BrickBlock> finder = new BlockFinder<>(BrickBlock.class);
         return finder.find(index, shapeR0, shapeR90, null, null, Block1Types.BrickBlock,  board, rotation);
     }
 
-    public static BrickBlock checkAndCreate(int index, BoardState board, BlockRotation rotation) {
+    public static BrickBlock createIfPossible(int index, BoardState board, BlockRotation rotation) {
         BrickBlock result = null;
         switch (rotation){
             case R0: result = findWithRotation(index, board, shapeR0, rotation); break;
@@ -68,6 +68,7 @@ public class BrickBlock extends AbstractBlockType1 {
     }
 
     private static BrickBlock findWithRotation(int index, BoardState board, int[][] shape, BlockRotation rotation){
+        /* czy żadna z komórek nie jest zajęta */
         for(int i=0; i<shape.length; i++) {
             if (board.getCell(IndexConverter.xOfIndex(index, board.size)+shape[i][0], IndexConverter.yOfIndex(index, board.size)+shape[i][1]) == 0)
                 return null;

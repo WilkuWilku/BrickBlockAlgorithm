@@ -1,7 +1,6 @@
 package mainPackage;
 
 import mainPackage.blocks.BlockFinder;
-import mainPackage.blocks.Blocks;
 import mainPackage.blocks.blocks1type.BrickBlock;
 
 import java.util.HashSet;
@@ -20,7 +19,8 @@ public final class MoveCalculator {
         //TODO testy testy testy
         BoardAnalyzer analyzer = new BoardAnalyzer(board);
         MovesData movesData = analyzer.findAllMoves();
-        BlocksData blocksData = BlockFinder.searchForBlocks(analyzer.getBoard());
+        BlocksData blocksData = BlockFinder.searchForBlocks(board);
+        BrickBlock result;
 
         System.out.println("CALCULATOR: \n\tmovesData: "+movesData.toString());
         System.out.println("\tblocksData: "+blocksData.toString());
@@ -31,13 +31,21 @@ public final class MoveCalculator {
         MovesData movesDataWithoutBlocks = boardWithoutBlocksAnalyzer.findAllMoves();
         System.out.println("FILTERED BOARD: "+movesDataWithoutBlocks.toString());
         /* pozostały same bloki */
-        if(movesDataWithoutBlocks.nMoves == 0)
-            return findMoveWhenOnlyBlocks(blocksData, board);
+        if(movesDataWithoutBlocks.nMoves == 0) {
+            result = findMoveWhenOnlyBlocks(blocksData, board);
+            System.out.println("FOUND: "+result.toString());
+            return result;
+        }
         /* pozostały bloki i na tyle mało ruchów, że można stworzyć drzewo */
-        if(movesDataWithoutBlocks.nMoves <= TREE_MOVES_LIMIT)
-            return findWithMovesTree(board);
+        if(movesDataWithoutBlocks.nMoves <= TREE_MOVES_LIMIT){
+            result = findWithMovesTree(board);
+            System.out.println("FOUND: "+result.toString());
+            return result;
+        }
         /* stan nieokreślony - za dużo ruchów do obliczeń */
-        return findMoveWhenFullBoard(movesData);
+        result = findMoveWhenFullBoard(movesData);
+        System.out.println("FOUND: "+result.toString());
+        return result;
     }
 
     /* wyszukiwanie najlepszego ruchu sposród małej liczby nieokreślonych bloków */
@@ -73,22 +81,12 @@ public final class MoveCalculator {
                 return getChangingControl(blocksData, board);
         }
         else
-            return getChangingLeadingAndControlState(blocksData, board);
+            return getChangingLeading(blocksData, board);
     }
 
     /* nie zmienia ogólnego stanu gry */
     private static BrickBlock getChangingNothing(BlocksData blocksData, BoardState board){
         System.out.println("\tmove tactics: change nothing");
-        if(blocksData.getBlocksType1().size() > 0)
-            return blocksData.getBlocksType1().get(0).nextMove(board);
-        if(blocksData.getBlocksType2().size() > 0)
-            return blocksData.getBlocksType2().get(0).nextMove(board);
-        return blocksData.getBlocksType2or1().get(0).leaveOneMove(board);
-    }
-
-    /* zmienia stan kontroli */
-    private static BrickBlock getChangingControl(BlocksData blocksData, BoardState board){
-        System.out.println("\tmove tactics: change control");
         if(blocksData.getBlocksType2or1().size() > 0)
             return blocksData.getBlocksType2or1().get(0).leaveOneMove(board);
         if(blocksData.getBlocksType1().size() > 0)
@@ -96,9 +94,19 @@ public final class MoveCalculator {
         return blocksData.getBlocksType2().get(0).nextMove(board);
     }
 
+    /* zmienia stan kontroli */
+    private static BrickBlock getChangingControl(BlocksData blocksData, BoardState board){
+        System.out.println("\tmove tactics: change control");
+        if(blocksData.getBlocksType2().size() > 0)
+            return blocksData.getBlocksType2().get(0).nextMove(board);
+        if(blocksData.getBlocksType1().size() > 0)
+            return blocksData.getBlocksType1().get(0).nextMove(board);
+        return blocksData.getBlocksType2or1().get(0).leaveOneMove(board);
+    }
+
     /* zmienia jednocześnie stan kontroli i prowadzenia */
-    private static BrickBlock getChangingLeadingAndControlState(BlocksData blocksData, BoardState board){
-        System.out.println("\tmove tactics: change control and leading");
+    private static BrickBlock getChangingLeading(BlocksData blocksData, BoardState board){
+        System.out.println("\tmove tactics: change leading");
         if(blocksData.getBlocksType2or1().size() > 0)
             return blocksData.getBlocksType2or1().get(0).leaveZeroMoves(board);
         if(blocksData.getBlocksType1().size() > 0)

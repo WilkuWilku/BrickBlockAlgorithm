@@ -34,7 +34,7 @@ public class AnalyzingThread implements Runnable {
 
     private void searchMoves(int index){
         for(BlockRotation rotation : BlockRotation.values()) {
-            BrickBlock result = BrickBlock.checkAndCreate(index, board, rotation);
+            BrickBlock result = BrickBlock.createIfPossible(index, board, rotation);
             if (result != null) {
                 addToMovesMap(index, result);
                 movesData.nMoves++;

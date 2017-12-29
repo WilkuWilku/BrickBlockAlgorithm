@@ -64,9 +64,9 @@ public class Tree {
             System.out.println("EVEN -> emergency");
             if(blocksData.getBlocksType1().size() > 0)
                 return blocksData.getBlocksType1().get(0).nextMove(board);
-            else if(blocksData.getBlocksType2().size() > 0)
+            if(blocksData.getBlocksType2().size() > 0)
                 return blocksData.getBlocksType2().get(0).nextMove(board);
-            else if(blocksData.getBlocksType2or1().size() > 0)
+            if(blocksData.getBlocksType2or1().size() > 0)
                 return blocksData.getBlocksType2or1().get(0).leaveZeroMoves(board);
         }
         else if(root.getNodeControl() == ControlState.ODD){
@@ -90,9 +90,9 @@ public class Tree {
             System.out.println("ODD -> emergency");
             if(blocksData.getBlocksType2().size() > 0)
                 return blocksData.getBlocksType2().get(0).nextMove(board);
-            else if(blocksData.getBlocksType1().size() > 0)
+            if(blocksData.getBlocksType1().size() > 0)
                 return blocksData.getBlocksType1().get(0).nextMove(board);
-            else if(blocksData.getBlocksType2or1().size() > 0)
+            if(blocksData.getBlocksType2or1().size() > 0)
                 return blocksData.getBlocksType2or1().get(0).leaveOneMove(board);
         }
             /* weź cokolwiek jeśli nic już nie zostało */
