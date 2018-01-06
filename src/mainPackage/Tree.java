@@ -16,11 +16,14 @@ public class Tree {
     private ControlState controlState;
     private MovesData movesData;
 
-    public Tree(BoardState board){
-        blocksData = BlockFinder.searchForBlocks(board);
-        this.board = board.getBoardWithoutBlocks(blocksData);
-        BoardAnalyzer analyzer = new BoardAnalyzer(board);
-        movesData = analyzer.findAllMoves();
+    public Tree(BoardState boardWithoutBlocks, BlocksData blocksData, MovesData movesData){
+        //blocksData = BlockFinder.searchForBlocks(board);
+        //this.board = board.getBoardWithoutBlocks(blocksData);
+        //BoardAnalyzer analyzer = new BoardAnalyzer(board);
+        //movesData = analyzer.findAllMoves();
+        this.board = boardWithoutBlocks;
+        this.blocksData = blocksData;
+        this.movesData = movesData;
         controlState = blocksData.checkControlState();
         root = Node.createRootNode(this.board, movesData, controlState);
         root.createChildren();
@@ -37,12 +40,10 @@ public class Tree {
             }
             for (int i = 0; i < currentNode.getChildren().size(); i++)
                 growTree(maxLevel, currentNode.getChildren().get(i));
-
         }
     }
 
     public BrickBlock getMatchingMove(){
-        //TODO uwzględnić leadingState od obliczeń
         if (root.getNodeControl() == ControlState.EVEN) {
             for (Node child : root.getChildren()) {
                 if (child.getChildren().size() == 0 && child.getNodeControl() == ControlState.EVEN) {

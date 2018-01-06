@@ -10,6 +10,8 @@ import java.util.HashSet;
  * Created by Inf on 2017-12-25.
  */
 public class Node {
+    private static final int SEARCH_AREA_WIDTH = 12;
+    private static final int SEARCH_AREA_HEIGHT = 12;
     private BrickBlock move;
     private BoardState board;
     private BoardAnalyzer analyzer;
@@ -44,7 +46,7 @@ public class Node {
         for(BrickBlock move : movesSet){
             BoardState childBoard = new BoardState(this.board);
             move.markOnBoard(childBoard);
-            BlocksData childBlocksData = BlockFinder.searchForBlocks(childBoard);           //nowe bloki znalezione po wykonaniu ruchu move
+            BlocksData childBlocksData = BlockFinder.searchForBlocksInArea(childBoard, move.getReferenceCellIndex(), SEARCH_AREA_WIDTH, SEARCH_AREA_HEIGHT);           //nowe bloki znalezione po wykonaniu ruchu move
             BoardState childBoardWithoutBlocks = childBoard.getBoardWithoutBlocks(childBlocksData);
             BoardAnalyzer childBoardAnalyzer = new BoardAnalyzer(childBoardWithoutBlocks);
             MovesData childMovesData = childBoardAnalyzer.findAllMoves();

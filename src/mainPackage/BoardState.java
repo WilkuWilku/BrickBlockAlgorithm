@@ -94,8 +94,8 @@ public class BoardState {
             try {
                 setCell(brick.getReferenceCellIndex() + brick.getShape()[i][0] + brick.getShape()[i][1]*size);
             } catch (Exception e) {
-                System.err.println("addBrick():");
-                e.printStackTrace();
+                //System.err.println("addBrick():");
+                //e.printStackTrace();
             }
         }
     }

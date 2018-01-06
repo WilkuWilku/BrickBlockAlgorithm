@@ -85,6 +85,18 @@ public class BlockFinder<T extends AbstractBlock>{
         return blocksData;
     }
 
+    public static BlocksData searchForBlocksInArea(BoardState board, int referenceCellID, int width, int height) {
+        BlocksData blocksData = new BlocksData();
+        int refX = IndexConverter.xOfIndex(referenceCellID, board.size);
+        int refY = IndexConverter.yOfIndex(referenceCellID, board.size);
+        for(int x=(refX-width/2 < 0) ? 0 : refX-width/2; x < refX+width && x < board.size; x++){
+            for(int y=(refY-height/2 < 0) ? 0 : refY-height/2; y < refY+height && y < board.size; y++){
+                searchForBlocksAtIndex(IndexConverter.xyToIndex(x, y, board.size), blocksData, board);
+            }
+        }
+        return blocksData;
+    }
+
 
     private static void searchForBlocksAtIndex(int index, BlocksData blocksData, BoardState board){
         /* Enum z typami bloków */

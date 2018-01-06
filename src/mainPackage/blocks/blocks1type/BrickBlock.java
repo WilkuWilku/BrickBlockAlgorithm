@@ -38,7 +38,7 @@ public class BrickBlock extends AbstractBlockType1 {
             case R90: shape = shapeR90; break;
         }
         for(int i=0; i<shape.length; i++) {
-            cells.add(referenceCellIndex + (shape[i][1] * board.size) + shape[i][0]);
+            cells.add(referenceCellIndex + shape[i][0] + (shape[i][1] * board.size));
             calculateMovesReduction();
         }
     }
