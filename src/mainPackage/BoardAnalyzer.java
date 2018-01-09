@@ -51,7 +51,7 @@ public class BoardAnalyzer {
         }
     }*/
 
-    /* zamienia przerzuca ruchy z mapy do zbioru */
+    /* przerzuca ruchy z mapy do zbioru */
     public static HashSet<BrickBlock> mapValuesToSet(HashMap<Integer, Duo<BrickBlock>> map) {
         HashSet<BrickBlock> valuesSet = new HashSet<>();
         for (Duo<BrickBlock> value : map.values()) {
@@ -76,8 +76,8 @@ public class BoardAnalyzer {
     /* aktualizuje liczbę BrickBlokców bez sąsiadów (nMoveReductionBy1) i liczby komórek o danym MoveReduction (n[]) */
     private void createMRStats(MovesData movesData){
         movesData.nMoveReductionBy1 = 0;
-        Arrays.fill(movesData.n, 0);
-        createNStats(movesData);
+        //Arrays.fill(movesData.n, 0);
+        //createNStats(movesData);
         for(Duo<BrickBlock> moves : movesData.getMovesMap().values()) {
             if (moves.getLeft().getMovesReduction() == 1)
                 movesData.nMoveReductionBy1++;
@@ -89,7 +89,7 @@ public class BoardAnalyzer {
     }
 
     /* aktualizuje statystyki n[] */
-    private void createNStats(MovesData movesData){
+    /*private void createNStats(MovesData movesData){
         for(int i=0; i<board.size*board.size; i++){
             int moveReduction = board.getCell(i);
             switch (moveReduction) {
@@ -107,7 +107,7 @@ public class BoardAnalyzer {
                     break;
             }
         }
-    }
+    }*/
 
     public BoardState getBoard() {
         return board;

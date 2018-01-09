@@ -1,6 +1,7 @@
 package mainPackage;
 
 import mainPackage.blocks.BlockFinder;
+import mainPackage.blocks.Blocks;
 import mainPackage.blocks.blocks1type.BrickBlock;
 
 import java.util.HashSet;
@@ -10,14 +11,14 @@ import java.util.HashSet;
  */
 public final class MoveCalculator {
 
-    private static final int BLOCK_SEARCH_LIMIT = 1500;
+    private static final int BLOCK_SEARCH_LIMIT = 2000;
     private static final int TREE_MOVES_LIMIT = 11;
 
     private MoveCalculator(){
     }
 
     public static BrickBlock nextMove(BoardState board){
-        //TODO testy testy testy
+
         BoardAnalyzer analyzer = new BoardAnalyzer(board);
         MovesData movesData = analyzer.findAllMoves();
         BrickBlock result;
@@ -25,30 +26,28 @@ public final class MoveCalculator {
             BlocksData blocksData = BlockFinder.searchForBlocks(board);
 
 
-            //System.out.println("CALCULATOR: \n\tmovesData: " + movesData.toString());
-            //System.out.println("\tblocksData: " + blocksData.toString());
-
         /* plansza wyłącznie z nieokreślonymi blokami */
             BoardState boardWithoutBlocks = board.getBoardWithoutBlocks(blocksData);
             BoardAnalyzer boardWithoutBlocksAnalyzer = new BoardAnalyzer(boardWithoutBlocks);
             MovesData movesDataWithoutBlocks = boardWithoutBlocksAnalyzer.findAllMoves();
             //System.out.println("FILTERED BOARD: " + movesDataWithoutBlocks.toString());
+
         /* pozostały same bloki */
             if (movesDataWithoutBlocks.nMoves == 0) {
                 result = findMoveWhenOnlyBlocks(blocksData, board);
-                //System.out.println("FOUND: " + result.toString());
+                System.out.println("blocksOnly");
                 return result;
             }
         /* pozostały bloki i na tyle mało ruchów, że można stworzyć drzewo */
             if (movesDataWithoutBlocks.nMoves <= TREE_MOVES_LIMIT) {
                 result = findWithMovesTree(boardWithoutBlocks, blocksData, movesDataWithoutBlocks);
-                //System.out.println("FOUND: " + result.toString());
+                System.out.println("treeSearch");
                 return result;
             }
         }
         /* stan nieokreślony - za dużo ruchów do obliczeń */
         result = findMoveWhenFullBoard(movesData);
-        //System.out.println("FOUND: "+result.toString());
+        System.out.println("fullBoard");
         return result;
     }
 
@@ -56,7 +55,12 @@ public final class MoveCalculator {
     private static BrickBlock findWithMovesTree(BoardState board, BlocksData blocksData, MovesData movesData){
         //System.out.println("func: TREE SEARCH");
         Tree movesTree = new Tree(board, blocksData, movesData);
-        movesTree.growTree(3);
+        try {
+            movesTree.growTree(3);
+        } catch (TimeLimitException e) {
+            System.err.println(e.getMessage());
+            return BoardAnalyzer.mapValuesToSet(movesTree.getMovesData().getMovesMap()).iterator().next();
+        }
         return movesTree.getMatchingMove();
     }
 
@@ -117,6 +121,8 @@ public final class MoveCalculator {
             return blocksData.getBlocksType1().get(0).nextMove(board);
         return blocksData.getBlocksType2().get(0).nextMove(board);
     }
+
+
 
 
 

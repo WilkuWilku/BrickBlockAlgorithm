@@ -8,6 +8,7 @@ import mainPackage.blocks.blocks1type.BrickBlock;
  */
 public class AnalyzingThread implements Runnable {
 
+    private static final long TIME_LIMIT = 400;
     private int nThreads;
     private int idNum;
     private BoardState board;
@@ -32,7 +33,9 @@ public class AnalyzingThread implements Runnable {
             }
     }
 
-    private void searchMoves(int index){
+    private void searchMoves(int index, long initTime) throws TimeLimitException {
+        if(System.currentTimeMillis() - initTime > TIME_LIMIT )
+            throw new TimeLimitException("Przekroczono czas podczas wyszukiwania możliwych ruchów");
         for(BlockRotation rotation : BlockRotation.values()) {
             BrickBlock result = BrickBlock.createIfPossible(index, board, rotation);
             if (result != null) {
@@ -44,9 +47,15 @@ public class AnalyzingThread implements Runnable {
 
     @Override
     public void run() {
+        long initTime = System.currentTimeMillis();
         for(int i=idNum; i<board.getCells().length; i+=nThreads)
             if(board.getCell(i) > 0)
-                searchMoves(i);
+                try {
+                    searchMoves(i, initTime);
+                } catch (TimeLimitException e) {
+                    System.err.println(e.getMessage());
+                    return;
+                }
     }
 
     public MovesData getMovesData() {
