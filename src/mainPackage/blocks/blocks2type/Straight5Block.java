@@ -21,7 +21,7 @@ R90   X
 
  */
 
-public class Straight5Block extends AbstractBlockType2 implements Reducible {
+public class Straight5Block extends AbstractBlockType2  {
 
     private static final int[][] shapeR0 = new int[][]{{0,0}, {1,0}, {2,0}, {3,0}, {4,0}};
     private static final int[][] shapeR90 = new int[][]{{0,0}, {0,1}, {0,2}, {0,3}, {0, 4}};
@@ -40,14 +40,13 @@ public class Straight5Block extends AbstractBlockType2 implements Reducible {
         return finder.find(index, shapeR0, shapeR90, null, null, Block2Types.Straight5Block, board, rotation);
     }
 
-    @Override
-    public void reduce() {
-
-    }
-
 
     @Override
     public BrickBlock nextMove(BoardState board) {
-
+        switch (rotation){
+            case R0: return new BrickBlock(referenceCellIndex, BlockRotation.R0, board);
+            case R90: return new BrickBlock(referenceCellIndex, BlockRotation.R90, board);
+            default: return null;
+        }
     }
 }

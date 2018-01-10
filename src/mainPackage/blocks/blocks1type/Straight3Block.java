@@ -8,8 +8,8 @@ import mainPackage.blocks.BlockRotation;
  * Created by Inf on 2017-12-09.
  */
 public class Straight3Block extends AbstractBlockType1 {
-    private static final int[][] shapeR0 = new int[][]{{0,0}, {0,1}, {0,2}};
-    private static final int[][] shapeR90 = new int[][]{{0,0}, {1,0}, {2,0}};
+    private static final int[][] shapeR0 = new int[][]{{0,0}, {1,0}, {2,0}};
+    private static final int[][] shapeR90 = new int[][]{{0,0}, {0,1}, {0,2}};
 
     public Straight3Block(int referenceCellIndex, BlockRotation rotation){
         this.referenceCellIndex = referenceCellIndex;

@@ -2,6 +2,7 @@ package mainPackage.blocks;
 
 import mainPackage.*;
 import mainPackage.blocks.blocks1type.AbstractBlockType1;
+import mainPackage.blocks.blocks1type.BrickBlock;
 import mainPackage.blocks.blocks2or1type.AbstractBlockType2or1;
 import mainPackage.blocks.blocks2type.AbstractBlockType2;
 
@@ -44,8 +45,14 @@ public class BlockFinder<T extends AbstractBlock>{
             /* blok nie ma sąsiadów, jest więc typu 1, 2, albo 2/1 */
             /* stwarza nowy obiekt szukanego bloku */
             try {
-                Constructor<T> constructor = tClass.getConstructor(int.class, BlockRotation.class);
-                return (constructor.newInstance(index, rotation));
+                if(tClass == BrickBlock.class){
+                    Constructor<T> constructor = tClass.getConstructor(int.class, BlockRotation.class, BoardState.class);
+                    return (constructor.newInstance(index, rotation, board));
+                }
+                else {
+                    Constructor<T> constructor = tClass.getConstructor(int.class, BlockRotation.class);
+                    return (constructor.newInstance(index, rotation));
+                }
             } catch (InstantiationException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
@@ -69,31 +76,52 @@ public class BlockFinder<T extends AbstractBlock>{
         }
     }
 
-    public static void searchForBlocks(BoardStatistics stats, BoardState board){
+    public static BlocksData searchForBlocks(BoardState board){
+        BlocksData blocksData = new BlocksData();
         for(int i=0; i<board.size*board.size; i++){
             if(board.getCell(i) > 0)
-                searchForBlocksAtIndex(i, stats, board);
+                searchForBlocksAtIndex(i, blocksData, board);
         }
+        return blocksData;
+    }
+
+    public static BlocksData searchForBlocksInArea(BoardState board, int referenceCellID, int width, int height) {
+        BlocksData blocksData = new BlocksData();
+        int refX = IndexConverter.xOfIndex(referenceCellID, board.size);
+        int refY = IndexConverter.yOfIndex(referenceCellID, board.size);
+        for(int x=(refX-width/2 < 0) ? 0 : refX-width/2; x < refX+width && x < board.size; x++){
+            for(int y=(refY-height/2 < 0) ? 0 : refY-height/2; y < refY+height && y < board.size; y++){
+                searchForBlocksAtIndex(IndexConverter.xyToIndex(x, y, board.size), blocksData, board);
+            }
+        }
+        return blocksData;
     }
 
 
-    private static void searchForBlocksAtIndex(int index, BoardStatistics stats, BoardState board){
+    private static void searchForBlocksAtIndex(int index, BlocksData blocksData, BoardState board){
         /* Enum z typami bloków */
         Class typesRootClass = BlockTypes.class;
+
         /* Tablica wartości z klasami typów bloków */
         EnumWithClass[] types = (EnumWithClass[]) typesRootClass.getEnumConstants();
+
         for(int i=0; i<types.length; i++) {
+
             /* Enum z klasami bloków danego typu */
             Class typeClass = types[i].getClassOfValue();
+
             /* Tablica wartości z klasami bloków danego typu */
             EnumWithClass[] blockTypes = (EnumWithClass[])  typeClass.getEnumConstants();
+
             for (int j = 0; j < blockTypes.length; j++) {
                 try {
+
                     /* Klasa bloku danego typu */
                     Class blockClass = blockTypes[j].getClassOfValue();
+
                     Method method = blockClass.getMethod("check", int.class, BoardState.class, BlockRotation.class);
                     for (BlockRotation rot : BlockRotation.values()) {
-                        addBlockToList(index, board, rot, method, stats);
+                        addBlockToList(index, board, rot, method, blocksData);
                     }
                 } catch (NoSuchMethodException e) {
                     e.printStackTrace();
@@ -103,17 +131,17 @@ public class BlockFinder<T extends AbstractBlock>{
     }
 
     /* dodaje blok jeśli istnieje dla danej komórki i rotacji */
-    private static void addBlockToList(int index, BoardState board, BlockRotation rotation, Method method, BoardStatistics stats){
+    private static void addBlockToList(int index, BoardState board, BlockRotation rotation, Method method, BlocksData blocksData){
         AbstractBlock result;
         try {
             result = (AbstractBlock) method.invoke(null, index, board, rotation);
             if (result != null){
                 if(result instanceof AbstractBlockType1)
-                    stats.getBlocksType1().add((AbstractBlockType1) result);
+                    blocksData.getBlocksType1().add((AbstractBlockType1) result);
                 else if(result instanceof AbstractBlockType2)
-                    stats.getBlocksType2().add((AbstractBlockType2) result);
+                    blocksData.getBlocksType2().add((AbstractBlockType2) result);
                 else if(result instanceof AbstractBlockType2or1)
-                    stats.getBlocksType2or1().add((AbstractBlockType2or1) result);
+                    blocksData.getBlocksType2or1().add((AbstractBlockType2or1) result);
             }
         } catch (IllegalAccessException e) {
             e.printStackTrace();

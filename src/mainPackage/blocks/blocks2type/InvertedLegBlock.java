@@ -33,7 +33,7 @@ R270    XXXX
  */
 
 
-public class InvertedLegBlock extends AbstractBlockType2 implements Reducible, Blockible {
+public class InvertedLegBlock extends AbstractBlockType2  {
 
     private static final int[][] shapeR0 = new int[][]{{0,0}, {0,1}, {0,2}, {-1,3}, {0,3}};
     private static final int[][] shapeR90 = new int[][]{{0,0}, {0,1}, {1,1}, {2, 1}, {3, 1}};
@@ -58,19 +58,16 @@ public class InvertedLegBlock extends AbstractBlockType2 implements Reducible, B
 
 
 
-    @Override
-    public void block() {
-
-    }
-
-    @Override
-    public void reduce() {
-
-    }
 
 
     @Override
     public BrickBlock nextMove(BoardState board) {
-
+        switch (rotation){
+            case R0: return new BrickBlock(referenceCellIndex, BlockRotation.R90, board);
+            case R90: return new BrickBlock(referenceCellIndex, BlockRotation.R90, board);
+            case R180: return new BrickBlock(referenceCellIndex, BlockRotation.R90, board);
+            case R270: return new BrickBlock(referenceCellIndex, BlockRotation.R0, board);
+            default: return null;
+        }
     }
 }

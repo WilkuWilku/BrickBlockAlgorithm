@@ -1,86 +1,131 @@
 package mainPackage;
 
+import mainPackage.blocks.BlockFinder;
+import mainPackage.blocks.Blocks;
 import mainPackage.blocks.blocks1type.BrickBlock;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 
 /**
  * Created by Inf on 2017-12-13.
  */
 public final class MoveCalculator {
-    private static final int ENEMY = 1;
-    private static final int AI = 0;
-    //private BoardStatistics stats;
-    //private BoardAnalyzer analyzer;
+
+    private static final int BLOCK_SEARCH_LIMIT = 2000;
+    private static final int TREE_MOVES_LIMIT = 11;
 
     private MoveCalculator(){
-        //this.stats = stats;
-        //this.analyzer = analyzer;
     }
 
-    public static BrickBlock nextMove(BoardAnalyzer analyzer){
-        //TODO poprawić funkcję obliczającą ruchy
-        BoardStatistics stats = analyzer.getStats();
-        analyzer.findAllMoves();
-        GameState gameState = checkGameState(stats, stats.n[2], stats.n[3], stats.n[4]);
-        HashSet<BrickBlock> moves = BoardAnalyzer.mapValuesToSet(stats.getMovesMap());
-        BoardStatistics resultStats;
-        ArrayList<BrickBlock> enemyLosingMoves = new ArrayList<>();
-        ArrayList<BrickBlock> enemyChangingMoves = new ArrayList<>();
-        ArrayList<BrickBlock> enemyOtherMoves = new ArrayList<>();
-        for(BrickBlock move : moves){
-            BoardState boardAfterMove = analyzer.getBoard().copyBoard();
-            BoardAnalyzer newAnalyzer = new BoardAnalyzer(boardAfterMove);
-            boardAfterMove.addBrick(move);
-            newAnalyzer.findAllMoves();
-            resultStats = newAnalyzer.getStats();
-            GameState gameStateOfResult = checkGameState(resultStats, resultStats.n[2], resultStats.n[3], resultStats.n[4]);
-            switch (gameStateOfResult){
-                case LOSE: enemyLosingMoves.add(move); break;
-                case CHANGEABLE: enemyChangingMoves.add(move); break;
-                case UNDEFINED: enemyOtherMoves.add(move); break;
+    public static BrickBlock nextMove(BoardState board){
+
+        BoardAnalyzer analyzer = new BoardAnalyzer(board);
+        MovesData movesData = analyzer.findAllMoves();
+        BrickBlock result;
+        if(movesData.nMoves < BLOCK_SEARCH_LIMIT) {
+            BlocksData blocksData = BlockFinder.searchForBlocks(board);
+
+
+        /* plansza wyłącznie z nieokreślonymi blokami */
+            BoardState boardWithoutBlocks = board.getBoardWithoutBlocks(blocksData);
+            BoardAnalyzer boardWithoutBlocksAnalyzer = new BoardAnalyzer(boardWithoutBlocks);
+            MovesData movesDataWithoutBlocks = boardWithoutBlocksAnalyzer.findAllMoves();
+            //System.out.println("FILTERED BOARD: " + movesDataWithoutBlocks.toString());
+
+        /* pozostały same bloki */
+            if (movesDataWithoutBlocks.nMoves == 0) {
+                result = findMoveWhenOnlyBlocks(blocksData, board);
+                System.out.println("blocksOnly");
+                return result;
+            }
+        /* pozostały bloki i na tyle mało ruchów, że można stworzyć drzewo */
+            if (movesDataWithoutBlocks.nMoves <= TREE_MOVES_LIMIT) {
+                result = findWithMovesTree(boardWithoutBlocks, blocksData, movesDataWithoutBlocks);
+                System.out.println("treeSearch");
+                return result;
             }
         }
-        System.out.println("Stan gry dla programu: "+gameState.name());
-        if(gameState == GameState.UNDEFINED && enemyOtherMoves.size() > 0){
-            for (BrickBlock block : enemyOtherMoves){
-                if(block.getMovesReduction() == 7)
-                    return block;
-                if(block.getMovesReduction() == 6)
-                    return block;
-                if(block.getMovesReduction() == 5)
-                    return block;
-                if(block.getMovesReduction() == 4)
-                    return block;
-                return block;
-            }
-        }
-        else if(enemyLosingMoves.size() > 0)
-            return enemyLosingMoves.get(0);
-        else if(gameState == GameState.CHANGEABLE && enemyChangingMoves.size() > 0)
-            return enemyChangingMoves.get(0);
-        else if(enemyOtherMoves.size() > 0)
-            return enemyChangingMoves.get(0);
-        return null;
+        /* stan nieokreślony - za dużo ruchów do obliczeń */
+        result = findMoveWhenFullBoard(movesData);
+        System.out.println("fullBoard");
+        return result;
     }
 
-    /* whoPlays = z czyjego punktu widzenia ma być obliczany stan planszy (AI/ENEMY) */
-    private static GameState checkGameState(BoardStatistics stats, int n2, int n3, int n4){
-        int n1WithoutBrickBlocks = stats.n[1]-stats.nMR1*2;                 //liczba komórek z MR==1, które nie należą do BrickBlocka z MR==1
-        int n2without212s = n2-n1WithoutBrickBlocks/2;        //liczba dwójek po usunięciu bloków 121 (MR==1)
-        int certainMovesLeft = stats.nMR1 + n1WithoutBrickBlocks/2;
-        if(n4>0 || n3>0)
-            //TODO kontrola n3 i n4
-            return GameState.UNDEFINED;
-        else if(n2without212s==2 || n2without212s > 3)
-            return GameState.CHANGEABLE;
-        if((certainMovesLeft % 2 == 0 && n2without212s == 1) || (certainMovesLeft % 2 == 1 && n2without212s == 3))
-            return GameState.WIN;
+    /* wyszukiwanie najlepszego ruchu sposród małej liczby nieokreślonych bloków */
+    private static BrickBlock findWithMovesTree(BoardState board, BlocksData blocksData, MovesData movesData){
+        //System.out.println("func: TREE SEARCH");
+        Tree movesTree = new Tree(board, blocksData, movesData);
+        try {
+            movesTree.growTree(3);
+        } catch (TimeLimitException e) {
+            System.err.println(e.getMessage());
+            return BoardAnalyzer.mapValuesToSet(movesTree.getMovesData().getMovesMap()).iterator().next();
+        }
+        return movesTree.getMatchingMove();
+    }
+
+    /* wyszukiwanie najlepszego ruchu, gdy jest za dużo możliwych ruchów */
+    private static BrickBlock findMoveWhenFullBoard(MovesData movesData){
+        //System.out.println("func: FULL BOARD");
+        HashSet<BrickBlock> movesSet = BoardAnalyzer.mapValuesToSet(movesData.getMovesMap());
+        BrickBlock result = movesSet.iterator().next();
+        for(BrickBlock move : movesSet){
+            if(move.getMovesReduction() > result.getMovesReduction())
+                result = move;
+        }
+        return result;
+    }
+
+    /* wyszukiwanie najlepszego ruchu, gdy pozostały tylko bloki */
+    private static BrickBlock findMoveWhenOnlyBlocks(BlocksData blocksData, BoardState board){
+        //System.out.println("func: BLOCKS ONLY");
+        LeadingState leading = blocksData.checkLeadingState();
+        ControlState control = blocksData.checkControlState();
+        if(leading == LeadingState.ODD){
+            if(control == ControlState.ODD){
+                return getChangingNothing(blocksData, board);
+            }
+            else
+                return getChangingControl(blocksData, board);
+        }
         else
-            return GameState.LOSE;
+            return getChangingLeading(blocksData, board);
     }
+
+    /* nie zmienia ogólnego stanu gry */
+    private static BrickBlock getChangingNothing(BlocksData blocksData, BoardState board){
+        //System.out.println("\tmove tactics: change nothing");
+        if(blocksData.getBlocksType2or1().size() > 0)
+            return blocksData.getBlocksType2or1().get(0).leaveOneMove(board);
+        if(blocksData.getBlocksType1().size() > 0)
+            return blocksData.getBlocksType1().get(0).nextMove(board);
+        return blocksData.getBlocksType2().get(0).nextMove(board);
+    }
+
+    /* zmienia stan kontroli */
+    private static BrickBlock getChangingControl(BlocksData blocksData, BoardState board){
+        //System.out.println("\tmove tactics: change control");
+        if(blocksData.getBlocksType2().size() > 0)
+            return blocksData.getBlocksType2().get(0).nextMove(board);
+        if(blocksData.getBlocksType1().size() > 0)
+            return blocksData.getBlocksType1().get(0).nextMove(board);
+        return blocksData.getBlocksType2or1().get(0).leaveOneMove(board);
+    }
+
+    /* zmienia jednocześnie stan kontroli i prowadzenia */
+    private static BrickBlock getChangingLeading(BlocksData blocksData, BoardState board){
+        //System.out.println("\tmove tactics: change leading");
+        if(blocksData.getBlocksType2or1().size() > 0)
+            return blocksData.getBlocksType2or1().get(0).leaveZeroMoves(board);
+        if(blocksData.getBlocksType1().size() > 0)
+            return blocksData.getBlocksType1().get(0).nextMove(board);
+        return blocksData.getBlocksType2().get(0).nextMove(board);
+    }
+
+
+
+
+
+
 
 }

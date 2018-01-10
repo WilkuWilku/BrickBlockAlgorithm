@@ -9,7 +9,7 @@ import mainPackage.Summable;
 public enum Block1Types implements EnumWithClass, Summable {
     PinBlock(PinBlock.class, 6),
     Straight3Block(Straight3Block.class, 4),
-    //BrickBlock(BrickBlock.class, 2),
+    BrickBlock(BrickBlock.class, 2),
     TurnBlock(TurnBlock.class, 4),
     PlusBlock(PlusBlock.class, 8);
 

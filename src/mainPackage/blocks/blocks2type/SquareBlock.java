@@ -19,7 +19,7 @@ R0   XX
  */
 
 
-public class SquareBlock extends AbstractBlockType2 implements Blockible{
+public class SquareBlock extends AbstractBlockType2 {
 
     private static final int[][] shapeR0 = new int[][]{{0,0}, {0,1}, {1,0}, {1,1}};
 
@@ -36,14 +36,9 @@ public class SquareBlock extends AbstractBlockType2 implements Blockible{
     }
 
 
-        @Override
-    public void block() {
-
-    }
-
 
     @Override
     public BrickBlock nextMove(BoardState board) {
-
+        return new BrickBlock(referenceCellIndex, BlockRotation.R0, board);
     }
 }

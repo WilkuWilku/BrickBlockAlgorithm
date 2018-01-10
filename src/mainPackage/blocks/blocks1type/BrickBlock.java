@@ -2,6 +2,7 @@ package mainPackage.blocks.blocks1type;
 
 import mainPackage.BoardState;
 import mainPackage.IndexConverter;
+import mainPackage.blocks.BlockFinder;
 import mainPackage.blocks.BlockRotation;
 import mainPackage.blocks.Blocks;
 
@@ -24,7 +25,6 @@ public class BrickBlock extends AbstractBlockType1 {
     private static final int[][] shapeR0 = new int[][]{{0,0}, {1,0}};
     private static final int[][] shapeR90 = new int[][]{{0,0}, {0,1}};
     private BoardState board;
-    private boolean stateChanging;
     private ArrayList<Integer> cells;
     private int movesReduction = 0;
 
@@ -38,13 +38,27 @@ public class BrickBlock extends AbstractBlockType1 {
             case R90: shape = shapeR90; break;
         }
         for(int i=0; i<shape.length; i++) {
-            cells.add(referenceCellIndex + shape[i][1] * board.size + shape[i][0]);
+            cells.add(referenceCellIndex + shape[i][0] + (shape[i][1] * board.size));
             calculateMovesReduction();
-            stateChanging = checkIfIsStateChanging();
         }
     }
 
-    public static BrickBlock checkAndCreate(int index, BoardState board, BlockRotation rotation) {
+    /*public BrickBlock(int referenceCellIndex, BlockRotation rotation){
+        this.referenceCellIndex = referenceCellIndex;
+        this.rotation = rotation;
+        switch (rotation){
+            case R0: shape = shapeR0; break;
+            case R90: shape = shapeR90; break;
+        }
+    }
+*/
+
+    public static BrickBlock check(int index, BoardState board, BlockRotation rotation){
+        BlockFinder<BrickBlock> finder = new BlockFinder<>(BrickBlock.class);
+        return finder.find(index, shapeR0, shapeR90, null, null, Block1Types.BrickBlock,  board, rotation);
+    }
+
+    public static BrickBlock createIfPossible(int index, BoardState board, BlockRotation rotation) {
         BrickBlock result = null;
         switch (rotation){
             case R0: result = findWithRotation(index, board, shapeR0, rotation); break;
@@ -54,6 +68,7 @@ public class BrickBlock extends AbstractBlockType1 {
     }
 
     private static BrickBlock findWithRotation(int index, BoardState board, int[][] shape, BlockRotation rotation){
+        /* czy żadna z komórek nie jest zajęta */
         for(int i=0; i<shape.length; i++) {
             if (board.getCell(IndexConverter.xOfIndex(index, board.size)+shape[i][0], IndexConverter.yOfIndex(index, board.size)+shape[i][1]) == 0)
                 return null;
@@ -66,25 +81,19 @@ public class BrickBlock extends AbstractBlockType1 {
         for(Integer index : cells)
             movesReduction += Blocks.movesReductionIfSet(index, board);
         movesReduction--;
-        stateChanging = checkIfIsStateChanging();
         return movesReduction;
     }
 
-    private boolean checkIfIsStateChanging(){
-        return movesReduction % 2 == 1;
-    }
 
     public ArrayList<Integer> getCells() {
         return cells;
     }
 
-    public boolean isStateChanging() {
-        return stateChanging;
-    }
+
 
     @Override
     public String toString() {
-        return super.toString()+" ("+ IndexConverter.indexToXY(referenceCellIndex, board.size)+") MR: "+movesReduction+"; SC: "+stateChanging;
+        return super.toString()+" ("+ IndexConverter.indexToXY(referenceCellIndex, board.size);
     }
 
     public int getMovesReduction() {

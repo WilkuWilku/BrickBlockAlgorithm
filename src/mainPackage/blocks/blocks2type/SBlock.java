@@ -22,7 +22,7 @@ R90     XXX
 
  */
 
-public class SBlock extends AbstractBlockType2 implements Reducible, Blockible {
+public class SBlock extends AbstractBlockType2 {
 
     private static final int[][] shapeR0 = new int[][]{{0,0}, {1,0}, {0,1}, {-1,2}, {0,2}};
     private static final int[][] shapeR90 = new int[][]{{0,0}, {0,1}, {1,1}, {2, 1}, {2, 2}};
@@ -42,19 +42,10 @@ public class SBlock extends AbstractBlockType2 implements Reducible, Blockible {
         return finder.find(index, shapeR0, shapeR90, null, null, Block2Types.SBlock, board, rotation);
     }
 
-    @Override
-    public void block() {
-
-    }
-
-    @Override
-    public void reduce() {
-
-    }
 
 
     @Override
     public BrickBlock nextMove(BoardState board) {
-
+        return new BrickBlock(referenceCellIndex, BlockRotation.R90, board);
     }
 }

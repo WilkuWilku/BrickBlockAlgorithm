@@ -1,54 +1,76 @@
 package mainPackage;
 
-import mainPackage.blocks.BlockFinder;
+import mainPackage.blocks.blocks1type.BrickBlock;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Random;
+
 
 /**
  * Created by Inf on 2017-11-14.
  */
 public class BloccLauncher {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws TimeLimitException {
         long curT;
         double delta;
-        BoardState board = BoardState.randomBoard(100, 7200);
-        //BoardState board = new BoardState(5, new int[]{1, 3, 4, 8, 9, 10, 11, 12, 13, 14, 16, 18, 20, 21});
-        BoardAnalyzer analyzer = new BoardAnalyzer(board);
-        curT = System.nanoTime();
-        analyzer.findAllMoves();
-        if(analyzer.getStats().nMoves < 1000)
-            BlockFinder.searchForBlocks(analyzer.getStats(), board);
-        delta = (double)(System.nanoTime() - curT)/1000000;
-        IOHandler io = new IOHandler(board.size);
+        IOHandler io = new IOHandler();
+        BoardState board = io.getInitInput();
+        board = BoardState.randomBoard(700, 325000);
+        io.approveInit();
+        //board.print();
+        BoardAnalyzer randomPlayerAnalyzer = new BoardAnalyzer(board);
+        MovesData movesData;
+        Random random = new Random();
+        BrickBlock nextPlayersMove;
+        BrickBlock nextAIsMove;
 
-        board.print();
-        System.out.println(analyzer.getStats().toString());
-        System.out.println("Czas: " + delta);
-        /*while(analyzer.getStats().nMoves > 0) {
-            System.out.println("TURA GRACZA");
-            Duo<Integer> move = io.getNextMove();
-            try {
-                BrickBlock nextMove = Duo.createBrickBlock(move.getLeft(), move.getRight(), board);
-                board.addBrick(nextMove);
-                System.out.println("Gracz dodał "+nextMove.toString());
-                curT = System.nanoTime();
-                board.print();
-                nextMove = MoveCalculator.nextMove(analyzer);
-                if(analyzer.getStats().nMoves == 0)
-                    System.out.println("\n\n\t\t<< KOMPUTER ZOSTAL POKONANY >>");
-                board.addBrick(nextMove);
-                delta = (double)(System.nanoTime() - curT)/1000000;
-                System.out.println("TURA PROGRAMU");
-                System.out.println("Program dodał "+nextMove.toString());
-                System.out.println(analyzer.getStats().toString());
-                System.out.println("Czas: " + delta);
-                board.print();
-            } catch (Exception e) {
-                e.printStackTrace();
+        while (true) {
+            //System.out.println("TURA GRACZA");
+            //board.print();
+             //Duo<Integer> move = io.getNextMove();
+           // try {
+            //nextPlayersMove = Duo.createBrickBlock(move.getLeft(), move.getRight(), board);
+            movesData = randomPlayerAnalyzer.findAllMoves();
+            if (movesData.nMoves == 0) {
+                System.out.println("*********     WYGRAL SUPER INTELIGENTNY PROGRAM    ************");
+                break;
             }
-            analyzer.findAllMoves();
-            if(analyzer.getStats().nMoves == 0)
-                System.out.println("\n\n\t\t<< ZOSTALES POKONANY PRZEZ KOMPUTER >>");
+            HashSet<BrickBlock> brickBlocksSet = BoardAnalyzer.mapValuesToSet(movesData.getMovesMap());
+            ArrayList<BrickBlock> blocksArray = new ArrayList<>(brickBlocksSet);
+            nextPlayersMove = blocksArray.get(random.nextInt(blocksArray.size()));
+            //System.out.println("Gracz wybrał " + nextPlayersMove.toString());
+            board.addBrick(nextPlayersMove);
+            /***io.getNextMove(board);***/
+            movesData = randomPlayerAnalyzer.findAllMoves();
+            if (movesData.nMoves == 0) {
+                System.out.println("*********     WYGRAL GRACZ    ************");
+                break;
+            }
+            //System.out.println("TURA PROGRAMU");
+            //board.print();
+            curT = System.nanoTime();
+            nextAIsMove = MoveCalculator.nextMove(board);
+            delta = (double) (System.nanoTime() - curT) / 1000000;
+            //System.out.println("Program wybrał " + nextAIsMove.toString());
+            board.addBrick(nextAIsMove);
+            io.writeNextStep(nextAIsMove);
+            if(delta >= 500)
+                throw new TimeLimitException("Przekroczony czas na decyzję! ("+delta+" ms)");
+
+
+
+            //System.out.println("Czas: " + delta);
+            //board.print();
+
+
+
+            //} catch (Exception e) {
+            //   e.printStackTrace();
+            //}
+
         }
-        */
+
 
     }
 }

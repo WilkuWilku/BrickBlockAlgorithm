@@ -15,7 +15,9 @@ public enum Block2or1Types implements EnumWithClass, Summable{
     InvertedSlipperBlock (InvertedSlipperBlock.class, 8),
     CrossBlock (CrossBlock.class, 10),
     DuckBlock (DuckBlock.class, 8),
-    InvertedDuckBlock (InvertedDuckBlock.class, 8);
+    InvertedDuckBlock (InvertedDuckBlock.class, 8),
+    ShortLegBlock (ShortLegBlock.class, 6),
+    InvertedShortLegBlock (InvertedShortLegBlock.class, 6);
 
     private Class blockClass;
     private int sum;

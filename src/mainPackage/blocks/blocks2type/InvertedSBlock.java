@@ -22,7 +22,7 @@ R90     XXX
 
  */
 
-public class InvertedSBlock extends AbstractBlockType2 implements Reducible, Blockible {
+public class InvertedSBlock extends AbstractBlockType2  {
 
     private static final int[][] shapeR0 = new int[][]{{0,0}, {1,0}, {1,1}, {1,2}, {2,2}};
     private static final int[][] shapeR90 = new int[][]{{2,-1}, {0,0}, {1,0}, {2, 0}, {0, 1}};
@@ -44,19 +44,9 @@ public class InvertedSBlock extends AbstractBlockType2 implements Reducible, Blo
     }
 
 
-    @Override
-    public void block() {
-
-    }
-
-    @Override
-    public void reduce() {
-
-    }
-
 
     @Override
     public BrickBlock nextMove(BoardState board) {
-
+        return new BrickBlock(referenceCellIndex, BlockRotation.R0, board);
     }
 }

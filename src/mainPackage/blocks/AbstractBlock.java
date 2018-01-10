@@ -1,6 +1,7 @@
 package mainPackage.blocks;
 
 import mainPackage.BoardState;
+import mainPackage.IndexConverter;
 
 /**
  * Created by Inf on 2017-11-18.
@@ -22,7 +23,12 @@ public abstract class AbstractBlock {
     }
     public void markOnBoard(BoardState board){
         for(int i=0; i<shape.length; i++)
-            board.setCell(referenceCellIndex+shape[i][1]*board.size+shape[i][0]);
+            try {
+                board.setCell(IndexConverter.xOfIndex(referenceCellIndex, board.size)+shape[i][0], IndexConverter.yOfIndex(referenceCellIndex, board.size)+shape[i][1]);
+            } catch (Exception e) {
+                //System.err.println("markOnBoard():");
+                //e.printStackTrace();
+            }
     }
     /*public void unmarkOnBoard(BoardState board){
         for(int i=0; i<shape.length; i++)

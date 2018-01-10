@@ -10,20 +10,6 @@ public final class Blocks {
 
     private Blocks(){}
 
-    public static boolean isEmpty(BoardState board, int index) {
-        if(board.getCell(index+board.size) != 0 || board.getCell(index-board.size) != 0)
-            return false;
-        if(IndexConverter.xOfIndex(index, board.size) != 0){
-            if(board.getCell(index-1) != 0)
-                return false;
-        }
-        if(IndexConverter.xOfIndex(index, board.size) != board.size-1){
-            if(board.getCell(index+1) != 0)
-                return false;
-        }
-        return true;
-    }
-
     public static int movesReductionIfSet(int index, BoardState board){
         int x = IndexConverter.xOfIndex(index, board.size);
         int y = IndexConverter.yOfIndex(index, board.size);
