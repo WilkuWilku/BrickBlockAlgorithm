@@ -35,19 +35,19 @@ public final class MoveCalculator {
         /* pozostały same bloki */
             if (movesDataWithoutBlocks.nMoves == 0) {
                 result = findMoveWhenOnlyBlocks(blocksData, board);
-                System.out.println("blocksOnly");
+                //System.out.println("blocksOnly");
                 return result;
             }
         /* pozostały bloki i na tyle mało ruchów, że można stworzyć drzewo */
             if (movesDataWithoutBlocks.nMoves <= TREE_MOVES_LIMIT) {
                 result = findWithMovesTree(boardWithoutBlocks, blocksData, movesDataWithoutBlocks);
-                System.out.println("treeSearch");
+                //System.out.println("treeSearch");
                 return result;
             }
         }
         /* stan nieokreślony - za dużo ruchów do obliczeń */
         result = findMoveWhenFullBoard(movesData);
-        System.out.println("fullBoard");
+        //System.out.println("fullBoard");
         return result;
     }
 

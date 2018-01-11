@@ -48,7 +48,7 @@ public class Tree {
         //BrickBlock emergencyMove = root.getChildren().get(0).getMove();
         if (root.getNodeControl() == ControlState.EVEN) {
             for (Node child : root.getChildren()) {
-                //if(child.getChildren() != null) {
+                if(child.getChildren() != null) {
                     if (child.getChildren().size() == 0 && child.getNodeControl() == ControlState.EVEN) {
                         //System.out.println("EVEN -> EVEN -> x");
                         return child.getMove();
@@ -63,19 +63,23 @@ public class Tree {
                             return child.getMove();
                         }
                     }
-                //}
+                }
+                /* zmniejsz drzewo do następnej tury */
+                else return root.getChildren().get(0).getMove();
             }
             //System.out.println("EVEN -> emergency");
+            //dawne ewentualności
+            if(blocksData.getBlocksType2or1().size() > 0)
+                return blocksData.getBlocksType2or1().get(0).leaveOneMove(board);
             if(blocksData.getBlocksType1().size() > 0)
                 return blocksData.getBlocksType1().get(0).nextMove(board);
             if(blocksData.getBlocksType2().size() > 0)
                 return blocksData.getBlocksType2().get(0).nextMove(board);
-            if(blocksData.getBlocksType2or1().size() > 0)
-                return blocksData.getBlocksType2or1().get(0).leaveZeroMoves(board);
+
         }
         else if(root.getNodeControl() == ControlState.ODD){
             for (Node child : root.getChildren()) {
-                //if (child.getChildren() != null) {
+                if (child.getChildren() != null) {
                     if (child.getChildren().size() == 0 && child.getNodeControl() == ControlState.ODD) {
                         //System.out.println("ODD -> ODD -> x");
                         return child.getMove();
@@ -90,15 +94,19 @@ public class Tree {
                             return child.getMove();
                         }
                     }
-                //}
+                }
+                /* zmniejsz drzewo do następnej tury */
+                else return root.getChildren().get(0).getMove();
             }
             //System.out.println("ODD -> emergency");
+            //dawne ewentualności
+            if(blocksData.getBlocksType2or1().size() > 0)
+                return blocksData.getBlocksType2or1().get(0).leaveOneMove(board);
             if(blocksData.getBlocksType2().size() > 0)
                 return blocksData.getBlocksType2().get(0).nextMove(board);
             if(blocksData.getBlocksType1().size() > 0)
                 return blocksData.getBlocksType1().get(0).nextMove(board);
-            if(blocksData.getBlocksType2or1().size() > 0)
-                return blocksData.getBlocksType2or1().get(0).leaveOneMove(board);
+
         }
             /* weź cokolwiek jeśli nic już nie zostało */
         //System.out.println("->> NO HOPE");
