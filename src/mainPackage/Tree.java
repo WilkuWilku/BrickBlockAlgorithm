@@ -29,10 +29,10 @@ public class Tree {
         growTree(maxLevel, root, System.currentTimeMillis());
     }
 
-    private void growTree(int maxLevel, Node currentNode, long initTime) throws TimeLimitException{
+    private void growTree(int maxLevel, Node currentNode, long initTime) {
 
         if(System.currentTimeMillis() - initTime < TIME_LIMIT) {
-            throw new TimeLimitException("Przekroczony czas podczas generowania drzewa ["+root.getChildren().size()+"]");
+            return;
         }
         if (currentNode.getLevel() < maxLevel) {
             if(currentNode.getChildren() == null) {
