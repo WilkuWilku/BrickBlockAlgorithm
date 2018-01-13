@@ -1,15 +1,13 @@
 package mainPackage;
 
-import mainPackage.blocks.BlockFinder;
 import mainPackage.blocks.blocks1type.BrickBlock;
-
-import java.util.logging.Logger;
 
 /**
  * Created by Inf on 2017-12-25.
  */
 public class Tree {
-    private static final long TIME_LIMIT = 450;             //maksymalny czas generowania drzewa (w milisekundach)
+    private static final long GROW_TREE_TIME_LIMIT = 400;             //maksymalny czas generowania drzewa (w milisekundach)
+    private static final long GET_MOVE_TIME_LIMIT = 460;              //maksymalny czas znalezienia ruchu (w milisekundach)
     private BoardState board;
     private Node root;
     private BlocksData blocksData;
@@ -25,32 +23,39 @@ public class Tree {
         root.createChildren();
     }
 
-    public void growTree(int maxLevel) throws TimeLimitException {
-        growTree(maxLevel, root, System.currentTimeMillis());
+    public void growTree(int maxLevel, long initTime) {
+        growTree(maxLevel, root, initTime);
     }
 
-    private void growTree(int maxLevel, Node currentNode, long initTime) {
-
-        if(System.currentTimeMillis() - initTime < TIME_LIMIT) {
-            return;
+    private boolean growTree(int maxLevel, Node currentNode, long initTime) {
+        long delta;
+        if((delta = System.currentTimeMillis() - initTime) > GROW_TREE_TIME_LIMIT) {
+            System.err.println("Waited too long ["+delta+" /LIMIT="+GROW_TREE_TIME_LIMIT+"]");
+            return false;
         }
         if (currentNode.getLevel() < maxLevel) {
             if(currentNode.getChildren() == null) {
                 currentNode.createChildren();
             }
-            for (int i = 0; i < currentNode.getChildren().size(); i++)
-                growTree(maxLevel, currentNode.getChildren().get(i), initTime);
+            boolean success;
+            for (int i = 0; i < currentNode.getChildren().size(); i++) {
+                success = growTree(maxLevel, currentNode.getChildren().get(i), initTime);
+                if(!success)
+                    return false;
+            }
         }
+        return true;
     }
 
-    public BrickBlock getMatchingMove(){
-
+    public BrickBlock getMatchingMove(long initTime){
+        long delta;
         //BrickBlock emergencyMove = root.getChildren().get(0).getMove();
+        //TODO rozwiązać null pointer exception przy przekroczeniu czasu w growTree
         if (root.getNodeControl() == ControlState.EVEN) {
             for (Node child : root.getChildren()) {
-                if(child.getChildren() != null) {
+                if(child.getChildren() != null || (delta = System.currentTimeMillis() - initTime) < GET_MOVE_TIME_LIMIT) {
                     if (child.getChildren().size() == 0 && child.getNodeControl() == ControlState.EVEN) {
-                        //System.out.println("EVEN -> EVEN -> x");
+                        System.out.println("EVEN -> EVEN -> x");
                         return child.getMove();
                     } else if (child.getNodeControl() == ControlState.ODD) {
                         boolean isGrandchildMatching = true;
@@ -59,29 +64,32 @@ public class Tree {
                                 isGrandchildMatching = false;
                         }
                         if (isGrandchildMatching) {
-                            //System.out.println("EVEN -> ODD -> EVENs -> x");
+                            System.out.println("EVEN -> ODD -> EVENs -> x");
                             return child.getMove();
                         }
                     }
                 }
                 /* zmniejsz drzewo do następnej tury */
-                else return root.getChildren().get(0).getMove();
+                else{
+                    System.out.println("> no grandchildren [t="+delta+"]");
+                    return root.getChildren().get(0).getMove();
+                }
             }
-            //System.out.println("EVEN -> emergency");
+            System.out.println("EVEN -> emergency");
             //dawne ewentualności
-            if(blocksData.getBlocksType2or1().size() > 0)
-                return blocksData.getBlocksType2or1().get(0).leaveOneMove(board);
+
             if(blocksData.getBlocksType1().size() > 0)
                 return blocksData.getBlocksType1().get(0).nextMove(board);
             if(blocksData.getBlocksType2().size() > 0)
                 return blocksData.getBlocksType2().get(0).nextMove(board);
-
+            if(blocksData.getBlocksType2or1().size() > 0)
+                return blocksData.getBlocksType2or1().get(0).leaveZeroMoves(board);
         }
         else if(root.getNodeControl() == ControlState.ODD){
             for (Node child : root.getChildren()) {
-                if (child.getChildren() != null) {
+                if (child.getChildren() != null || (delta = System.currentTimeMillis() - initTime) < GET_MOVE_TIME_LIMIT) {
                     if (child.getChildren().size() == 0 && child.getNodeControl() == ControlState.ODD) {
-                        //System.out.println("ODD -> ODD -> x");
+                        System.out.println("ODD -> ODD -> x");
                         return child.getMove();
                     } else if (child.getNodeControl() == ControlState.EVEN) {
                         boolean isGrandchildMatching = true;
@@ -90,26 +98,30 @@ public class Tree {
                                 isGrandchildMatching = false;
                         }
                         if (isGrandchildMatching) {
-                            //System.out.println("ODD -> EVEN -> ODDs -> x");
+                            System.out.println("ODD -> EVEN -> ODDs -> x");
                             return child.getMove();
                         }
                     }
                 }
                 /* zmniejsz drzewo do następnej tury */
-                else return root.getChildren().get(0).getMove();
+
+                else {
+                    System.out.println("> no grandchildren [t="+delta+"]");
+                    return root.getChildren().get(0).getMove();
+                }
             }
-            //System.out.println("ODD -> emergency");
+            System.out.println("ODD -> emergency");
             //dawne ewentualności
-            if(blocksData.getBlocksType2or1().size() > 0)
-                return blocksData.getBlocksType2or1().get(0).leaveOneMove(board);
+
             if(blocksData.getBlocksType2().size() > 0)
                 return blocksData.getBlocksType2().get(0).nextMove(board);
             if(blocksData.getBlocksType1().size() > 0)
                 return blocksData.getBlocksType1().get(0).nextMove(board);
-
+            if(blocksData.getBlocksType2or1().size() > 0)
+                return blocksData.getBlocksType2or1().get(0).leaveOneMove(board);
         }
             /* weź cokolwiek jeśli nic już nie zostało */
-        //System.out.println("->> NO HOPE");
+        System.out.println("->> NO HOPE");
             return BoardAnalyzer.mapValuesToSet(movesData.getMovesMap()).iterator().next();
     }
 

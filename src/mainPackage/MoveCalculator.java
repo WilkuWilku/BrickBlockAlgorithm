@@ -12,13 +12,13 @@ import java.util.HashSet;
 public final class MoveCalculator {
 
     private static final int BLOCK_SEARCH_LIMIT = 2000;
-    private static final int TREE_MOVES_LIMIT = 11;
+    private static final int TREE_MOVES_LIMIT = 15;
 
     private MoveCalculator(){
     }
 
     public static BrickBlock nextMove(BoardState board){
-
+        long initTime = System.currentTimeMillis();
         BoardAnalyzer analyzer = new BoardAnalyzer(board);
         MovesData movesData = analyzer.findAllMoves();
         BrickBlock result;
@@ -40,7 +40,7 @@ public final class MoveCalculator {
             }
         /* pozostały bloki i na tyle mało ruchów, że można stworzyć drzewo */
             if (movesDataWithoutBlocks.nMoves <= TREE_MOVES_LIMIT) {
-                result = findWithMovesTree(boardWithoutBlocks, blocksData, movesDataWithoutBlocks);
+                result = findWithMovesTree(boardWithoutBlocks, blocksData, movesDataWithoutBlocks, initTime);
                 //System.out.println("treeSearch");
                 return result;
             }
@@ -52,21 +52,16 @@ public final class MoveCalculator {
     }
 
     /* wyszukiwanie najlepszego ruchu sposród małej liczby nieokreślonych bloków */
-    private static BrickBlock findWithMovesTree(BoardState board, BlocksData blocksData, MovesData movesData){
-        //System.out.println("func: TREE SEARCH");
+    private static BrickBlock findWithMovesTree(BoardState board, BlocksData blocksData, MovesData movesData, long initTime){
+        System.out.println("func: TREE SEARCH");
         Tree movesTree = new Tree(board, blocksData, movesData);
-        try {
-            movesTree.growTree(3);
-        } catch (TimeLimitException e) {
-            System.err.println(e.getMessage());
-            return BoardAnalyzer.mapValuesToSet(movesTree.getMovesData().getMovesMap()).iterator().next();
-        }
-        return movesTree.getMatchingMove();
+        movesTree.growTree(3, initTime);
+        return movesTree.getMatchingMove(initTime);
     }
 
     /* wyszukiwanie najlepszego ruchu, gdy jest za dużo możliwych ruchów */
     private static BrickBlock findMoveWhenFullBoard(MovesData movesData){
-        //System.out.println("func: FULL BOARD");
+        System.out.println("func: FULL BOARD");
         HashSet<BrickBlock> movesSet = BoardAnalyzer.mapValuesToSet(movesData.getMovesMap());
         BrickBlock result = movesSet.iterator().next();
         for(BrickBlock move : movesSet){
@@ -78,7 +73,7 @@ public final class MoveCalculator {
 
     /* wyszukiwanie najlepszego ruchu, gdy pozostały tylko bloki */
     private static BrickBlock findMoveWhenOnlyBlocks(BlocksData blocksData, BoardState board){
-        //System.out.println("func: BLOCKS ONLY");
+        System.out.println("func: BLOCKS ONLY");
         LeadingState leading = blocksData.checkLeadingState();
         ControlState control = blocksData.checkControlState();
         if(leading == LeadingState.ODD){

@@ -11,15 +11,15 @@ import java.util.Random;
  * Created by Inf on 2017-11-14.
  */
 public class BloccLauncher {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws TimeLimitException {
         int playerWin = 0;
         int algWin = 0;
-        for (int i = 0; i < 40; i++) {
+        for (int i = 0; i < 1; i++) {
             long curT;
             double delta;
             IOHandler io = new IOHandler();
             BoardState board = io.getInitInput();
-            board = BoardState.randomBoard(25, 0);
+            board = BoardState.randomBoard(7, 0);
             io.approveInit();
             //board.print();
             BoardAnalyzer randomPlayerAnalyzer = new BoardAnalyzer(board);
@@ -66,12 +66,13 @@ public class BloccLauncher {
                 board.addBrick(nextAIsMove);
                 io.writeNextStep(nextAIsMove);
                 if (delta >= 500) {
-                    playerWin++;
-                    isFinished = true;
-                    continue;
+                    //playerWin++;
+                    throw new TimeLimitException("Przekroczony czas na decyzję! ("+delta+" ms)");
+                    //isFinished = true;
+                    //continue;
                 }
 
-                //throw new TimeLimitException("Przekroczony czas na decyzję! ("+delta+" ms)");
+
 
 
                 //System.out.println("Czas: " + delta);
