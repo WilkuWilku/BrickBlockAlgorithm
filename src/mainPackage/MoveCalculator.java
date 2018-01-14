@@ -10,12 +10,14 @@ import java.util.HashSet;
 /**
  * Created by Inf on 2017-12-13.
  */
+/* klasa obliczająca optymalny następny ruch */
+
 public final class MoveCalculator {
 
-    private static final int BLOCK_SEARCH_LIMIT = 1000;
-    private static final int TREE_MOVES_LIMIT = 13;
-    private static final long FULL_BOARD_TIME_LIMIT = 450;
-    private static boolean BLOCKS_ONLY_LEFT = false;
+    private static final int BLOCK_SEARCH_LIMIT = 1000;                         // maksymalna liczba ruchów do rozpoczęcia wyszukiwania bloków
+    private static final int TREE_MOVES_LIMIT = 13;                             // maksymalna liczba dzieci korzenia drzewa
+    private static final long FULL_BOARD_TIME_LIMIT = 450;                      // limit czasowy wyszukiwania ruchu przy pełnej planszy
+    private static boolean BLOCKS_ONLY_LEFT = false;                            // zmienna określająca czy algorytm działa wyłącznie na blokach
 
     private MoveCalculator(){
     }
@@ -23,38 +25,38 @@ public final class MoveCalculator {
     public static BrickBlock nextMove(BoardState board, long initTime){
         BoardAnalyzer analyzer = new BoardAnalyzer(board);
         BrickBlock result = null;
-        if(!BLOCKS_ONLY_LEFT) {
-            MovesData movesData = analyzer.findAllMoves(initTime);
+        //if(!BLOCKS_ONLY_LEFT) {
+        MovesData movesData = analyzer.findAllMoves();
 
-            if (movesData.nMoves < BLOCK_SEARCH_LIMIT) {
-                BlocksData blocksData = BlockFinder.searchForBlocks(board);
+        if (movesData.nMoves < BLOCK_SEARCH_LIMIT) {
+            BlocksData blocksData = BlockFinder.searchForBlocks(board);
 
                 /* plansza wyłącznie z nieokreślonymi blokami */
-                BoardState boardWithoutBlocks = board.getBoardWithoutBlocks(blocksData);
-                BoardAnalyzer boardWithoutBlocksAnalyzer = new BoardAnalyzer(boardWithoutBlocks);
-                MovesData movesDataWithoutBlocks = boardWithoutBlocksAnalyzer.findAllMoves(initTime);
+            BoardState boardWithoutBlocks = board.getBoardWithoutBlocks(blocksData);
+            BoardAnalyzer boardWithoutBlocksAnalyzer = new BoardAnalyzer(boardWithoutBlocks);
+            MovesData movesDataWithoutBlocks = boardWithoutBlocksAnalyzer.findAllMoves();
 
                  /* pozostały same bloki */
-                if (movesDataWithoutBlocks.nMoves == 0) {
-                    result = findMoveWhenOnlyBlocks(blocksData, board);
-                    if (!BLOCKS_ONLY_LEFT)
-                        BLOCKS_ONLY_LEFT = true;
-                    return result;
-                }
-                /* pozostały bloki i na tyle mało ruchów, że można stworzyć drzewo */
-                if (movesDataWithoutBlocks.nMoves <= TREE_MOVES_LIMIT) {
-                    result = findWithMovesTree(boardWithoutBlocks, blocksData, movesDataWithoutBlocks, initTime);
-                    return result;
-                }
+            if (movesDataWithoutBlocks.nMoves == 0) {
+                result = findMoveWhenOnlyBlocks(blocksData, board);
+                if (!BLOCKS_ONLY_LEFT)
+                    BLOCKS_ONLY_LEFT = true;
+                return result;
             }
+                /* pozostały bloki i na tyle mało ruchów, że można stworzyć drzewo */
+            if (movesDataWithoutBlocks.nMoves <= TREE_MOVES_LIMIT) {
+                result = findWithMovesTree(boardWithoutBlocks, blocksData, movesDataWithoutBlocks, initTime);
+                return result;
+            }
+        }
 
             /* gdy nMoves > BLOCK_SEARCH_LIMIT lub nMovesWithoutBlocks > TREE_MOVES_LIMIT */
-            return findMoveWhenFullBoard(movesData, initTime);
-        } else {
+        return findMoveWhenFullBoard(movesData, initTime);
+        //} else {
             /* przejdź od razu do bloków bez wyszukiwania ruchów */
-            BlocksData blocksData = BlockFinder.searchForBlocks(board);
-            return findMoveWhenOnlyBlocks(blocksData, board);
-        }
+        //    BlocksData blocksData = BlockFinder.searchForBlocks(board);
+         //   return findMoveWhenOnlyBlocks(blocksData, board);
+        //}
     }
 
 
@@ -127,11 +129,4 @@ public final class MoveCalculator {
             return blocksData.getBlocksType1().get(0).nextMove(board);
         return blocksData.getBlocksType2().get(0).nextMove(board);
     }
-
-
-
-
-
-
-
 }
