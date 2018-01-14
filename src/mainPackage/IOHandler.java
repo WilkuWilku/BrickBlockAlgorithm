@@ -16,9 +16,15 @@ public class IOHandler {
         scanner = new Scanner(System.in);
     }
 
-    public void getNextMove(BoardState board) {
+
+    public boolean getNextMove(BoardState board, long initTime) {
         String input = scanner.nextLine();
-        try{
+        initTime = System.currentTimeMillis();
+        if(input.equals("stop") || input.equals("STOP"))
+            return false;
+        if(input.equals("start") || input.equals("START"))
+            return true;
+        try {
             String[] parts = input.split("x|_");
             int coords[] = new int[4];
             for (int i = 0; i < coords.length; i++)
@@ -28,23 +34,11 @@ public class IOHandler {
             board.setCell(index1);
             board.setCell(index2);
         } catch (Exception e) {
-            if(!input.equals("start"))
                 e.printStackTrace();
         }
+        return true;
     }
 
-    /*
-    public Duo getNextMove(int n){
-        String input = scanner.nextLine();
-        String[] parts = input.split("-");
-        int index = Integer.parseInt(parts[0]);
-        if(parts[1].equals("R0"))
-            return new Duo(index, index+1);
-        if(parts[1].equals("R90"))
-            return new Duo(index, index+boardSize);
-
-        return null;
-    }*/
 
     public BoardState getInitInput(){
         String input = scanner.nextLine();
@@ -65,7 +59,7 @@ public class IOHandler {
 
 
     public void approveInit(){
-        System.out.println("ok");
+        System.out.println("OK");
     }
 
     public void writeNextStep(BrickBlock block){

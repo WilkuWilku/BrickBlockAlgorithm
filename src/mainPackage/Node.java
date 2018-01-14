@@ -40,7 +40,7 @@ public class Node {
         return new Node(board, movesData, controlState );
     }
 
-    public ArrayList<Node> createChildren(){
+    public ArrayList<Node> createChildren(long initTime){
         this.children = new ArrayList<>();
         HashSet<BrickBlock> movesSet = BoardAnalyzer.mapValuesToSet(nodeMovesData.getMovesMap());
         for(BrickBlock move : movesSet){
@@ -49,7 +49,7 @@ public class Node {
             BlocksData childBlocksData = BlockFinder.searchForBlocksInArea(childBoard, move.getReferenceCellIndex(), SEARCH_AREA_WIDTH, SEARCH_AREA_HEIGHT);           //nowe bloki znalezione po wykonaniu ruchu move
             BoardState childBoardWithoutBlocks = childBoard.getBoardWithoutBlocks(childBlocksData);
             BoardAnalyzer childBoardAnalyzer = new BoardAnalyzer(childBoardWithoutBlocks);
-            MovesData childMovesData = childBoardAnalyzer.findAllMoves();
+            MovesData childMovesData = childBoardAnalyzer.findAllMoves(initTime);
             Node childMove = new Node(move, childBoardWithoutBlocks, level+1, childMovesData,
                     childBlocksData.checkControlState());
             children.add(childMove);

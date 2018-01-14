@@ -2,92 +2,55 @@ package mainPackage;
 
 import mainPackage.blocks.blocks1type.BrickBlock;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Random;
-
-
 /**
  * Created by Inf on 2017-11-14.
  */
 public class BloccLauncher {
-    public static void main(String[] args) throws TimeLimitException {
-        int playerWin = 0;
-        int algWin = 0;
-        for (int i = 0; i < 1; i++) {
-            long curT;
-            double delta;
-            IOHandler io = new IOHandler();
-            BoardState board = io.getInitInput();
-            board = BoardState.randomBoard(7, 0);
-            io.approveInit();
-            //board.print();
-            BoardAnalyzer randomPlayerAnalyzer = new BoardAnalyzer(board);
-            MovesData movesData;
-            Random random = new Random();
-            BrickBlock nextPlayersMove;
-            BrickBlock nextAIsMove;
+    public static void main(String[] args){
+        //long curT;
+        //double delta;
+        IOHandler io = new IOHandler();
+        BoardState board = io.getInitInput();
+        //board = BoardState.randomBoard(25, 0);
+        io.approveInit();
+        //BoardAnalyzer randomPlayerAnalyzer = new BoardAnalyzer(board);
+        //MovesData movesData;
+        //Random random = new Random();
+        //BrickBlock nextPlayersMove;
+        BrickBlock nextAIsMove;
+        long initTime=System.currentTimeMillis();
+        boolean isPlaying = true;
+        while (isPlaying) {
+            //movesData = randomPlayerAnalyzer.findAllMoves(System.currentTimeMillis());
+            /*if (movesData.nMoves == 0) {
+                System.out.println("*********     WYGRAL SUPER INTELIGENTNY PROGRAM    ************");
+                isPlaying = true;
+                continue;
+            }*/
 
+            /*HashSet<BrickBlock> brickBlocksSet = BoardAnalyzer.mapValuesToSet(movesData.getMovesMap());
+            ArrayList<BrickBlock> blocksArray = new ArrayList<>(brickBlocksSet);
+            nextPlayersMove = blocksArray.get(random.nextInt(blocksArray.size()));
+            board.addBrick(nextPlayersMove);*/
 
-            boolean isFinished = false;
-
-            while (!isFinished) {
-                //System.out.println("TURA GRACZA");
-                //board.print();
-                //Duo<Integer> move = io.getNextMove();
-                // try {
-                //nextPlayersMove = Duo.createBrickBlock(move.getLeft(), move.getRight(), board);
-                movesData = randomPlayerAnalyzer.findAllMoves();
-                if (movesData.nMoves == 0) {
-                    System.out.println("*********     WYGRAL SUPER INTELIGENTNY PROGRAM    ************");
-                    isFinished = true;
-                    algWin++;
-                    continue;
-                }
-                HashSet<BrickBlock> brickBlocksSet = BoardAnalyzer.mapValuesToSet(movesData.getMovesMap());
-                ArrayList<BrickBlock> blocksArray = new ArrayList<>(brickBlocksSet);
-                nextPlayersMove = blocksArray.get(random.nextInt(blocksArray.size()));
-                //System.out.println("Gracz wybrał " + nextPlayersMove.toString());
-                board.addBrick(nextPlayersMove);
-                /***io.getNextMove(board);***/
-                movesData = randomPlayerAnalyzer.findAllMoves();
-                if (movesData.nMoves == 0) {
-                    System.out.println("*********     WYGRAL GRACZ    ************");
-                    isFinished = true;
-                    playerWin++;
-                    continue;
-                }
-                //System.out.println("TURA PROGRAMU");
-                //board.print();
-                curT = System.nanoTime();
-                nextAIsMove = MoveCalculator.nextMove(board);
-                delta = (double) (System.nanoTime() - curT) / 1000000;
-                //System.out.println("Program wybrał " + nextAIsMove.toString());
-                board.addBrick(nextAIsMove);
-                io.writeNextStep(nextAIsMove);
-                if (delta >= 500) {
-                    //playerWin++;
-                    throw new TimeLimitException("Przekroczony czas na decyzję! ("+delta+" ms)");
-                    //isFinished = true;
-                    //continue;
-                }
-
-
-
-
-                //System.out.println("Czas: " + delta);
-                //board.print();
-
-
-                //} catch (Exception e) {
-                //   e.printStackTrace();
-                //}
-
-            }
-
-
+            isPlaying = io.getNextMove(board, initTime);
+            if(!isPlaying)
+                continue;
+            /*movesData = randomPlayerAnalyzer.findAllMoves(System.currentTimeMillis());
+            if (movesData.nMoves == 0) {
+                System.out.println("*********     WYGRAL GRACZ    ************");
+                isPlaying = true;
+                continue;
+            }*/
+            //curT = System.nanoTime();
+            nextAIsMove = MoveCalculator.nextMove(board, initTime);
+            //delta = (double) (System.nanoTime() - curT) / 1000000;
+            board.addBrick(nextAIsMove);
+            io.writeNextStep(nextAIsMove);
+            //if (delta >= 500) {
+            //    throw new TimeLimitException("Przekroczony czas na decyzję! ("+delta+" ms)");
+            //}
         }
-        System.out.println("ALGORITHM WON "+algWin+" TIMES");
-        System.out.println("RANDOM PLAYER WON "+playerWin+" TIMES");
+
     }
 }

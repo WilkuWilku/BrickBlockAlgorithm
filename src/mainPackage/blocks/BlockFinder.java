@@ -115,10 +115,8 @@ public class BlockFinder<T extends AbstractBlock>{
 
             for (int j = 0; j < blockTypes.length; j++) {
                 try {
-
                     /* Klasa bloku danego typu */
                     Class blockClass = blockTypes[j].getClassOfValue();
-
                     Method method = blockClass.getMethod("check", int.class, BoardState.class, BlockRotation.class);
                     for (BlockRotation rot : BlockRotation.values()) {
                         addBlockToList(index, board, rot, method, blocksData);

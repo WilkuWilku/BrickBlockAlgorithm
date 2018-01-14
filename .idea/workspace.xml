@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Blocc:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="e27426cb-72f3-460e-a9f9-18ea14505f3e" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/mainPackage/randomTest.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/threadTest$Work.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/threadTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/mainPackage/threadTest.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/AnalyzingThread.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/AnalyzingThread.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/BloccLauncher.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/BloccLauncher.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/BoardAnalyzer.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/BoardAnalyzer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/LBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/LBlock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/LegBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/LegBlock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/StairsBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/StairsBlock.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/BoardState.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/BoardState.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/IOHandler.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/IOHandler.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/AnalyzingThread.java" afterPath="$PROJECT_DIR$/src/mainPackage/AnalyzingThread.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/BloccLauncher.java" afterPath="$PROJECT_DIR$/src/mainPackage/BloccLauncher.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/BoardAnalyzer.java" afterPath="$PROJECT_DIR$/src/mainPackage/BoardAnalyzer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/BoardState.java" afterPath="$PROJECT_DIR$/src/mainPackage/BoardState.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/IOHandler.java" afterPath="$PROJECT_DIR$/src/mainPackage/IOHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/MoveCalculator.java" afterPath="$PROJECT_DIR$/src/mainPackage/MoveCalculator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/Node.java" afterPath="$PROJECT_DIR$/src/mainPackage/Node.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/Tree.java" afterPath="$PROJECT_DIR$/src/mainPackage/Tree.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/BlockFinder.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/BlockFinder.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,26 +49,12 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BloccLauncher.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BloccLauncher.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/mainPackage/BloccLauncher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="21" column="43" lean-forward="false" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IndexConverter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mainPackage/IndexConverter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-              <folding>
-                <element signature="e#579#580#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="340">
+              <caret line="20" column="48" lean-forward="false" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -61,15 +62,9 @@
       <file leaf-file-name="IOHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mainPackage/IOHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1105">
-              <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#339#340#0" expanded="false" />
-                <element signature="e#387#388#0" expanded="false" />
-                <element signature="e#2014#2015#0" expanded="false" />
-                <element signature="e#2054#2055#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="411">
+              <caret line="33" column="20" lean-forward="false" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -77,7 +72,7 @@
       <file leaf-file-name="BlocksData.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mainPackage/BlocksData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
+            <state relative-caret-position="122">
               <caret line="23" column="41" lean-forward="false" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
               <folding />
             </state>
@@ -87,8 +82,32 @@
       <file leaf-file-name="MoveCalculator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mainPackage/MoveCalculator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-127">
-              <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+            <state relative-caret-position="204">
+              <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="randomTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mainPackage/randomTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="564">
+              <caret line="45" column="83" lean-forward="false" selection-start-line="45" selection-start-column="83" selection-end-line="45" selection-end-column="83" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BoardState.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mainPackage/BoardState.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1060">
+              <caret line="55" column="78" lean-forward="false" selection-start-line="55" selection-start-column="78" selection-end-line="55" selection-end-column="78" />
               <folding />
             </state>
           </provider>
@@ -97,8 +116,18 @@
       <file leaf-file-name="BoardAnalyzer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mainPackage/BoardAnalyzer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="836">
-              <caret line="90" column="30" lean-forward="false" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
+            <state relative-caret-position="636">
+              <caret line="58" column="56" lean-forward="true" selection-start-line="58" selection-start-column="56" selection-end-line="58" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BlockFinder.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mainPackage/blocks/BlockFinder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1802">
+              <caret line="116" column="21" lean-forward="false" selection-start-line="116" selection-start-column="21" selection-end-line="116" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -116,34 +145,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Tree.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Tree.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mainPackage/Tree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="52" column="25" lean-forward="false" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
-              <folding>
-                <element signature="e#971#972#0" expanded="true" />
-                <element signature="e#1021#1022#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Node.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mainPackage/Node.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="52" column="12" lean-forward="false" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MovesData.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mainPackage/MovesData.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="40" column="5" lean-forward="false" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+            <state relative-caret-position="-459">
+              <caret line="9" column="54" lean-forward="false" selection-start-line="9" selection-start-column="54" selection-end-line="9" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -176,7 +182,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/InvertedSlipperBlock.java" />
         <option value="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/InvertedThunderBlock.java" />
         <option value="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/SlipperBlock.java" />
         <option value="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/Straight4Block.java" />
@@ -212,21 +217,22 @@
         <option value="$PROJECT_DIR$/src/mainPackage/BlocksData.java" />
         <option value="$PROJECT_DIR$/src/mainPackage/LeadingState.java" />
         <option value="$PROJECT_DIR$/src/mainPackage/blocks/AbstractBlock.java" />
-        <option value="$PROJECT_DIR$/src/mainPackage/BoardState.java" />
         <option value="$PROJECT_DIR$/src/mainPackage/blocks/blocks1type/BrickBlock.java" />
         <option value="$PROJECT_DIR$/src/mainPackage/blocks/blocks1type/Straight3Block.java" />
         <option value="$PROJECT_DIR$/src/mainPackage/blocks/Blocks.java" />
-        <option value="$PROJECT_DIR$/src/mainPackage/IOHandler.java" />
         <option value="$PROJECT_DIR$/src/mainPackage/TimeLimitException.java" />
-        <option value="$PROJECT_DIR$/src/mainPackage/blocks/BlockFinder.java" />
         <option value="$PROJECT_DIR$/src/mainPackage/MovesData.java" />
-        <option value="$PROJECT_DIR$/src/mainPackage/Node.java" />
         <option value="$PROJECT_DIR$/src/mainPackage/TurnsCounter.java" />
-        <option value="$PROJECT_DIR$/src/mainPackage/BoardAnalyzer.java" />
+        <option value="$PROJECT_DIR$/src/mainPackage/Node.java" />
         <option value="$PROJECT_DIR$/src/mainPackage/AnalyzingThread.java" />
         <option value="$PROJECT_DIR$/src/mainPackage/BloccLauncher.java" />
-        <option value="$PROJECT_DIR$/src/mainPackage/MoveCalculator.java" />
+        <option value="$PROJECT_DIR$/src/mainPackage/BoardAnalyzer.java" />
         <option value="$PROJECT_DIR$/src/mainPackage/Tree.java" />
+        <option value="$PROJECT_DIR$/src/mainPackage/randomTest.java" />
+        <option value="$PROJECT_DIR$/src/mainPackage/blocks/BlockFinder.java" />
+        <option value="$PROJECT_DIR$/src/mainPackage/IOHandler.java" />
+        <option value="$PROJECT_DIR$/src/mainPackage/MoveCalculator.java" />
+        <option value="$PROJECT_DIR$/src/mainPackage/BoardState.java" />
       </list>
     </option>
   </component>
@@ -261,6 +267,20 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Blocc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Blocc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -286,62 +306,82 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Blocc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Blocc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="mainPackage" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane">
-        <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="Blocc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Blocc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mainPackage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blocks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Blocc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Blocc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="out" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="js.eslint.eslintPackage" value="" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.build.tools" />
     <property name="last_opened_file_path" value="C:/Program Files (x86)/H2/bin/h2-1.4.195.jar!/" />
+    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
+    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="blocc" />
   </component>
   <component name="RunManager" selected="Application.LauchThaBlocc">
-    <configuration default="false" name="threadTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="mainPackage.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="mainPackage.threadTest" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Blocc" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
@@ -737,15 +777,25 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="false" name="randomTest" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="mainPackage.randomTest" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Blocc" />
+      <envs />
+      <method />
+    </configuration>
     <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Application.LauchThaBlocc" />
-      <item index="1" class="java.lang.String" itemvalue="Application.threadTest" />
+      <item index="1" class="java.lang.String" itemvalue="Application.randomTest" />
     </list>
-    <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Application.threadTest" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -800,7 +850,10 @@
       <workItem from="1515602598225" duration="2921000" />
       <workItem from="1515709308393" duration="2602000" />
       <workItem from="1515779078706" duration="342000" />
-      <workItem from="1515851359986" duration="5221000" />
+      <workItem from="1515851359986" duration="13673000" />
+      <workItem from="1515875557810" duration="305000" />
+      <workItem from="1515876155423" duration="121000" />
+      <workItem from="1515935481153" duration="6865000" />
     </task>
     <task id="LOCAL-00001" summary="Dodana funkcja rekurencyjnego wyszukiwania pokrycia planszy (do dokończenia)">
       <created>1511737418902</created>
@@ -1012,11 +1065,18 @@
       <option name="project" value="LOCAL" />
       <updated>1515711751731</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Poprawki przy limicie czasowym">
+      <created>1515863977638</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1515863977638</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="315817000" />
+    <option name="totallyTimeSpent" value="331560000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1041,19 +1101,19 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17640692" sideWeight="0.5021322" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.4978678" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5248918" sideWeight="0.4978678" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43722942" sideWeight="0.4978678" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.124200426" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12739871" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2238806" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5064935" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41017315" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1069,7 +1129,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Zmiana shapeCoords wszystkich bloków, aby zawsze zawierały (0,0)" />
     <MESSAGE value="Wyszukiwanie wszystkich możliwych bloków po indeksach wolnych komórek + dodanie bloków typu 1" />
     <MESSAGE value="Zamknięcie starego pomysłu" />
     <MESSAGE value="init commit" />
@@ -1094,11 +1153,12 @@
     <MESSAGE value="Przystosowanie do gry na dużych planszach + ograniczenia czasowe" />
     <MESSAGE value="jakimś cudem śmiga" />
     <MESSAGE value="limit czasowy drzewa + testy" />
-    <option name="LAST_COMMIT_MESSAGE" value="limit czasowy drzewa + testy" />
+    <MESSAGE value="Poprawki przy limicie czasowym" />
+    <option name="LAST_COMMIT_MESSAGE" value="Poprawki przy limicie czasowym" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="67" />
+      <option name="time" value="70" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1107,13 +1167,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/SquareBlock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="21" column="52" lean-forward="false" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/StairsBlock.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="709">
@@ -1261,13 +1314,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainPackage/threadTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="50" column="10" lean-forward="false" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mainPackage/threadTest.java" />
     <entry file="file://$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/InvertedBootBlock.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="139">
@@ -1359,14 +1406,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainPackage/BoardState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" column="86" lean-forward="true" selection-start-line="16" selection-start-column="86" selection-end-line="16" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mainPackage/blocks/Blocks.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1375,20 +1414,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mainPackage/TurnsCounter.java" />
-    <entry file="file://$PROJECT_DIR$/src/mainPackage/blocks/BlockFinder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainPackage/AnalyzingThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mainPackage/MovesData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -1397,42 +1422,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainPackage/IOHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#339#340#0" expanded="false" />
-            <element signature="e#387#388#0" expanded="false" />
-            <element signature="e#2014#2015#0" expanded="false" />
-            <element signature="e#2054#2055#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mainPackage/IndexConverter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
-            <element signature="e#579#580#0" expanded="true" />
+            <element signature="e#579#580#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainPackage/BlocksData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="23" column="41" lean-forward="false" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mainPackage/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="52" column="12" lean-forward="false" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
+        <state relative-caret-position="340">
+          <caret line="24" column="104" lean-forward="false" selection-start-line="24" selection-start-column="104" selection-end-line="24" selection-end-column="104" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#2444#2445#0" expanded="false" />
+            <element signature="e#2471#2472#0" expanded="false" />
+            <element signature="e#2515#2516#0" expanded="false" />
+            <element signature="e#2546#2547#0" expanded="false" />
+            <element signature="e#2575#2576#0" expanded="false" />
+            <element signature="e#2603#2604#0" expanded="false" />
+            <element signature="e#2645#2646#0" expanded="false" />
+            <element signature="e#2676#2677#0" expanded="false" />
+            <element signature="e#2720#2721#0" expanded="false" />
+            <element signature="e#2754#2755#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mainPackage/AnalyzingThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="41" column="18" lean-forward="false" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mainPackage/randomTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="564">
+          <caret line="45" column="83" lean-forward="false" selection-start-line="45" selection-start-column="83" selection-end-line="45" selection-end-column="83" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mainPackage/blocks/BlockFinder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1802">
+          <caret line="116" column="21" lean-forward="false" selection-start-line="116" selection-start-column="21" selection-end-line="116" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -1447,40 +1488,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainPackage/BoardAnalyzer.java">
+    <entry file="file://$PROJECT_DIR$/src/mainPackage/Tree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="90" column="30" lean-forward="false" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
+        <state relative-caret-position="-459">
+          <caret line="9" column="54" lean-forward="false" selection-start-line="9" selection-start-column="54" selection-end-line="9" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainPackage/BloccLauncher.java">
+    <entry file="file://$PROJECT_DIR$/src/mainPackage/BoardAnalyzer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="21" column="43" lean-forward="false" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+        <state relative-caret-position="636">
+          <caret line="58" column="56" lean-forward="true" selection-start-line="58" selection-start-column="56" selection-end-line="58" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mainPackage/IOHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="33" column="20" lean-forward="false" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mainPackage/BlocksData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="23" column="41" lean-forward="false" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mainPackage/MoveCalculator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainPackage/MoveCalculator.java">
+    <entry file="file://$PROJECT_DIR$/src/mainPackage/BoardState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-127">
-          <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+        <state relative-caret-position="-1060">
+          <caret line="55" column="78" lean-forward="false" selection-start-line="55" selection-start-column="78" selection-end-line="55" selection-end-column="78" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainPackage/Tree.java">
+    <entry file="file://$PROJECT_DIR$/src/mainPackage/BloccLauncher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="52" column="25" lean-forward="false" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
-          <folding>
-            <element signature="e#971#972#0" expanded="true" />
-            <element signature="e#1021#1022#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="340">
+          <caret line="20" column="48" lean-forward="false" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1490,10 +1552,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
+          <last-edited>Blocc:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>

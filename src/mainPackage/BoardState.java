@@ -4,7 +4,9 @@ import mainPackage.blocks.blocks1type.AbstractBlockType1;
 import mainPackage.blocks.blocks1type.BrickBlock;
 import mainPackage.blocks.blocks2or1type.AbstractBlockType2or1;
 import mainPackage.blocks.blocks2type.AbstractBlockType2;
+import mainPackage.blocks.blocks2type.InvertedLongThunderBlock;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -36,11 +38,11 @@ public class BoardState {
     }
 
     /* nowa plansza o wielkości size z zablokowanymi polami o indeksach blockedCells[] */
-    public BoardState(int size, int[] blockedCells) {
+    public BoardState(int size, ArrayList<Integer> blockedCells) {
         this(size);
         try {
-            for (int i = 0; i < blockedCells.length; i++)
-                setCell(blockedCells[i]);
+            for (int i = 0; i < blockedCells.size(); i++)
+                setCell(blockedCells.get(i));
             } catch (Exception e) {
                 System.err.println("BoardState():");
                 e.printStackTrace();

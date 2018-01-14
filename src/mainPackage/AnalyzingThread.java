@@ -8,7 +8,7 @@ import mainPackage.blocks.blocks1type.BrickBlock;
  */
 public class AnalyzingThread implements Runnable {
 
-    private static final long TIME_LIMIT = 400;
+    private static final long TIME_LIMIT = 460;
     private int nThreads;
     private int idNum;
     private BoardState board;
@@ -21,7 +21,7 @@ public class AnalyzingThread implements Runnable {
         movesData = new MovesData();
     }
 
-    private void addToMovesMap(int index, BrickBlock block){
+   /* private void addToMovesMap(int index, BrickBlock block){
         Duo move = movesData.getMovesMap().get(index);
         if(move == null)
             movesData.getMovesMap().put(index, new Duo<>(block));
@@ -32,14 +32,14 @@ public class AnalyzingThread implements Runnable {
                 e.printStackTrace();
             }
     }
-
-    private void searchMoves(int index, long initTime) throws TimeLimitException {
+*/
+    private void searchMovesAtIndex(int index, long initTime){
         if(System.currentTimeMillis() - initTime > TIME_LIMIT )
-            throw new TimeLimitException("Przekroczono czas podczas wyszukiwania możliwych ruchów");
+            return;
         for(BlockRotation rotation : BlockRotation.values()) {
             BrickBlock result = BrickBlock.createIfPossible(index, board, rotation);
             if (result != null) {
-                addToMovesMap(index, result);
+                //addToMovesMap(index, result);
                 movesData.nMoves++;
             }
         }
@@ -50,12 +50,7 @@ public class AnalyzingThread implements Runnable {
         long initTime = System.currentTimeMillis();
         for(int i=idNum; i<board.getCells().length; i+=nThreads)
             if(board.getCell(i) > 0)
-                try {
-                    searchMoves(i, initTime);
-                } catch (TimeLimitException e) {
-                    System.err.println(e.getMessage());
-                    return;
-                }
+                searchMovesAtIndex(i, initTime);
     }
 
     public MovesData getMovesData() {
