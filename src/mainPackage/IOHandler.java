@@ -19,12 +19,13 @@ public class IOHandler {
 
     public boolean getNextMove(BoardState board, long initTime) {
         String input = scanner.nextLine();
-        initTime = System.currentTimeMillis();
+
         if(input.equals("stop") || input.equals("STOP"))
             return false;
         if(input.equals("start") || input.equals("START"))
             return true;
-        try {
+        //try {
+            initTime = System.currentTimeMillis();
             String[] parts = input.split("x|_");
             int coords[] = new int[4];
             for (int i = 0; i < coords.length; i++)
@@ -33,9 +34,9 @@ public class IOHandler {
             int index2 = IndexConverter.xyToIndex(coords[2], coords[3], boardSize);
             board.setCell(index1);
             board.setCell(index2);
-        } catch (Exception e) {
-                e.printStackTrace();
-        }
+        //} catch (Exception e) {
+        //        e.printStackTrace();
+        //}
         return true;
     }
 
@@ -46,13 +47,13 @@ public class IOHandler {
         boardSize = Integer.parseInt(parts[0]);
         BoardState board = new BoardState(boardSize);
         for(int i=1; i<parts.length; i+=2){
-            try {
+            //try {
                 int x = Integer.parseInt(parts[i]);
                 int y = Integer.parseInt(parts[i+1]);
                 board.setCell(x, y);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            //} catch (Exception e) {
+            //    e.printStackTrace();
+            //}
         }
         return board;
     }

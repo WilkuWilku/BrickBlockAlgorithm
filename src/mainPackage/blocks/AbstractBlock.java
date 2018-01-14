@@ -23,12 +23,12 @@ public abstract class AbstractBlock {
     }
     public void markOnBoard(BoardState board){
         for(int i=0; i<shape.length; i++)
-            try {
+            //try {
                 board.setCell(IndexConverter.xOfIndex(referenceCellIndex, board.size)+shape[i][0], IndexConverter.yOfIndex(referenceCellIndex, board.size)+shape[i][1]);
-            } catch (Exception e) {
+            //} catch (Exception e) {
                 //System.err.println("markOnBoard():");
                 //e.printStackTrace();
-            }
+            //}
     }
     /*public void unmarkOnBoard(BoardState board){
         for(int i=0; i<shape.length; i++)

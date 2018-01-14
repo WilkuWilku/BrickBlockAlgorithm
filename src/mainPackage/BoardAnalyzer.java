@@ -11,7 +11,7 @@ import java.util.*;
  */
 public class BoardAnalyzer {
     private BoardState board;
-    private static final long TIME_LIMIT = 450;
+    private static final long TIME_LIMIT = 400;
 
 
     public BoardAnalyzer(BoardState board) {
@@ -21,8 +21,6 @@ public class BoardAnalyzer {
     /* znajduje wszystkie możliwe ruchy (BrickBlocki) */
     public MovesData findAllMoves(long initTime){
         MovesData movesData = new MovesData();
-        movesData.setMovesMap(new HashMap<>());
-        movesData.nMoves=0;
         for(int i=0; i<board.getCells().length; i++)
             if(board.getCell(i) > 0)
                 searchMovesAtIndex(i, movesData, initTime);
@@ -34,16 +32,16 @@ public class BoardAnalyzer {
         if(move == null)
             movesData.getMovesMap().put(index, new Duo<>(block));
         else
-            try {
+            //try {
                 move.insert(block);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            //} catch (Exception e) {
+            //    e.printStackTrace();
+            //}
     }
 
     private void searchMovesAtIndex(int index, MovesData movesData, long initTime) {
         //if (System.currentTimeMillis() - initTime > TIME_LIMIT)
-        //    return;
+          //  return;
         for (BlockRotation rotation : BlockRotation.values()) {
             BrickBlock result = BrickBlock.createIfPossible(index, board, rotation);
             if (result != null) {
