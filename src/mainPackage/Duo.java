@@ -29,10 +29,6 @@ public class Duo<T> {
         return left;
     }
 
-    public void setLeft(T left) {
-        this.left = left;
-    }
-
     public T getRight() {
         return right;
     }
@@ -44,29 +40,11 @@ public class Duo<T> {
     public void insert(T value) {
         if(right == null)
             this.right = value;
-        //else
-            //throw new Exception("Brak wolnych miejsc dla wartości +" +value.toString());
     }
 
     @Override
     public String toString() {
         return "L = "+left.toString()+" / R = "+right.toString();
     }
-
-    /*
-    public static BrickBlock createBrickBlock(int index1, int index2, BoardState board){
-        //if(!(Math.abs(index1-index2)==1 || Math.abs(index1-index2)==board.size))
-        //    throw new Exception("Błąd tworzenia BrickBlocka - nieprawidłowe współrzędne: ["+index1+"; "+index2+"]");
-         if(index1-index2==1)
-            return new BrickBlock(index2, BlockRotation.R0, board);
-        else if(index1-index2==-1)
-            return new BrickBlock(index1, BlockRotation.R0, board);
-        else if(index1-index2==board.size)
-            return new BrickBlock(index2, BlockRotation.R90, board);
-        else if(index1-index2==-(board.size))
-            return new BrickBlock(index1, BlockRotation.R90, board);
-        return null;
-    }
-    */
 
 }

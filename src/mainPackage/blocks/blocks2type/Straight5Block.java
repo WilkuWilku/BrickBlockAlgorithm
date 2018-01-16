@@ -40,7 +40,6 @@ public class Straight5Block extends AbstractBlockType2  {
         return finder.find(index, shapeR0, shapeR90, null, null, Block2Types.Straight5Block, board, rotation);
     }
 
-
     @Override
     public BrickBlock nextMove(BoardState board) {
         switch (rotation){

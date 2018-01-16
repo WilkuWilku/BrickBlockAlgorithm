@@ -13,6 +13,8 @@ import java.lang.reflect.Method;
 /**
  * Created by Inf on 2017-11-18.
  */
+
+/* klasa wyszukująca dany typ bloku */
 public class BlockFinder<T extends AbstractBlock>{
     private Class<T> tClass;
 
@@ -76,6 +78,7 @@ public class BlockFinder<T extends AbstractBlock>{
         }
     }
 
+    /* wyszukuje wszystkie możliwe bloki na planszy */
     public static BlocksData searchForBlocks(BoardState board){
         BlocksData blocksData = new BlocksData();
         for(int i=0; i<board.size*board.size; i++){
@@ -85,6 +88,7 @@ public class BlockFinder<T extends AbstractBlock>{
         return blocksData;
     }
 
+    /* wyszukuje wszystkie możliwe bloki na określonym obszarze */
     public static BlocksData searchForBlocksInArea(BoardState board, int referenceCellID, int width, int height) {
         BlocksData blocksData = new BlocksData();
         int refX = IndexConverter.xOfIndex(referenceCellID, board.size);
@@ -97,7 +101,7 @@ public class BlockFinder<T extends AbstractBlock>{
         return blocksData;
     }
 
-
+    /* wyszukuje wszystkie możliwe bloki dla danego indeksu */
     private static void searchForBlocksAtIndex(int index, BlocksData blocksData, BoardState board){
         /* Enum z typami bloków */
         Class typesRootClass = BlockTypes.class;
@@ -128,7 +132,7 @@ public class BlockFinder<T extends AbstractBlock>{
         }
     }
 
-    /* dodaje blok jeśli istnieje dla danej komórki i rotacji */
+    /* dodaje blok, jeśli istnieje dla danej komórki i rotacji */
     private static void addBlockToList(int index, BoardState board, BlockRotation rotation, Method method, BlocksData blocksData){
         AbstractBlock result;
         try {
@@ -147,7 +151,4 @@ public class BlockFinder<T extends AbstractBlock>{
             e.printStackTrace();
         }
     }
-
-
-
 }

@@ -37,13 +37,10 @@ public class LongThunderBlock extends AbstractBlockType2 {
         }
     }
 
-
     public static LongThunderBlock check(int index, BoardState board, BlockRotation rotation) {
         BlockFinder<LongThunderBlock> finder = new BlockFinder<>(LongThunderBlock.class);
         return finder.find(index, shapeR0, shapeR90, null, null, Block2Types.LongThunderBlock, board, rotation);
     }
-
-
 
     @Override
     public BrickBlock nextMove(BoardState board) {

@@ -42,7 +42,6 @@ public class ThunderBlock extends AbstractBlockType2or1 {
         return finder.find(index, shapeR0,shapeR90, null, null, Block2or1Types.ThunderBlock, board, rotation);
     }
 
-
     @Override
     public BrickBlock leaveZeroMoves(BoardState board) {
         switch (rotation){
@@ -59,6 +58,5 @@ public class ThunderBlock extends AbstractBlockType2or1 {
             case R90: return new BrickBlock(referenceCellIndex+board.size-1, BlockRotation.R0, board);
             default: return null;
         }
-
     }
 }

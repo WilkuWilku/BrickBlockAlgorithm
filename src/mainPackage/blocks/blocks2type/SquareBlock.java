@@ -27,15 +27,12 @@ public class SquareBlock extends AbstractBlockType2 {
         this.referenceCellIndex = referenceCellIndex;
         this.rotation = rotation;
         shape = (rotation == BlockRotation.R0) ? shapeR0 : null;
-
     }
 
     public static SquareBlock check(int index, BoardState board, BlockRotation rotation) {
         BlockFinder<SquareBlock> finder = new BlockFinder<>(SquareBlock.class);
         return finder.find(index, shapeR0, null,null, null, Block2Types.SquareBlock, board, rotation);
     }
-
-
 
     @Override
     public BrickBlock nextMove(BoardState board) {

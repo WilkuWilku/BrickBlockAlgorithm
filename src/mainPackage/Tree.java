@@ -20,13 +20,14 @@ public class Tree {
         this.movesData = movesData;
         controlState = blocksData.checkControlState();
         root = Node.createRootNode(this.board, movesData, controlState);
-        root.createChildren(initTime);
+        root.createChildren();
     }
 
     public void growTree(int maxLevel, long initTime) {
         growTree(maxLevel, root, initTime);
     }
 
+    /* utworzenie kolejnych dzieci drzewa */
     private boolean growTree(int maxLevel, Node currentNode, long initTime) {
         long delta;
         if((delta = System.currentTimeMillis() - initTime) > GROW_TREE_TIME_LIMIT) {
@@ -35,7 +36,7 @@ public class Tree {
         }
         if (currentNode.getLevel() < maxLevel) {
             if(currentNode.getChildren() == null) {
-                currentNode.createChildren(initTime);
+                currentNode.createChildren();
             }
             boolean success;
             for (int i = 0; i < currentNode.getChildren().size(); i++) {
@@ -47,14 +48,14 @@ public class Tree {
         return true;
     }
 
+    /* funkcja wyszukująca w drzewie najlepszego możliwego ruchu */
     public BrickBlock getMatchingMove(long initTime){
-        //long delta=0;
         if (root.getNodeControl() == ControlState.EVEN) {
             if(root.getChildren() != null) {
                 for (Node child : root.getChildren()) {
                     if (child.getChildren() != null && (System.currentTimeMillis() - initTime) <= GET_MOVE_TIME_LIMIT) {
                         if (child.getChildren().size() == 0 && child.getNodeControl() == ControlState.EVEN) {
-                            //System.out.println("EVEN -> EVEN -> x");
+                            /* ControlState: EVEN -> EVEN -> null */
                             return child.getMove();
                         } else if (child.getNodeControl() == ControlState.ODD) {
                             boolean isGrandchildMatching = true;
@@ -66,7 +67,7 @@ public class Tree {
                                     }
                                 }
                                 if (isGrandchildMatching) {
-                                    //System.out.println("EVEN -> ODD -> EVENs -> x");
+                                    /* ControlState: EVEN -> ODD -> wyłącznie EVENs -> null */
                                     return child.getMove();
                                 }
                             }
@@ -74,12 +75,11 @@ public class Tree {
                     }
                 /* zmniejsz drzewo do następnej tury */
                     else {
-                        //System.out.println("> no grandchildren [t=" + delta + "]");
                         return root.getChildren().get(0).getMove();
                     }
                 }
             }
-            //System.out.println("EVEN -> emergency");
+            /* brak idealnych ruchów */
             if(blocksData.getBlocksType1().size() > 0)
                 return blocksData.getBlocksType1().get(0).nextMove(board);
             if(blocksData.getBlocksType2().size() > 0)
@@ -92,7 +92,7 @@ public class Tree {
                 if(root.getChildren() != null) {
                     if (child.getChildren() != null && (System.currentTimeMillis() - initTime) <= GET_MOVE_TIME_LIMIT) {
                         if (child.getChildren().size() == 0 && child.getNodeControl() == ControlState.ODD) {
-                            //System.out.println("ODD -> ODD -> x");
+                            /* ControlState: ODD -> ODD -> null */
                             return child.getMove();
                         } else if (child.getNodeControl() == ControlState.EVEN) {
                             boolean isGrandchildMatching = true;
@@ -104,21 +104,19 @@ public class Tree {
                                     }
                                 }
                                 if (isGrandchildMatching) {
-                                    //System.out.println("ODD -> EVEN -> ODDs -> x");
+                                    /* ControlState: ODD -> EVEN -> wyłącznie ODDs -> null */
                                     return child.getMove();
                                 }
                             }
                         }
                     }
                 /* zmniejsz drzewo do następnej tury */
-
                     else {
-                        //System.out.println("> no grandchildren [t=" + delta + "]");
                         return root.getChildren().get(0).getMove();
                     }
                 }
             }
-            //System.out.println("ODD -> emergency");
+            /* brak idealnych ruchów */
             if(blocksData.getBlocksType2().size() > 0)
                 return blocksData.getBlocksType2().get(0).nextMove(board);
             if(blocksData.getBlocksType1().size() > 0)
@@ -126,16 +124,7 @@ public class Tree {
             if(blocksData.getBlocksType2or1().size() > 0)
                 return blocksData.getBlocksType2or1().get(0).leaveOneMove(board);
         }
-            /* weź cokolwiek jeśli nic już nie zostało */
-        //System.out.println("->> NO HOPE");
+            /* weź cokolwiek jeśli nic już nie pasuje */
             return BoardAnalyzer.mapValuesToSet(movesData.getMovesMap()).iterator().next();
-    }
-
-    public BlocksData getBlocksData() {
-        return blocksData;
-    }
-
-    public MovesData getMovesData() {
-        return movesData;
     }
 }

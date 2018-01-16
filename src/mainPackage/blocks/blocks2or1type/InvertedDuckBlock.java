@@ -52,8 +52,6 @@ public class InvertedDuckBlock extends AbstractBlockType2or1 {
         return finder.find(index, shapeR0,shapeR90, shapeR180, shapeR270, Block2or1Types.InvertedDuckBlock, board, rotation);
     }
 
-
-
     @Override
     public BrickBlock leaveZeroMoves(BoardState board) {
         switch (rotation){
@@ -74,6 +72,5 @@ public class InvertedDuckBlock extends AbstractBlockType2or1 {
             case R270: return new BrickBlock(referenceCellIndex, BlockRotation.R0, board);
             default: return null;
         }
-
     }
 }

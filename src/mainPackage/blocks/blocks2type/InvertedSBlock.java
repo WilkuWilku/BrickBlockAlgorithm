@@ -30,10 +30,13 @@ public class InvertedSBlock extends AbstractBlockType2  {
     public InvertedSBlock(int referenceCellIndex, BlockRotation rotation){
         this.referenceCellIndex = referenceCellIndex;
         this.rotation = rotation;
-        switch (rotation){
-            case R0: shape = shapeR0; break;
-            case R90: shape = shapeR90; break;
-
+        switch (rotation) {
+            case R0:
+                shape = shapeR0;
+                break;
+            case R90:
+                shape = shapeR90;
+                break;
         }
     }
 
@@ -42,8 +45,6 @@ public class InvertedSBlock extends AbstractBlockType2  {
         BlockFinder<InvertedSBlock> finder = new BlockFinder<>(InvertedSBlock.class);
         return finder.find(index, shapeR0, shapeR90, null, null, Block2Types.InvertedSBlock, board, rotation);
     }
-
-
 
     @Override
     public BrickBlock nextMove(BoardState board) {

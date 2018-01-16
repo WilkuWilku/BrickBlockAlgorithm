@@ -40,7 +40,6 @@ public class Straight4Block extends AbstractBlockType2or1 {
         return finder.find(index, shapeR0,shapeR90, null, null, Block2or1Types.Straight4Block, board, rotation);
     }
 
-
     @Override
     public BrickBlock leaveZeroMoves(BoardState board) {
         switch (rotation){

@@ -5,5 +5,4 @@ package mainPackage;
  */
 public interface EnumWithClass {
     Class getClassOfValue();
-
 }

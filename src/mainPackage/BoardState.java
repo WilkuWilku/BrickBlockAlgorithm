@@ -40,13 +40,8 @@ public class BoardState {
     /* nowa plansza o wielkości size z zablokowanymi polami o indeksach blockedCells[] */
     public BoardState(int size, ArrayList<Integer> blockedCells) {
         this(size);
-        //try {
-            for (int i = 0; i < blockedCells.size(); i++)
-                setCell(blockedCells.get(i));
-        //    } catch (Exception e) {
-        //        System.err.println("BoardState():");
-        //        e.printStackTrace();
-        //    }
+        for (int i = 0; i < blockedCells.size(); i++)
+            setCell(blockedCells.get(i));
     }
 
     /* tworzy nową planszę będącą kopią planszy origin */
@@ -58,12 +53,8 @@ public class BoardState {
 
     /* zaznacza pole o indeksie index */
     public void setCell(int index) {
-        //if (index >= size * size || index < 0)
-        //    throw new ArrayIndexOutOfBoundsException("Błąd: Odwołanie do pola poza planszą [index=" + index + ", size=" + size + "]");
         int x = IndexConverter.xOfIndex(index, size);
         int y = IndexConverter.yOfIndex(index, size);
-        //if(cells[index] == 0)
-        //        throw new Exception("NIEDOZWOLONY RUCH: komórka jest już zajęta! [index="+index+"]");
 
         cells[index] = 0;
         if (x - 1 >= 0)
@@ -77,28 +68,13 @@ public class BoardState {
     }
 
     public void setCell(int x, int y) {
-        //if (x < 0 || y < 0 || x >= size || y >= size)
-            //throw new ArrayIndexOutOfBoundsException("Błąd: Odwołanie do pola poza planszą [x=" + x + ", y=" + y + ", size=" + size + "]");
         setCell(IndexConverter.xyToIndex(x, y, size));
     }
-/*
-    public void addBrick(BrickBlock brick) {
-        for (int i = 0; i < brick.getCells().size(); i++)
-            try {
-                setCell(brick.getCells().get(i));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-    }*/
 
+    /* metoda zaznaczająca ruch na planszy */
     public void addBrick(BrickBlock brick){
         for(int i=0; i<brick.getShape().length; i++){
-            //try {
-                setCell(brick.getReferenceCellIndex() + brick.getShape()[i][0] + brick.getShape()[i][1]*size);
-            //} catch (Exception e) {
-                //System.err.println("addBrick():");
-                //e.printStackTrace();
-            //}
+            setCell(brick.getReferenceCellIndex() + brick.getShape()[i][0] + brick.getShape()[i][1]*size);
         }
     }
 
@@ -141,12 +117,7 @@ public class BoardState {
             int index = random.nextInt(size * size);
             while (board.getCell(index) == 0)
                 index = random.nextInt(size * size);
-            //try {
                 board.setCell(index);
-            //} catch (Exception e) {
-            //    System.err.println("randomBoard():");
-            //    e.printStackTrace();
-            //}
         }
         return board;
     }

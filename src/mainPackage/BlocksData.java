@@ -9,6 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by Inf on 2017-12-27.
  */
+/* klasa zawierająca informacje o wszystkich znalezionych blokach */
 public class BlocksData {
     private ArrayList<AbstractBlockType1> blocksType1;
     private ArrayList<AbstractBlockType2> blocksType2;
@@ -20,6 +21,7 @@ public class BlocksData {
         blocksType2or1 = new ArrayList<>();
     }
 
+    /* sprawdza stan prowadzenia w walce */
     /* liczba pozostałych ruchów musi być nieparzysta, żeby wygrać */
     public LeadingState checkLeadingState(){
         if(blocksType1.size() % 2 == 0)
@@ -28,6 +30,7 @@ public class BlocksData {
             return LeadingState.ODD;
     }
 
+    /* sprawdza stan kontroli w walce */
     /* liczba pozostałych bloków typu 2/1 musi być nieparzysta, aby kontrolować grę */
     public ControlState checkControlState(){
         if(blocksType2or1.size() % 2 == 0)
@@ -35,7 +38,6 @@ public class BlocksData {
         else
             return ControlState.ODD;
     }
-
 
     @Override
     public String toString() {

@@ -10,15 +10,15 @@ import java.util.HashSet;
  * Created by Inf on 2017-12-25.
  */
 public class Node {
-    private static final int SEARCH_AREA_WIDTH = 12;
+    private static final int SEARCH_AREA_WIDTH = 12;            // ograniczenie obszaru poszukiwań bloków
     private static final int SEARCH_AREA_HEIGHT = 12;
     private BrickBlock move;
     private BoardState board;
     private BoardAnalyzer analyzer;
     private ArrayList<Node> children;
-    private int level;
+    private int level;                                          // poziom generacji
     private MovesData nodeMovesData;
-    private ControlState nodeControl; // stan kontroli nowych bloków po wykonaniu ruchu z węzła (dla level+1)
+    private ControlState nodeControl;                           // stan kontroli nowych bloków po wykonaniu ruchu z węzła (dla level+1)
 
 
 
@@ -36,27 +36,31 @@ public class Node {
         this(null, board, -1, nodeMovesData, mainControl);
     }
 
+    /* Node jako zwykły węzeł */
     public static Node createRootNode(BoardState board, MovesData movesData, ControlState controlState){
         return new Node(board, movesData, controlState );
     }
 
-    public ArrayList<Node> createChildren(long initTime){
+    /* utworzenie wszystkich możliwych dzieci węzła */
+    public ArrayList<Node> createChildren(){
         this.children = new ArrayList<>();
         HashSet<BrickBlock> movesSet = BoardAnalyzer.mapValuesToSet(nodeMovesData.getMovesMap());
         for(BrickBlock move : movesSet){
             BoardState childBoard = new BoardState(this.board);
             move.markOnBoard(childBoard);
-            BlocksData childBlocksData = BlockFinder.searchForBlocksInArea(childBoard, move.getReferenceCellIndex(), SEARCH_AREA_WIDTH, SEARCH_AREA_HEIGHT);           //nowe bloki znalezione po wykonaniu ruchu move
+            /* nowe bloki po wykonaniu ruchu move */
+            BlocksData childBlocksData = BlockFinder.searchForBlocksInArea(childBoard, move.getReferenceCellIndex(), SEARCH_AREA_WIDTH, SEARCH_AREA_HEIGHT);
             BoardState childBoardWithoutBlocks = childBoard.getBoardWithoutBlocks(childBlocksData);
             BoardAnalyzer childBoardAnalyzer = new BoardAnalyzer(childBoardWithoutBlocks);
-            MovesData childMovesData = childBoardAnalyzer.findAllMoves(initTime);
+            /* pozostałe ruchy po wykonaniu ruchu move i odfiltrowaniu nowych bloków */
+            MovesData childMovesData = childBoardAnalyzer.findAllMoves();
+            /* utworzenie dziecka i dodanie go do listy dzieci węzła */
             Node childMove = new Node(move, childBoardWithoutBlocks, level+1, childMovesData,
                     childBlocksData.checkControlState());
             children.add(childMove);
         }
         return children;
     }
-
 
 
     public BrickBlock getMove() {
@@ -69,10 +73,6 @@ public class Node {
 
     public int getLevel() {
         return level;
-    }
-
-    public BoardAnalyzer getAnalyzer() {
-        return analyzer;
     }
 
     public ControlState getNodeControl() {

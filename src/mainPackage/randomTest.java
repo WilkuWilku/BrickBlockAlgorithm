@@ -10,7 +10,7 @@ import java.util.Random;
  * Created by Inf on 2018-01-14.
  */
 public class randomTest {
-    public static void main(String[] args) throws TimeLimitException {
+    public static void main(String[] args) throws Exception {
         long curT;
         double delta;
         IOHandler io = new IOHandler();
@@ -25,7 +25,7 @@ public class randomTest {
 
         boolean isFinished = false;
         while (!isFinished) {
-            movesData = randomPlayerAnalyzer.findAllMoves(System.currentTimeMillis());
+            movesData = randomPlayerAnalyzer.findAllMoves();
             if (movesData.nMoves == 0) {
                 System.out.println("*********     WYGRAL SUPER INTELIGENTNY PROGRAM    ************");
                 isFinished = true;
@@ -36,7 +36,7 @@ public class randomTest {
             nextPlayersMove = blocksArray.get(random.nextInt(blocksArray.size()));
             board.addBrick(nextPlayersMove);
             //io.getNextMove(board);
-            movesData = randomPlayerAnalyzer.findAllMoves(System.currentTimeMillis());
+            movesData = randomPlayerAnalyzer.findAllMoves();
             if (movesData.nMoves == 0) {
                 System.out.println("*********     WYGRAL GRACZ    ************");
                 isFinished = true;
@@ -48,7 +48,7 @@ public class randomTest {
             board.addBrick(nextAIsMove);
             io.writeNextStep(nextAIsMove);
             if (delta >= 500) {
-                throw new TimeLimitException("Przekroczony czas na decyzję! (" + delta + " ms)");
+                throw new Exception("Przekroczony czas na decyzję! (" + delta + " ms)");
             }
         }
 

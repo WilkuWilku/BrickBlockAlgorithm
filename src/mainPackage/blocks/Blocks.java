@@ -10,6 +10,7 @@ public final class Blocks {
 
     private Blocks(){}
 
+    /* sprawdza o ile zostanie zredukowana liczba ruchów, gdy dana komórka dostanie zajęta */
     public static int movesReductionIfSet(int index, BoardState board){
         int x = IndexConverter.xOfIndex(index, board.size);
         int y = IndexConverter.yOfIndex(index, board.size);

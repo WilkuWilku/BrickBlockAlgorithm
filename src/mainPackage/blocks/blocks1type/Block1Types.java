@@ -13,8 +13,8 @@ public enum Block1Types implements EnumWithClass, Summable {
     TurnBlock(TurnBlock.class, 4),
     PlusBlock(PlusBlock.class, 8);
 
-    private Class blockClass;
-    private int sum;
+    private Class blockClass;       // klasa danego bloku
+    private int sum;                // suma kontrolna, pozwala uniknąć powtórzeń bloków */
 
     Block1Types(Class blockClass, int sum) {
         this.blockClass = blockClass;

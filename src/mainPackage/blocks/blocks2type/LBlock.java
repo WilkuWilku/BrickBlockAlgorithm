@@ -54,8 +54,6 @@ public class LBlock extends AbstractBlockType2  {
         return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, Block2Types.LBlock, board, rotation);
     }
 
-
-
     @Override
     public BrickBlock nextMove(BoardState board) {
         switch (rotation){

@@ -4,6 +4,7 @@ package mainPackage;
 /**
  * Created by Inf on 2017-11-18.
  */
+/* klasa służąca do konwersji danych o położeniu komórki */
 public final class IndexConverter {
 
     public static int xyToIndex(int x, int y, int size) {

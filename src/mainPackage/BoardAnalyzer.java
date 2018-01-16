@@ -9,39 +9,34 @@ import java.util.*;
 /**
  * Created by Inf on 2017-11-19.
  */
+/* klasa analizująca planszę */
 public class BoardAnalyzer {
     private BoardState board;
-    private static final long TIME_LIMIT = 400;
-
 
     public BoardAnalyzer(BoardState board) {
         this.board = board;
     }
 
     /* znajduje wszystkie możliwe ruchy (BrickBlocki) */
-    public MovesData findAllMoves(long initTime){
+    public MovesData findAllMoves(){
         MovesData movesData = new MovesData();
         for(int i=0; i<board.getCells().length; i++)
             if(board.getCell(i) > 0)
-                searchMovesAtIndex(i, movesData, initTime);
+                searchMovesAtIndex(i, movesData);
         return movesData;
     }
 
+    /* dodaje ruch do mapy ruchów */
     private void addToMovesMap(int index, BrickBlock block, MovesData movesData){
         Duo move = movesData.getMovesMap().get(index);
         if(move == null)
             movesData.getMovesMap().put(index, new Duo<>(block));
         else
-            //try {
-                move.insert(block);
-            //} catch (Exception e) {
-            //    e.printStackTrace();
-            //}
+            move.insert(block);
     }
 
-    private void searchMovesAtIndex(int index, MovesData movesData, long initTime) {
-        //if (System.currentTimeMillis() - initTime > TIME_LIMIT)
-          //  return;
+    /* sprawdza czy istnieje którykolwiek z bloków w danym indeksie */
+    private void searchMovesAtIndex(int index, MovesData movesData) {
         for (BlockRotation rotation : BlockRotation.values()) {
             BrickBlock result = BrickBlock.createIfPossible(index, board, rotation);
             if (result != null) {
@@ -50,7 +45,6 @@ public class BoardAnalyzer {
             }
         }
     }
-
 
     /* przerzuca ruchy z mapy do zbioru */
     public static HashSet<BrickBlock> mapValuesToSet(HashMap<Integer, Duo<BrickBlock>> map) {

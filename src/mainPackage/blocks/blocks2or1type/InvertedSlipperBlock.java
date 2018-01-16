@@ -54,7 +54,6 @@ public class InvertedSlipperBlock extends AbstractBlockType2or1 {
         return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, Block2or1Types.InvertedSlipperBlock, board, rotation);
     }
 
-
     @Override
     public BrickBlock leaveZeroMoves(BoardState board) {
         switch (rotation){

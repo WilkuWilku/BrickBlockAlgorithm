@@ -37,21 +37,17 @@ public class InvertedLongThunderBlock extends AbstractBlockType2 {
         }
     }
 
-
     public static InvertedLongThunderBlock check(int index, BoardState board, BlockRotation rotation) {
         BlockFinder<InvertedLongThunderBlock> finder = new BlockFinder<>(InvertedLongThunderBlock.class);
         return finder.find(index, shapeR0, shapeR90, null, null, Block2Types.InvertedLongThunderBlock, board, rotation);
     }
 
-
-
     @Override
     public BrickBlock nextMove(BoardState board) {
         switch (rotation){
-            case R0: return new BrickBlock(referenceCellIndex+1, BlockRotation.R0, board);
-            case R90: return new BrickBlock(referenceCellIndex, BlockRotation.R90, board);
+            case R0: return new BrickBlock(referenceCellIndex, BlockRotation.R90, board);
+            case R90: return new BrickBlock(referenceCellIndex+1, BlockRotation.R0, board);
             default: return null;
         }
-
     }
 }

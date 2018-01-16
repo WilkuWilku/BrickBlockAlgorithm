@@ -52,10 +52,8 @@ public class LegBlock extends AbstractBlockType2 {
 
     public static LegBlock check(int index, BoardState board, BlockRotation rotation) {
         BlockFinder<LegBlock> finder = new BlockFinder<>(LegBlock.class);
-        LegBlock result = null;
         return finder.find(index, shapeR0, shapeR90, shapeR180, shapeR270, Block2Types.LegBlock, board, rotation);
     }
-
 
     @Override
     public BrickBlock nextMove(BoardState board) {

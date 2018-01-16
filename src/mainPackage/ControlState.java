@@ -5,6 +5,5 @@ package mainPackage;
  */
 public enum ControlState {
     EVEN,
-    ODD,
-    UNKNOWN;
+    ODD;
 }

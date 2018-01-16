@@ -26,8 +26,8 @@ public enum Block2Types implements EnumWithClass, Summable{
     InvertedLongThunderBlock (InvertedLongThunderBlock.class, 12);
 
 
-    private Class blockClass;
-    private int sum;
+    private Class blockClass;               // klasa danego bloku
+    private int sum;                        // suma kontrolna, pozwala uniknąć powtórzeń bloków
 
     Block2Types(Class blockClass, int sum) {
         this.blockClass = blockClass;

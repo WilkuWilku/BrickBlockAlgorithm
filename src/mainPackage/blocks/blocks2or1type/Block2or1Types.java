@@ -19,8 +19,8 @@ public enum Block2or1Types implements EnumWithClass, Summable{
     ShortLegBlock (ShortLegBlock.class, 6),
     InvertedShortLegBlock (InvertedShortLegBlock.class, 6);
 
-    private Class blockClass;
-    private int sum;
+    private Class blockClass;           // klasa danego bloku
+    private int sum;                    // suma kontrolna, pozwala uniknąć powtórzeń bloków
 
     Block2or1Types(Class blockClass, int sum) {
         this.blockClass = blockClass;

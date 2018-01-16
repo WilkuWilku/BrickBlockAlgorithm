@@ -36,13 +36,10 @@ public class SBlock extends AbstractBlockType2 {
         }
     }
 
-
     public static SBlock check(int index, BoardState board, BlockRotation rotation) {
         BlockFinder<SBlock> finder = new BlockFinder<>(SBlock.class);
         return finder.find(index, shapeR0, shapeR90, null, null, Block2Types.SBlock, board, rotation);
     }
-
-
 
     @Override
     public BrickBlock nextMove(BoardState board) {
