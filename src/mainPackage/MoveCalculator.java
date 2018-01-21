@@ -14,9 +14,9 @@ import java.util.HashSet;
 
 public final class MoveCalculator {
 
-    private static final int BLOCK_SEARCH_LIMIT = 1000;                         // maksymalna liczba ruchów do rozpoczęcia wyszukiwania bloków
-    private static final int TREE_MOVES_LIMIT = 13;                             // maksymalna liczba dzieci korzenia drzewa
-    private static final long FULL_BOARD_TIME_LIMIT = 450;                      // limit czasowy wyszukiwania ruchu przy pełnej planszy
+    private static final int BLOCK_SEARCH_LIMIT = 2000;                         // maksymalna liczba ruchów do rozpoczęcia wyszukiwania bloków
+    private static final int TREE_MOVES_LIMIT = 25;                             // maksymalna liczba dzieci korzenia drzewa
+    private static final long FULL_BOARD_TIME_LIMIT = 420;                      // limit czasowy wyszukiwania ruchu przy pełnej planszy
     private static boolean BLOCKS_ONLY_LEFT = false;                            // zmienna określająca czy algorytm działa wyłącznie na blokach
 
     private MoveCalculator(){

@@ -7,87 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e27426cb-72f3-460e-a9f9-18ea14505f3e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/AnalyzingThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/mainPackage/AnalyzingThread.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/mainPackage/TimeLimitException.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/BloccLauncher.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/BloccLauncher.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/BoardAnalyzer.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/BoardAnalyzer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/BoardState.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/BoardState.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/IOHandler.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/IOHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/IndexConverter.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/IndexConverter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/AbstractBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/AbstractBlock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/BlockFinder$1.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/BlockFinder$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/BlockFinder.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/BlockFinder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/Blocks.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/Blocks.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2or1type/CrossBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2or1type/CrossBlock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2or1type/InvertedDuckBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2or1type/InvertedDuckBlock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2or1type/InvertedSlipperBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2or1type/InvertedSlipperBlock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2or1type/InvertedThunderBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2or1type/InvertedThunderBlock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2or1type/SlipperBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2or1type/SlipperBlock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2or1type/Straight4Block.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2or1type/Straight4Block.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2or1type/TBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2or1type/TBlock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2or1type/ThunderBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2or1type/ThunderBlock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/BootBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/BootBlock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/InvertedBootBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/InvertedBootBlock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/InvertedLegBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/InvertedLegBlock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/InvertedSBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/InvertedSBlock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/InvertedWormBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/InvertedWormBlock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/LBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/LBlock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/LegBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/LegBlock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/SBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/SBlock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/SquareBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/SquareBlock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/StairsBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/StairsBlock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/Straight5Block.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/Straight5Block.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/UBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/UBlock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/WormBlock.class" afterPath="$PROJECT_DIR$/out/production/Blocc/mainPackage/blocks/blocks2type/WormBlock.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/BloccLauncher.java" afterPath="$PROJECT_DIR$/src/mainPackage/BloccLauncher.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/BlocksData.java" afterPath="$PROJECT_DIR$/src/mainPackage/BlocksData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/BoardAnalyzer.java" afterPath="$PROJECT_DIR$/src/mainPackage/BoardAnalyzer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/BoardState.java" afterPath="$PROJECT_DIR$/src/mainPackage/BoardState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/ControlState.java" afterPath="$PROJECT_DIR$/src/mainPackage/ControlState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/Duo.java" afterPath="$PROJECT_DIR$/src/mainPackage/Duo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/EnumWithClass.java" afterPath="$PROJECT_DIR$/src/mainPackage/EnumWithClass.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/IOHandler.java" afterPath="$PROJECT_DIR$/src/mainPackage/IOHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/IndexConverter.java" afterPath="$PROJECT_DIR$/src/mainPackage/IndexConverter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/MovesData.java" afterPath="$PROJECT_DIR$/src/mainPackage/MovesData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/Node.java" afterPath="$PROJECT_DIR$/src/mainPackage/Node.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/Tree.java" afterPath="$PROJECT_DIR$/src/mainPackage/Tree.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/AbstractBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/AbstractBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/BlockFinder.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/BlockFinder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/BlockRotation.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/BlockRotation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/BlockTypes.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/BlockTypes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/Blocks.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/Blocks.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks1type/Block1Types.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks1type/Block1Types.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks1type/BrickBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks1type/BrickBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/Block2or1Types.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/Block2or1Types.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/CrossBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/CrossBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/InvertedDuckBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/InvertedDuckBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/InvertedShortLegBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/InvertedShortLegBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/InvertedSlipperBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/InvertedSlipperBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/InvertedThunderBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/InvertedThunderBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/ShortLegBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/ShortLegBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/SlipperBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/SlipperBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/Straight4Block.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/Straight4Block.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/TBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/TBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/ThunderBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/ThunderBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/Block2Types.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/Block2Types.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/BootBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/BootBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/InvertedBootBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/InvertedBootBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/InvertedLegBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/InvertedLegBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/InvertedLongThunderBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/InvertedLongThunderBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/InvertedSBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/InvertedSBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/InvertedWormBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/InvertedWormBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/LBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/LBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/LegBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/LegBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/LongThunderBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/LongThunderBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/SBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/SBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/SquareBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/SquareBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/StairsBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/StairsBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/Straight5Block.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/Straight5Block.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/UBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/UBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/WormBlock.java" afterPath="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/WormBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/randomTest.java" afterPath="$PROJECT_DIR$/src/mainPackage/randomTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mainPackage/MoveCalculator.java" afterPath="$PROJECT_DIR$/src/mainPackage/MoveCalculator.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -121,22 +44,48 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MoveCalculator.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MoveCalculator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/mainPackage/MoveCalculator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="42" column="44" lean-forward="false" selection-start-line="42" selection-start-column="44" selection-end-line="42" selection-end-column="44" />
+            <state relative-caret-position="221">
+              <caret line="18" column="56" lean-forward="false" selection-start-line="18" selection-start-column="56" selection-end-line="18" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IOHandler.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Node.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mainPackage/Node.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="30" column="49" lean-forward="false" selection-start-line="30" selection-start-column="49" selection-end-line="30" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Tree.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mainPackage/Tree.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="54" lean-forward="false" selection-start-line="9" selection-start-column="54" selection-end-line="9" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IOHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mainPackage/IOHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="29" column="9" lean-forward="false" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
-              <folding />
+            <state relative-caret-position="578">
+              <caret line="40" column="8" lean-forward="false" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#449#450#0" expanded="false" />
+                <element signature="e#497#498#0" expanded="false" />
+                <element signature="e#2126#2127#0" expanded="false" />
+                <element signature="e#2166#2167#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -213,12 +162,12 @@
         <option value="$PROJECT_DIR$/src/mainPackage/Duo.java" />
         <option value="$PROJECT_DIR$/src/mainPackage/EnumWithClass.java" />
         <option value="$PROJECT_DIR$/src/mainPackage/MovesData.java" />
-        <option value="$PROJECT_DIR$/src/mainPackage/Tree.java" />
         <option value="$PROJECT_DIR$/src/mainPackage/blocks/blocks2or1type/CrossBlock.java" />
         <option value="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/InvertedLongThunderBlock.java" />
         <option value="$PROJECT_DIR$/src/mainPackage/blocks/blocks2type/LegBlock.java" />
-        <option value="$PROJECT_DIR$/src/mainPackage/MoveCalculator.java" />
         <option value="$PROJECT_DIR$/src/mainPackage/IOHandler.java" />
+        <option value="$PROJECT_DIR$/src/mainPackage/Tree.java" />
+        <option value="$PROJECT_DIR$/src/mainPackage/MoveCalculator.java" />
       </list>
     </option>
   </component>
@@ -253,21 +202,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blocc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Blocc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -329,6 +263,21 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Blocc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Blocc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -821,7 +770,9 @@
       <workItem from="1515948413885" duration="30000" />
       <workItem from="1515953951266" duration="90000" />
       <workItem from="1515962420469" duration="7429000" />
-      <workItem from="1516122117359" duration="162000" />
+      <workItem from="1516122117359" duration="873000" />
+      <workItem from="1516201712482" duration="2435000" />
+      <workItem from="1516571606910" duration="848000" />
     </task>
     <task id="LOCAL-00001" summary="Dodana funkcja rekurencyjnego wyszukiwania pokrycia planszy (do dokończenia)">
       <created>1511737418902</created>
@@ -1054,11 +1005,18 @@
       <option name="project" value="LOCAL" />
       <updated>1515972472425</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Brakujące zamknięcie Scannera">
+      <created>1516122295906</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1516122295906</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="340741000" />
+    <option name="totallyTimeSpent" value="344735000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1076,6 +1034,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17965367" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17640692" sideWeight="0.4978678" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1087,7 +1046,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16791044" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17110874" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2238806" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1099,7 +1058,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17640692" sideWeight="0.4978678" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5064935" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1153,7 +1111,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="12" column="93" lean-forward="false" selection-start-line="12" selection-start-column="93" selection-end-line="12" selection-end-column="93" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1161,7 +1118,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="10" column="15" lean-forward="false" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1183,7 +1139,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="29" column="78" lean-forward="false" selection-start-line="29" selection-start-column="78" selection-end-line="29" selection-end-column="78" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1191,7 +1146,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="377">
           <caret line="40" column="4" lean-forward="false" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1223,7 +1177,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="19" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1245,7 +1198,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="28" lean-forward="false" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1253,15 +1205,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainPackage/Tree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2108">
-          <caret line="126" column="53" lean-forward="false" selection-start-line="126" selection-start-column="53" selection-end-line="126" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1273,19 +1216,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainPackage/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="30" column="49" lean-forward="true" selection-start-line="30" selection-start-column="49" selection-end-line="30" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mainPackage/blocks/blocks1type/BrickBlock.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-286">
           <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1293,7 +1227,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="496">
           <caret line="41" column="48" lean-forward="true" selection-start-line="41" selection-start-column="48" selection-end-line="41" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1301,7 +1234,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1309,7 +1241,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1317,7 +1248,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1325,7 +1255,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="445">
           <caret line="58" column="72" lean-forward="false" selection-start-line="58" selection-start-column="72" selection-end-line="58" selection-end-column="72" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1333,7 +1262,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-31">
           <caret line="33" column="13" lean-forward="false" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1341,7 +1269,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-14">
           <caret line="30" column="13" lean-forward="false" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1349,7 +1276,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-14">
           <caret line="31" column="13" lean-forward="false" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1357,7 +1283,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-14">
           <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1365,7 +1290,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
           <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1373,7 +1297,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-14">
           <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1381,7 +1304,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-8">
           <caret line="31" column="13" lean-forward="false" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1389,7 +1311,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
           <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1397,7 +1318,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-14">
           <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1405,7 +1325,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="122">
           <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1413,7 +1332,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="717">
           <caret line="63" column="9" lean-forward="false" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1421,7 +1339,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="564">
           <caret line="55" column="0" lean-forward="true" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1429,7 +1346,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="573">
           <caret line="56" column="5" lean-forward="false" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1437,7 +1353,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="683">
           <caret line="48" column="64" lean-forward="false" selection-start-line="48" selection-start-column="64" selection-end-line="48" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1445,7 +1360,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="726">
           <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1453,7 +1367,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="573">
           <caret line="56" column="5" lean-forward="false" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1461,7 +1374,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="471">
           <caret line="48" column="5" lean-forward="true" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1469,7 +1381,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="522">
           <caret line="53" column="73" lean-forward="false" selection-start-line="53" selection-start-column="73" selection-end-line="53" selection-end-column="73" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1477,7 +1388,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
           <caret line="42" column="5" lean-forward="false" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1485,7 +1395,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1493,7 +1402,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="28" column="64" lean-forward="false" selection-start-line="28" selection-start-column="64" selection-end-line="28" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1501,7 +1409,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="573">
           <caret line="54" column="5" lean-forward="false" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1509,7 +1416,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="624">
           <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1517,7 +1423,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="573">
           <caret line="52" column="5" lean-forward="false" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1525,7 +1430,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="833">
           <caret line="52" column="5" lean-forward="false" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1537,18 +1441,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainPackage/MoveCalculator.java">
+    <entry file="file://$PROJECT_DIR$/src/mainPackage/IOHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="42" column="44" lean-forward="false" selection-start-line="42" selection-start-column="44" selection-end-line="42" selection-end-column="44" />
+        <state relative-caret-position="578">
+          <caret line="40" column="8" lean-forward="false" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#449#450#0" expanded="false" />
+            <element signature="e#497#498#0" expanded="false" />
+            <element signature="e#2126#2127#0" expanded="false" />
+            <element signature="e#2166#2167#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mainPackage/Tree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="54" lean-forward="false" selection-start-line="9" selection-start-column="54" selection-end-line="9" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainPackage/IOHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/mainPackage/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="29" column="9" lean-forward="false" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+        <state relative-caret-position="442">
+          <caret line="30" column="49" lean-forward="false" selection-start-line="30" selection-start-column="49" selection-end-line="30" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mainPackage/MoveCalculator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="18" column="56" lean-forward="false" selection-start-line="18" selection-start-column="56" selection-end-line="18" selection-end-column="56" />
           <folding />
         </state>
       </provider>

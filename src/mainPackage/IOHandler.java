@@ -30,15 +30,15 @@ public class IOHandler {
         }
         if(input.equals("start") || input.equals("START"))
             return true;
-            initTime = System.currentTimeMillis();
-            String[] parts = input.split("x|_");
-            int coords[] = new int[4];
-            for (int i = 0; i < coords.length; i++)
-                coords[i] = Integer.parseInt(parts[i]);
-            int index1 = IndexConverter.xyToIndex(coords[0], coords[1], boardSize);
-            int index2 = IndexConverter.xyToIndex(coords[2], coords[3], boardSize);
-            board.setCell(index1);
-            board.setCell(index2);
+        initTime = System.currentTimeMillis();
+        String[] parts = input.split("x|_");
+        int coords[] = new int[4];
+        for (int i = 0; i < coords.length; i++)
+            coords[i] = Integer.parseInt(parts[i]);
+        int index1 = IndexConverter.xyToIndex(coords[0], coords[1], boardSize);
+        int index2 = IndexConverter.xyToIndex(coords[2], coords[3], boardSize);
+        board.setCell(index1);
+        board.setCell(index2);
         return true;
     }
 
